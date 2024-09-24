@@ -1,0 +1,153 @@
+<html lang="en">
+
+<%- include('./partials/header.ejs') %>
+
+<body>
+  <!-- Top Nav Bar -->
+
+  <%- include('./partials/navbar.ejs') %>
+
+  <!-- Sign-up Section -->
+  <section id="auth-section">
+    <div class="auth-container">
+      <h2>Sign Up</h2>
+      <form id="signup-form">
+        <label for="email">Email <span style="color: red;">*</span></label>
+        <input type="email" id="email" name="email" placeholder="Enter Email" required>
+    
+        <label for="role">Role <span style="color: red;">*</span></label>
+        <select id="role" name="role" required>
+            <option value="donor">Blood Donor</option>
+            <option value="recipient">Recipient Company</option>
+        </select>
+    
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" name="fullName" placeholder="Enter Full Name">
+    
+        <label for="phone-number">Phone Number</label>
+        <input type="text" id="phone-number" name="phoneNumber" placeholder="Enter Phone Number">
+    
+        <div style="display: flex; gap: 10px;">
+          <div>
+              <label for="province">Province</label>
+              <select id="province" name="province">
+                  <option value="" disabled selected>Select Province</option>
+                  <option value="Kigali">Kigali</option>
+                  <option value="Eastern Province">Eastern Province</option>
+                  <option value="Western Province">Western Province</option>
+                  <option value="Northern Province">Northern Province</option>
+                  <option value="Southern Province">Southern Province</option>
+              </select>
+          </div>
+  
+          <div>
+              <label for="full-address">Full Address </label>
+              <input type="text" id="full-address" name="fullAddress" placeholder="Enter City and Locality">
+          </div>
+      </div>
+
+        <label for="date-of-birth">Date of Birth</label>
+        <input type="date" id="date-of-birth" name="dateOfBirth">
+        <br>
+        <button type="submit" onclick="submitForm()">Sign Up</button>
+      
+        <div class="keep-signed-in">
+            <input type="checkbox" id="agree-terms" required>
+            <label for="agree-terms">I agree to the <a href="#">terms and conditions</a></label>
+        </div>
+    </form>
+      <a href="/login" class="create-account-link">Already have an account? Sign in</a>
+      <div class="account-benefits">
+        <p><strong>Account Benefits:</strong> Create an account to easily schedule future appointments, manage existing
+          appointments, see your blood type, view results of your mini-physical, and track donation history.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- <script>
+    document.getElementById('signup-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Basic validation
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      // Clear previous error messages
+      document.querySelectorAll('.error').forEach(error => error.textContent = '');
+
+      if (username.length < 3) {
+        alert('Username must be at least 3 characters long.');
+        return;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      if (password.length < 6) {
+        alert('Password must be at least 6 characters long.');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+      }
+
+      // All checks passed
+      alert('Account created successfully!');
+      // Redirect or perform further actions
+      window.location.href = './dashboard.html';
+    });
+  </script> -->
+  <script>
+  function submitForm() {
+    const email = document.getElementById("email").value;
+    const role = document.getElementById("role").value;
+    const fullName = document.getElementById("full-name").value || "no info";
+    const phoneNumber = document.getElementById("phone-number").value || "no info";
+    const province = document.getElementById("province").value;
+    const fullAddress = document.getElementById("full-address").value || "no info";
+    const preferredLocation = province + ', ' + fullAddress;
+    const dateOfBirth = document.getElementById("date-of-birth").value || null;
+
+    const data = {
+        email,
+        role,
+        fullName,
+        phoneNumber,
+        preferredLocation,
+        dateOfBirth
+    };
+
+    fetch('/create-user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log('Success:', result);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+</script>
+
+
+  <!-- Footer -->
+  <%- include('./partials/footer.ejs') %>
+  <!-- <script src="/js/scripts.js"></script> -->
+
+
+</body>
+
+</html>

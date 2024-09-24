@@ -1,0 +1,49 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+<body>
+    <!-- Top Nav Bar -->
+<!-- Top Nav Bar -->
+<%- include('./partials/navbar.ejs') %>
+
+
+    <!-- Forgot Password Section -->
+<section id="auth-section">
+    <div class="auth-container">
+      <h2>Forgot Password</h2>
+      <form id="forgot-password-form">
+        <label for="email">Enter your registered email</label>
+        <input type="email" id="email" name="email" placeholder="Enter Email" required>
+        
+        <button type="submit">Send Reset Instructions</button>
+      </form>
+      <a href="/signup" class="create-account-link">Back to Login</a>
+      <div class="account-benefits">
+        <p><strong>Forgot your password?</strong> No worries! Enter your registered email address, and we’ll send you instructions to reset your password.</p>
+      </div>
+    </div>
+</section>
+
+    <script>
+        document.getElementById('forgot-password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+
+            // Email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+            }
+
+            // Simulating sending reset instructions
+            alert('Password reset instructions have been sent to your email.');
+            // You can redirect or proceed with backend integration
+        });
+    </script>
+
+      <!-- Footer -->
+      <%- include('./partials/footer.ejs') %>
+
+</body>
+</html>
