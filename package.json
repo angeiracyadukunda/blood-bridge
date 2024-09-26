@@ -17,8 +17,16 @@
   "author": "Ange && Gdm",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "ejs": "^3.1.10",
     "express": "^4.21.0",
+=======
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "express-session": "^1.18.0",
+    "firebase": "^10.13.2",
+>>>>>>> 9201bbba1f3a4d6af7ab0d9d05eb48bd72551bc1
     "flowbite": "^2.5.1",
     "lodash": "^4.17.21",
     "mongodb": "^6.9.0",

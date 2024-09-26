@@ -11,7 +11,17 @@
   <section id="auth-section">
     <div class="auth-container">
       <h2>Sign Up</h2>
+<<<<<<< HEAD
       <form id="signup-form">
+=======
+      <!-- Alert popup for success/error messages -->
+      <div class="alert" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); padding: 10px; color: white; font-weight: bold; border-radius: 5px;"></div>
+      
+      <form id="signup-form" method="POST" action="/api/signup">
+        <label for="full-name">Full Name <span style="color: red;">*</span></label>
+        <input type="text" id="full-name" name="fullName" placeholder="Enter Full Name" required>
+    
+>>>>>>> 9201bbba1f3a4d6af7ab0d9d05eb48bd72551bc1
         <label for="email">Email <span style="color: red;">*</span></label>
         <input type="email" id="email" name="email" placeholder="Enter Email" required>
     
@@ -21,6 +31,7 @@
             <option value="recipient">Recipient Company</option>
         </select>
     
+<<<<<<< HEAD
         <label for="full-name">Full Name</label>
         <input type="text" id="full-name" name="fullName" placeholder="Enter Full Name">
     
@@ -51,11 +62,61 @@
         <br>
         <button type="submit" onclick="submitForm()">Sign Up</button>
       
+=======
+        <label for="phone-number">Phone Number</label>
+        <input type="text" id="phone-number" name="phoneNumber" placeholder="Enter Phone Number with contry code">
+    
+        <div style="display: flex; gap: 10px;">
+            <div>
+                <label for="province">Province</label>
+                <select id="province" name="province">
+                    <option value="" disabled selected>Select Province</option>
+                    <option value="Kigali">Kigali</option>
+                    <option value="Eastern Province">Eastern Province</option>
+                    <option value="Western Province">Western Province</option>
+                    <option value="Northern Province">Northern Province</option>
+                    <option value="Southern Province">Southern Province</option>
+                </select>
+            </div>
+    
+            <div>
+                <label for="full-address">Full Address</label>
+                <input type="text" id="full-address" name="fullAddress" placeholder="Enter City and Locality">
+            </div>
+        </div>
+    
+        <label for="date-of-birth">Date of Birth</label>
+        <input type="date" id="date-of-birth" name="dateOfBirth">
+        <br>
+    
+        <label for="password">Password <span style="color: red;">*</span></label>
+        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+    
+        <label for="confirm-password">Confirm Password <span style="color: red;">*</span></label>
+        <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm Password" required>
+    
+        <label for="id-type">ID Type <span style="color: red;">*</span></label>
+        <select id="id-type" name="idType" required>
+            <option value="" disabled selected>Select ID Type</option>
+            <option value="passport">Passport</option>
+            <option value="national-id">National ID</option>
+        </select>
+    
+        <label for="id-number">ID Number <span style="color: red;">*</span></label>
+        <input type="text" id="id-number" name="idNumber" placeholder="Enter ID Number" required>
+    
+        <button type="submit">Sign Up</button>
+    
+>>>>>>> 9201bbba1f3a4d6af7ab0d9d05eb48bd72551bc1
         <div class="keep-signed-in">
             <input type="checkbox" id="agree-terms" required>
             <label for="agree-terms">I agree to the <a href="#">terms and conditions</a></label>
         </div>
     </form>
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 9201bbba1f3a4d6af7ab0d9d05eb48bd72551bc1
       <a href="/login" class="create-account-link">Already have an account? Sign in</a>
       <div class="account-benefits">
         <p><strong>Account Benefits:</strong> Create an account to easily schedule future appointments, manage existing
@@ -105,6 +166,7 @@
       window.location.href = './dashboard.html';
     });
   </script> -->
+<<<<<<< HEAD
   <script>
   function submitForm() {
     const email = document.getElementById("email").value;
@@ -141,6 +203,9 @@
     });
 }
 </script>
+=======
+  <script src="/js/signup.js"></script>
+>>>>>>> 9201bbba1f3a4d6af7ab0d9d05eb48bd72551bc1
 
 
   <!-- Footer -->
