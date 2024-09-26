@@ -5,30 +5,73 @@
 <body>
     
     <%- include('./partials/navbar.ejs') %>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Donate Blood ,Save lives !</h1>
-            <p>Donating blood is a simple act that can save up to three lives. Every two seconds, someone needs blood
-                for emergencies, surgeries, or treatments. Your donation is safe, quick, and makes a real difference. Be
-                a hero—donate blood today and give the gift of life! </p>
-            <form class="form-container">
-                <button type="button" onclick="window.location.href='./rewards.html'">View Donating Rewords</button>
-                <button type="button" onclick="window.location.href='./Appiontment.html'">Make an Appointment</button>
-            </form>
+    
+ <!-- Hero Section -->
+ <section class="hero">
+    <div class="hero-content">
+        <h1>Donate Blood, Save Lives!</h1>
+        <p>Donating blood is a simple act that can save up to three lives. Every two seconds, someone needs blood
+            for emergencies, surgeries, or treatments. Your donation is safe, quick, and makes a real difference. Be
+            a hero—donate blood today and give the gift of life!</p>
+        <form class="form-container">
+            <button type="button" onclick="window.location.href='./rewards'">View Donating Rewards</button>
+            <button type="button" onclick="window.location.href='./Appointment'">Make an Appointment</button>
+        </form>
+    </div> 
 
+    <!-- Slideshow container -->
+     <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img src="./images/boy.jpg" alt="Nature Image">
+            <div class="text">Donate Blood, Save Lives!</div>
         </div>
-        <div class="hero-image">
-            <img src="./images/icon1.png" alt="Blood Drop">
+
+        <div class="mySlides fade">
+            <img src="./images/africa-humanitarian-aid-doctor-taking-care-patient.jpg" alt="Snow Image">
+            <div class="text">Be a Hero, Donate Today!</div>
         </div>
-    </section>
+
+        <div class="mySlides fade">
+            <img src="./images/africans.jpg" alt="Mountain Image">
+            <div class="text">Give the Gift of Life!</div>
+        </div>
+    </div>
+
+    <div style="text-align:center; position: absolute; bottom: 10px; width: 100%;">
+        <span class="dot"></span> 
+        <span class="dot"></span> 
+        <span class="dot"></span> 
+    </div> 
+</section> 
+
+<script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 5000); // Change image every 5 seconds
+    }
+</script>
 
     <!-- Cards Section -->
     <h1 class="hero-text">More Ways You Can Make a Difference</h1>
     <section class="cards-section">
 
         <div class="card">
-            <img src="./images/world-no-tobacco-day-concept.jpg" alt="Image 1">
+            <img src="./images/eligibiliytttt.jpeg" alt="Image 1">
             <h3>View Donation History</h3>
             <p>Are you eligible for blood donation? Find out about the eligibility requirements to donate blood today.
                 Learn about general health, travel, medications, tattoos, and more.</p>
@@ -43,7 +86,7 @@
             <button type="button" onclick="window.location.href='./Eligibility.html'">Learn More</button>
         </div>
         <div class="card">
-            <img src="./images/donateimg.jpg" alt="Image 2">
+            <img src="./images/donarssss.jpeg" alt="Image 2">
             <h3>Help Sickle Cell Patients</h3>
             <p>Blood donors who are Black play a critical role in helping sickle cell disease patients receive the most
                 compatible blood match. Donors needed to meet this urgent need.</p>
@@ -53,20 +96,12 @@
     <section class="content-section">
         <h2>Have More Questions?</h2>
         <p>If you have any more questions or concerns, please feel free to contact us. We are here to help you understand the importance of blood donation and make your experience as comfortable as possible.</p>
-        <a href="./contact.html" class="cta-button">Contact Us</a>
+        <a href="/contact" class="cta-button">Contact Us</a>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
 
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-        </div>
-    </footer>
-
+    
+    <%- include('./partials/footer.ejs') %>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="/js/scripts.js"></script>
 </body>

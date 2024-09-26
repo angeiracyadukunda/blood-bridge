@@ -14,9 +14,16 @@ const app = express();
 
 //connecting to mngodb
 const uri = "mongodb+srv://gdm:8520@blooddonation.dgdu5.mongodb.net/?retryWrites=true&w=majority&appName=blooddonation";
-mongoose.connect(uri)
-.then((result)=> app.listen(3000))
-.catch((err) => console.log(err));
+// mongoose.connect(uri)
+//  .then(() => console.log('Connected to MongoDB...'))
+// .then((result)=> app.listen(3000,()=>{
+//     console.log("listening to port 3000");
+//     }))
+// .catch((err) => console.log(err));
+
+app.listen(3000,()=>{
+    console.log("listening to port 3000");
+    });
 
 // Register view engine
 app.set('view engine', 'ejs');
@@ -75,20 +82,40 @@ app.get('/appointment', (req, res) => {
     res.render('appointment', { title: 'Appointments' });
 });
 app.get('/beforeafter', (req, res) => {
-    res.render('beforeafter', { title: 'Before and After Blood donation' });
+    res.render('beforeafter', { title: 'What to Do Before, During, and After Blood Donation' });
 });
 app.get('/benefits', (req, res) => {
-    res.render('benefits', { title: 'Rewards' });
+    res.render('benefits', { title: 'Benefits of Blood Donation' });
 });
 app.get('/blooddonation', (req, res) => {
     res.render('blooddonation', { title: 'Blood Donatoin' });
 });
 app.get('/concerns', (req, res) => {
-    res.render('consers', { title: 'Common Concerns About Blood Donation' });
+    res.render('concerns', { title: 'Common Concerns About Blood Donation' });
 });
 app.get('/contact', (req, res) => {
     res.render('contact', { title: 'Contact' });
 });
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard/maindashboard', { title: 'Dashboard' });
+});
+app.get('/dashboard/profile', (req, res) => {
+    res.render('dashboard/profile', { title: 'Dashboard' });
+});
+app.get('/dashboard/dashboard-overview', (req, res) => {
+    res.render('dashboard/dashboard-overview', { title: 'Dashboard' });
+});
+
+app.get('/dashboard/manage-appointments', (req, res) => {
+    res.render('dashboard/manage-appointments', { title: 'Dashboard' });
+});
+app.get('/dashboard/manage-donors', (req, res) => {
+    res.render('dashboard/manage-donors', { title: 'Dashboard' });
+});
+app.get('/dashboard/post-announcements', (req, res) => {
+    res.render('dashboard/post-announcements', { title: 'Dashboard' });
+});
+
 app.get('/:username/dashboard', (req, res) => {
     const username = req.params.username; // Extract the username from the URL
     res.render('dashboard', { title: 'Dashboard', username });

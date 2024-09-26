@@ -1,6 +1,6 @@
 <!-- Top Nav Bar -->
 <div class="top-nav">
-    <a href="/manageappoint">Sign In</a>
+    <a href="/login">Sign In</a>
     <a href="/news">News/Announcements</a>
     <div class="language-dropdown">
         <a href="#">English <span class="dropdown-icon">&#9660;</span></a>
@@ -13,133 +13,112 @@
 </div>
 
     <!-- Main Navigation -->
-    <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="/index" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="/images/blood.png" class="h-8" alt="Rwanda Blood Bridge Logo" />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Rwanda Blood Bridge</span>
-          </a>
+<nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="/images/blood.png" class="h-8" alt="Rwanda Blood Bridge Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Rwanda Blood Bridge</span>
+      </a>
+      
+      <!-- Hamburger Menu Button (for mobile view) -->
+      <button id="menu-button" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+  
+      <!-- Navbar Links -->
+      <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+        <ul class="flex flex-col font-medium p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           
-          <!-- Hamburger Menu Button (for mobile view) -->
-          <button id="menu-button" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-            </svg>
-          </button>
-      
-          <!-- Navbar Links -->
-          <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-            <ul class="flex flex-col font-medium p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              
-              <!-- Donate Blood Dropdown -->
-              <li class="relative">
-                <button class="flex items-center justify-between py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent" onclick="toggleDropdown('donate-blood')">Donate Blood 
-                  <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l4 4 4-4" />
-                  </svg>
-                </button>
-                <ul id="donate-blood" class="hidden absolute z-10 bg-white text-gray-700 rounded-lg shadow-lg dark:bg-gray-700">
-                  <li><a href="/Appiontment" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Schedule an Appointment</a></li>
-                  <li><a href="/ManageAppoint" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Manage Existing Appointment</a></li>
-                  <li><a href="/DonateHistory" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">View My Donation History</a></li>
-                </ul>
-              </li>
-      
-              <!-- How to Donate Dropdown -->
-              <li class="relative">
-                <button class="flex items-center justify-between py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent" onclick="toggleDropdown('how-to-donate')">How to Donate 
-                  <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l4 4 4-4" />
-                  </svg>
-                </button>
-                <ul id="how-to-donate" class="hidden absolute z-10 bg-white text-gray-700 rounded-lg shadow-lg dark:bg-gray-700">
-                  <li><a href="/Eligibility" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Eligibility Requirements</a></li>
-                  <li><a href="/BloodDonation" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Types of Blood Donation</a></li>
-                  <li><a href="/aboutBlood" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Learn About Blood</a></li>
-                  <li><a href="/helps.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">How Blood Donation Helps</a></li>
-                  <li><a href="/concerns.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Common Concerns</a></li>
-                </ul>
-              </li>
-      
-              <!-- Blood Donation Process Dropdown -->
-              <li class="relative">
-                <button class="flex items-center justify-between py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent" onclick="toggleDropdown('donation-process')">Blood Donation Process
-                  <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l4 4 4-4" />
-                  </svg>
-                </button>
-                <ul id="donation-process" class="hidden absolute z-10 bg-white text-gray-700 rounded-lg shadow-lg dark:bg-gray-700">
-                  <li><a href="/donationpro" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Donation Process Overview</a></li>
-                  <li><a href="/eforeAfter" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">What to do Before, During, After</a></li>
-                  <li><a href="/whatHappens" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">What Happens to Donated Blood</a></li>
-                  <li><a href="/firstTimeDoner" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">First Time Blood Donors</a></li>
-                </ul>
-              </li>
-      
-              <!-- Biomedical Service Dropdown -->
-              <li class="relative">
-                <button class="flex items-center justify-between py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent" onclick="toggleDropdown('biomedical-service')">Biomedical Service 
-                  <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l4 4 4-4" />
-                  </svg>
-                </button>
-                <ul id="biomedical-service" class="hidden absolute z-10 bg-white text-gray-700 rounded-lg shadow-lg dark:bg-gray-700">
-                  <li><a href="/whoweare" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Who We Are</a></li>
-                  <li><a href="/whatwedo" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">What We Do</a></li>
-                  <li><a href="/news" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Announcements</a></li>
-                </ul>
-              </li>
+          <!-- Donate Blood Dropdown -->
+          <li class="relative">
+            <button class="flex items-center justify-between py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent" onclick="toggleDropdown('donate-blood')">Donate Blood 
+              <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l4 4 4-4" />
+              </svg>
+            </button>
+            <ul id="donate-blood" class="hidden absolute z-10 bg-white text-gray-700 rounded-lg shadow-lg dark:bg-gray-700">
+              <li><a href="/Appointment" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Schedule an Appointment</a></li>
+              <li><a href="/dashboard" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Manage Existing Appointment</a></li>
+              <li><a href="/DonateHistory" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">View My Donation History</a></li>
+              <li><a href="/benefits" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Benefits of Blood Donating</a></li> 
             </ul>
-          </div>
-        </div>
-      </nav>
+          </li>
+  
+          <!-- How to Donate Dropdown -->
+          <li class="relative">
+            <button class="flex items-center justify-between py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent" onclick="toggleDropdown('how-to-donate')">How to Donate 
+              <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l4 4 4-4" />
+              </svg>
+            </button>
+            <ul id="how-to-donate" class="hidden absolute z-10 bg-white text-gray-700 rounded-lg shadow-lg dark:bg-gray-700">
+              <li><a href="/Eligibility" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Eligibility Requirements</a></li>
+              <li><a href="/BloodDonation" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Types of Blood Donation</a></li>
+              <li><a href="/aboutBlood" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Learn About Blood</a></li>
+              <li><a href="/helps" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">How Blood Donation Helps</a></li>
+              <li><a href="/concerns" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Common Concerns</a></li>
+            </ul>
+          </li>
+  
+          <!-- Blood Donation Process Dropdown -->
+          <li class="relative">
+            <button class="flex items-center justify-between py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent" onclick="toggleDropdown('donation-process')">Blood Donation Process
+              <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l4 4 4-4" />
+              </svg>
+            </button>
+            <ul id="donation-process" class="hidden absolute z-10 bg-white text-gray-700 rounded-lg shadow-lg dark:bg-gray-700">
+              <li><a href="/donationpro" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Donation Process Overview</a></li>
+              <li><a href="/eforeAfter" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">What to do Before, During, After</a></li>
+              <li><a href="/whatHappens" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">What Happens to Donated Blood</a></li>
+              <li><a href="/firstTimeDoner" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">First Time Blood Donors</a></li>
+            </ul>
+          </li>
+  
+          <!-- Biomedical Service Dropdown -->
+          <li class="relative">
+            <button class="flex items-center justify-between py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent" onclick="toggleDropdown('biomedical-service')">Biomedical Service 
+              <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l4 4 4-4" />
+              </svg>
+            </button>
+            <ul id="biomedical-service" class="hidden absolute z-10 bg-white text-gray-700 rounded-lg shadow-lg dark:bg-gray-700">
+              <li><a href="/whoweare" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Who We Are</a></li>
+              <li><a href="/whatwedo" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">What We Do</a></li>
+              <li><a href="/news" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Announcements</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
       
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          // Get all dropdown buttons and dropdown elements
-          const dropdownButtons = document.querySelectorAll('nav .relative > button');
-          const dropdowns = document.querySelectorAll('nav .relative > ul');
-      
-          // Function to hide all dropdowns
-          function hideAllDropdowns() {
-            dropdowns.forEach(dropdown => {
-              dropdown.classList.add('hidden');
-            });
-          }
-      
-          // Function to handle dropdown toggle
-          function handleDropdownToggle(event) {
-            const targetDropdown = document.querySelector(`#${event.currentTarget.getAttribute('onclick').match(/'(.*?)'/)[1]}`);
-            
-            // Hide all dropdowns
-            hideAllDropdowns();
-            
-            // Toggle the current dropdown
-            targetDropdown.classList.toggle('hidden');
-          }
-      
-          // Attach event listeners to dropdown buttons
-          dropdownButtons.forEach(button => {
-            button.addEventListener('click', handleDropdownToggle);
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const dropdowns = document.querySelectorAll("li.relative");
+
+      dropdowns.forEach(dropdown => {
+          // Show dropdown on mouse enter
+          dropdown.addEventListener("mouseenter", function() {
+              const menu = dropdown.querySelector("ul");
+              if (menu) {
+                  menu.classList.remove("hidden");
+              }
           });
-      
-          // Handle mobile menu toggle
-          const menuButton = document.getElementById('menu-button');
-          const navbarDropdown = document.getElementById('navbar-dropdown');
-      
-          menuButton.addEventListener('click', () => {
-            navbarDropdown.classList.toggle('hidden');
+
+          // Hide dropdown on mouse leave
+          dropdown.addEventListener("mouseleave", function() {
+              const menu = dropdown.querySelector("ul");
+              if (menu) {
+                  menu.classList.add("hidden");
+              }
           });
-      
-          // Close all dropdowns if clicking outside
-          document.addEventListener('click', (event) => {
-            if (!event.target.matches('nav .relative > button') && !event.target.closest('nav .relative > ul')) {
-              hideAllDropdowns();
-            }
-          });
-        });
-      </script>
+      });
+  });
+ </script>
       
       
       

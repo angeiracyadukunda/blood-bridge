@@ -1,9 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/header.ejs') %>
-<body>
-    <%- include('./partials/navbar.ejs') %>
-    <p>welcome dear Receiptient</p>
-    <%- include('./partials/footer.ejs') %>
+
+    <%- include('partials/header.ejs') %>
+
+<body class="bg-gray-100">
+
+    <%- include('partials/navbar.ejs') %>
+  
+    <!-- Header -->
+    <header class="bg-gray-200 text-white p-4 text-center">
+        <h1 class="text-4xl font-bold">Admin Dashboard</h1>
+    </header>
+
+ <!-- Sidebar -->
+ <div class="flex">
+    <aside class="w-64 bg-blue-600 min-h-screen text-white">
+        <div class="p-6">
+            <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+            <ul>
+                <li class="mb-4">
+                    <a href="#" class="block p-3 rounded hover:bg-blue-700">Dashboard Overview</a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" class="block p-3 rounded hover:bg-blue-700">Manage Appointments</a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" class="block p-3 rounded hover:bg-blue-700">Post Announcements</a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" class="block p-3 rounded hover:bg-blue-700">Manage Donors</a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" class="block p-3 rounded hover:bg-blue-700">Settings</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-6">
+        <!-- Header -->
+        <header class="bg-white shadow p-4 mb-8">
+            <h2 class="text-2xl font-semibold">Admin Panel</h2>
+        </header>
+
+        <!-- Appointments Section -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">Manage Appointments</h2>
+
+            <!-- Appointment Item -->
+            <div class="bg-white p-4 rounded-lg shadow-md mb-4 flex justify-between items-center">
+                <div>
+                    <span class="text-gray-700 font-medium">John Doe - 2024-09-18</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Approve</button>
+                    <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">Deny</button>
+                </div>
+            </div>
+
+            <!-- Another Appointment Item -->
+            <div class="bg-white p-4 rounded-lg shadow-md mb-4 flex justify-between items-center">
+                <div>
+                    <span class="text-gray-700 font-medium">Jane Smith - 2024-09-20</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Approve</button>
+                    <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">Deny</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Announcements Section -->
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Post Announcements</h2>
+
+            <!-- Announcement Form -->
+            <form action="#" method="POST" class="flex space-x-4">
+                <input type="text" name="announcement" placeholder="Enter announcement text" class="flex-grow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Post</button>
+            </form>
+
+            <!-- Announcements List -->
+            <div class="mt-6">
+                <!-- Announcement Item -->
+                <div class="bg-white p-4 rounded-lg shadow-md mb-4">
+                    <span class="text-gray-700">Blood donation drive happening on 2024-09-25!</span>
+                </div>
+
+                <!-- Another Announcement Item -->
+                <div class="bg-white p-4 rounded-lg shadow-md mb-4">
+                    <span class="text-gray-700">New donor guidelines published!</span>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+    <!-- Footer -->
+    <%- include('partials/footer') %>
+
 </body>
 </html>
