@@ -132,6 +132,31 @@ app.get('/benefits', (req, res) => {
 app.get('/benefits', (req, res) => {
     res.render('benefits', { title: 'Rewards' });
 >>>>>>> 9201bbba1f3a4d6af7ab0d9d05eb48bd72551bc1
+<<<<<<< Tabnine <<<<<<<
+app.post(`/create-user`, (req, res) => {//+
+//+
+    try {//+
+        // Get data from query parameters or use default values//+
+        const { email, role, fullName, phoneNumber, preferredLocation, dateOfBirth } = req.body;//+
+//+
+        // Create a new user using the Mongoose model//+
+        const newUser = new User({//+
+            email,//+
+            role,//+
+            fullName,//+
+            phoneNumber,//+
+            preferredLocation,//+
+            dateOfBirth//+
+        });//+
+    //+
+        newUser.save()//+
+            .then(() => res.status(201).send('User created successfully'))//+
+            .catch(err => res.status(500).send('Error creating user'));//+
+    } catch (error) {//+
+        res.status(500).json({ message: 'Error creating user', error });//+
+    }//+
+});//+
+>>>>>>> Tabnine >>>>>>>// {"conversationId":"30d10671-b5ff-4c81-b8c2-88e58ae18d8a","source":"instruct"}
 });
 app.get('/blooddonation', (req, res) => {
     res.render('blooddonation', { title: 'Blood Donatoin' });
