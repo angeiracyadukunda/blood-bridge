@@ -576,27 +576,10 @@ video {
   text-decoration-line: underline;
 }
 
-:root {
-  --first--color: #f8f9fa;
-  --second--color: #a82a2a;
-  --third--color: #f5f3f3;
-}
-
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--third--color);
-  padding: 20px;
-  gap: 140px;
-  margin: 0 20px;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.hero-text {
-  text-align: center;
-  color: var(--first--color);
+:root{
+  --first--color:#f8f9fa;
+  --second--color:#a82a2a;
+  --third--coloe:#f5f3f3;
 }
 
 body {
@@ -607,8 +590,124 @@ body {
   font-size:medium;
 }
 
-/* Top Navigation Styles */
 
+  /* Hero Section Styling */
+  .hero {
+      position: relative;
+      height: 100vh; 
+      display: flex;
+      /* margin-top:-180px; */
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background-color: #f0f0f0;
+  }
+
+  /* Hero Content Styling - Sticky Content */
+  .hero-content {
+      position: absolute;
+      z-index: 2; 
+      margin-bottom: 173px;
+      text-align: center;
+      color: white;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.5); /* Transparent background to improve readability */
+      width: 100%;
+      max-width: 1200px;
+  }
+
+  /* H1 and paragraph text */
+  .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color:#cb3637;
+  }
+
+  .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #ffffff;
+  }
+
+  /* Buttons */
+  .hero-content .form-container button {
+      /* margin: 10px; */
+      padding: 10px 20px;
+      background-color: #a82a2a;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+  }
+
+  /* Slideshow container */
+  .slideshow-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 1; 
+  }
+
+  /* Each slide (image) */
+  .mySlides {
+      display: none;
+      height: 100%;
+  }
+
+  .mySlides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  /* Caption styling */
+  .text {
+      color:#ffffff ;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+  }
+
+  /* Dots for indicators */
+  .dot {
+      height: 15px;
+      width: 15px;
+      z-index: 1; 
+      margin: 8px 2px;
+      
+      background-color: red;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease-in-out;
+  }
+
+  .active {
+      background-color: #717171;
+  }
+
+  /* Fading animation */
+  .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+  }
+
+  @keyframes fade {
+      from { opacity: 0.4 } 
+      to { opacity: 1 }
+  }
+
+  /* Smaller screen text size */
+  @media only screen and (max-width: 600px) {
+      .hero-content h1 { font-size: 2rem; }
+      .hero-content p { font-size: 1rem; }
+  }
+  
+
+/* Top Navigation Styles */
 .top-nav {
   background-color: #eee;
   padding: 10px;
@@ -670,11 +769,9 @@ body {
 .logo img {
   width: 50px;
 }
-
 .logo{
   display: flex;
 }
-
 .logo a {
   display: flex;
   align-items: center;
@@ -682,9 +779,8 @@ body {
 }
 
 .logo a:hover {
-  opacity: 0.8;
+  opacity: 0.8; 
 }
-
 .dropdown-icon{
   color:var(--second--color);
 }
@@ -693,6 +789,7 @@ body {
   display: flex;
   list-style: none;
   margin-left: auto;
+  z-index: 999; 
   flex-wrap: wrap;
 }
 
@@ -707,6 +804,12 @@ body {
   padding: 10px;
   display: block;
 }
+.nav-links li:hover a {
+  color: black; 
+}
+.nav-links li:hover a {
+  color: #ff4c4c; 
+}
 
 .dropdown-content {
   display: none;
@@ -715,59 +818,15 @@ body {
   box-shadow: 0 4px 8px rgba(15, 14, 14, 0.1);
   padding: 10px;
   z-index: 1;
-  color:#333 ;
+   color:#333 ;
   width: 189px;
 }
-
 .nav-links li:hover .dropdown-content {
   display: block;
-  /* background-color: #282828; */
 }
 
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--third--coloe);
-  padding: 20px;
-  gap: 140px;
-  margin: 0 20px;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.hero-content {
-  max-width: 100%;
-}
-
-.hero-text{
-  text-align: center;
-  color: var();
-}
-
-.hero-content h1 {
-  color: var(--second--color);
-  font-size: 2em;
-}
-
-.hero-content p {
-  font-size: 1em;
+.dropdown-content a:hover {
   color: black;
-}
-
-.hero-content button , button{
-  padding: 10px 20px;
-  border-radius: 15px;
-  background-color: var(--second--color);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.hero-image img {
-  max-width: 50%;
-  height: auto;
 }
 
 .cards-section {
@@ -780,7 +839,7 @@ body {
 }
 
 .card {
-  background-color:var(--third--coloe);
+  background-color:#e7e3e3;
   padding: 15px;
   text-align: center;
   width: 90%;
@@ -794,104 +853,174 @@ body {
   height: auto;
 }
 
-footer {
-  background-color: #ebe4e4;
+.card :hover{
+  background-color: #e9e9e9;
+}
+
+
+.footer {
+  background-color: #151515;
   color: #fff;
-  text-align: center;
+  padding: 60px 0;
 }
 
-footer .social-icons a {
-  margin: 0 10px;
-}
-
-footer .social-icons img {
-  width: 30px;
-}
-
-.social-icons {
+.footer-container {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px 0;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
-.social-icons a {
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+  margin: 20px;
+}
+
+.footer-section h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.footer-section p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #999;
+}
+
+.footer-section a {
   text-decoration: none;
-  color:var(--second--color);
-  font-size: 24px;
+  color: #fff;
+  margin-right: 10px;
 }
 
-.social-icons img {
-  width: 30px;
-  height: 30px;
+.socials a {
+  color: #fff;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.news-item p {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #999;
+}
+
+.news-item span {
+  font-size: 12px;
+  color: #666;
+}
+
+.links ul {
+  list-style: none;
+}
+
+.links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  background-color: #0d0d0d;
+  padding: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.footer-bottom a {
+  color: #ff6347;
+  text-decoration: none;
+}
+
+.footer-bottom i {
+  color: #ff6347;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  .footer-section {
+      margin: 10px 0;
+  }
+
+  .footer-bottom {
+      font-size: 14px;
+  }
 }
 
 /* Media Queries for Responsiveness */
-
 @media (min-width: 600px) {
   .hero {
-    flex-direction: row;
-    text-align: left;
+      flex-direction: row;
+      text-align: left;
   }
 
   .hero-content {
-    max-width: 100%;
+      max-width: 50%;
   }
 
   .hero-image {
-    max-width: 50%;
+      max-width: 50%;
   }
 
   .cards-section {
-    flex-direction: row;
-    justify-content: space-around;
+      flex-direction: row;
+      justify-content: space-around;
   }
 
   .card {
-    width: 30%;
-    margin: 10px;
+      width: 30%;
+      margin: 10px;
   }
 
   .main-nav {
-    flex-wrap: nowrap;
+      flex-wrap: nowrap;
   }
 
   .nav-links {
-    flex-wrap: nowrap;
+      flex-wrap: nowrap;
   }
 
   .nav-links li {
-    margin-left: 20px;
+      margin-left: 20px;
   }
 }
 
 @media (min-width: 900px) {
   .hero-content h1 {
-    font-size: 2.5em;
+      font-size: 2.5em;
   }
 
   .hero-content p {
-    font-size: 1.2em;
+      font-size: 1.2em;
   }
 
   .hero-content button {
-    padding: 15px 30px;
-    font-size: 1em;
+      padding: 15px 30px;
+      font-size: 1em;
   }
 
   .cards-section {
-    padding: 40px;
+      padding: 40px;
   }
 
   .card {
-    max-width: 30%;
+      max-width: 30%;
   }
 }
+
 
 /*APPOINTMENT PART  START */
 
 h1, h2 {
   color:var(--second--color);
+  text-align: center;
 }
 
 p {
@@ -901,6 +1030,7 @@ p {
 
 .main-container {
   display: flex;
+
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
@@ -935,6 +1065,7 @@ section, .sidebar > div {
   display: flex;
   flex-direction: row;
   gap: 15px;
+  justify-content: center;
 }
 
 label {
@@ -951,7 +1082,7 @@ select,
 textarea {
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 5px !important;
+  border-radius: 5px;
   width: 95%;
 }
 
@@ -965,7 +1096,19 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color:var(--second--color);
+  background-color:red;
+}
+button[type="button"]{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--second--color);
+  color: #fff;
+  cursor: pointer;
+}
+
+button[type="button"]:hover {
+  background-color:red;
 }
 
 .contact-info, .faq-section {
@@ -977,7 +1120,7 @@ button[type="submit"]:hover {
   margin: 5px 0;
 }
 
-.social-icons {
+/* .social-icons {
   text-align: center;
   padding: 10px;
   background-color: #ebe4e4;
@@ -992,7 +1135,7 @@ button[type="submit"]:hover {
 
 .social-icons a:hover {
   color:var(--second--color);
-}
+} */
 
 #map {
   width: 100%;
@@ -1003,37 +1146,116 @@ button[type="submit"]:hover {
 
 @media (max-width: 992px) {
   .main-container {
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
+      align-items: center;
   }
 
   .appointment-section, .sidebar {
-    width: 100%;
+      width: 100%;
   }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .social-icons a {
-    font-size: 1.2em;
+      font-size: 1.2em;
   }
-}
+} */
 
 /*APPOINTMENT PART  END */
 
-/* Basic styles for the sign-in and dashboard sections */
 
+/* Basic styles for the sign-in and dashboard sections */
 .auth-container, .dashboard-container {
   width: 90%;
-  max-width: 700px;
+  max-width: 400px;
   margin: auto;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+/* Container for the entire dashboard */
+#dashboard-section {
+  display: flex;  /* Flexbox to arrange elements horizontally */
+  padding: 20px;
+}
+
+/* Styling the sidebar menu */
+.dashboard-container {
+  width: 400px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+  height: 100vh; /* Full height */
+  box-sizing: border-box;
+}
+
+/* The list of navigation items */
+.dashboard-menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Each individual menu item */
+.dashboard-menu li {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for menu items */
+.dashboard-menu li:hover {
+  background-color: #ececec;
+}
+
+/* Main content area */
+#dashboard-content {
+  flex-grow: 1; /* Take up remaining space in the row */
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  box-sizing: border-box;
+}
+
+/* Ensure that content is displayed horizontally when there are multiple elements */
+#dashboard-content h2,
+#dashboard-content p,
+#dashboard-content ul {
+  display: block;
+  margin-bottom: 20px;
+}
+
+#dashboard-content ul {
+  display: flex;
+  flex-wrap: wrap; /* Wrap content if there's too much to fit horizontally */
+  padding: 0;
+}
+
+#dashboard-content ul li {
+  list-style: none;
+  margin-right: 15px;
+  padding: 5px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}
 
 /* Form and Button Styles */
-
 form {
   display: flex;
   flex-direction: column;
@@ -1043,7 +1265,7 @@ label {
   margin-bottom: 5px;
 }
 
-input[type="text"], input[type="password"], select {
+input[type="text"], input[type="password"] {
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -1060,7 +1282,7 @@ input[type="text"], input[type="password"], select {
 }
 
 .sign-in-btn:hover {
-  background-color: darkred;
+  background-color: red;
 }
 
 .keep-signed-in, .forgot-password, .create-account-link {
@@ -1111,8 +1333,8 @@ input[type="text"], input[type="password"], select {
 
 /* MANAGING EXISTING APPINTMENTS END */
 
-/* ELIGIBILIYT REQUIREMENTS START*/
 
+/* ELIGIBILIYT REQUIREMENTS START*/
 .eligibility-intro {
   margin-bottom: 30px;
   font-size: 1.1em;
@@ -1124,6 +1346,7 @@ input[type="text"], input[type="password"], select {
 
 .eligibility-content {
   display: flex;
+  align-items: center;
   gap: 20px;
   border-bottom: 1px solid #e0e0e0;
   padding-bottom: 20px;
@@ -1132,8 +1355,7 @@ input[type="text"], input[type="password"], select {
 .eligibility-image {
   width: 150px;
   height: 150px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 8px;
 }
 
@@ -1155,45 +1377,50 @@ input[type="text"], input[type="password"], select {
   list-style-type: none;
 }
 
+.eligibility-info ul li {
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+}
+
 .icon-check {
   color: #28a745;
   margin-right: 10px;
 }
 
-footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #f1f1f1;
-  color: #777;
-  font-size: 0.9em;
-}
-
 /* Responsive Styles */
-
 @media (max-width: 768px) {
   main {
-    width: 90%;
-    padding: 15px;
+      width: 90%;
+      padding: 15px;
   }
-
+  
+  .eligibility-content {
+      flex-direction: column; 
+      text-align: center; 
+  }
 
   .eligibility-image {
-    width: 100%;
-    height: auto;
-    max-width: 300px;
-    margin: 0 auto 20px;
+      width: 100%;
+      height: auto; 
+      max-width: 300px;
+      margin: 0 auto 20px; 
   }
 
-
+  .eligibility-info {
+      flex: none; 
+  }
 }
 
 /* ELIGIBILIYT REQUIREMENTS END*/
 
 /* BLOOD DONATION PART START */
 
+
 header {
-  background-color: var(--third--coloe);
-  color: var(--second--color);
+  background-color: var(--third--coloe); 
+  color: var(--second--color); 
   padding: 20px;
   text-align: center;
 }
@@ -1203,7 +1430,7 @@ main {
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 .donation-intro {
@@ -1219,25 +1446,23 @@ main {
   display: flex;
   align-items: center;
   gap: 20px;
-  border-bottom: 1px solid #e0e0e0;
-  /* Separator between sections */
+  border-bottom: 1px solid #e0e0e0; /* Separator between sections */
   padding-bottom: 20px;
 }
 
 .donation-image {
-  width: 150px;
-  height: 150px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 8px;
+  width: 150px; 
+  height: 150px; 
+  object-fit: cover; 
+  border-radius: 8px; 
 }
 
 .donation-info {
-  flex: 1;
+  flex: 1; 
 }
 
 .donation-info h2 {
-  color: var(--second--color);
+  color: var(--second--color); 
   margin-bottom: 10px;
 }
 
@@ -1247,7 +1472,7 @@ main {
 }
 
 .donation-info ul {
-  list-style-type: none;
+  list-style-type: none; 
 }
 
 .donation-info ul li {
@@ -1258,36 +1483,38 @@ main {
 }
 
 /* .icon-check {
-    color: #28a745; 
-    margin-right: 10px;
+  color: #28a745; 
+  margin-right: 10px;
 } */
 
-/* Responsive Styles */
 
+/* Responsive Styles */
 @media (max-width: 768px) {
   main {
-    width: 90%;
-    padding: 15px;
+      width: 90%;
+      padding: 15px;
   }
-
+  
   .donation-content {
-    flex-direction: column;
-    text-align: center;
+      flex-direction: column; 
+      text-align: center; 
   }
 
   .donation-image {
-    width: 100%;
-    height: auto;
-    max-width: 300px;
-    margin: 0 auto 20px;
+      width: 100%;
+      height: auto;
+      max-width: 300px; 
+      margin: 0 auto 20px; 
   }
 
   .donation-info {
-    flex: none;
+      flex: none; 
   }
 }
 
 /* BLOOD DONATION PART END */
+
+
 
 /*  LEARN ABOUT BLOOD START  */
 
@@ -1297,7 +1524,7 @@ main {
 }
 
 h2 {
-  color: var(--second--color);
+  color: var(--second--color); 
   margin-bottom: 10px;
 }
 
@@ -1311,8 +1538,7 @@ h2 {
 .related-image {
   width: 150px;
   height: 150px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 8px;
 }
 
@@ -1321,29 +1547,27 @@ h2 {
 }
 
 /* Responsive Styles */
-
 @media (max-width: 768px) {
   main {
-    width: 90%;
-    padding: 15px;
+      width: 90%;
+      padding: 15px;
   }
-
+  
   .content-container {
-    flex-direction: column;
-    text-align: center;
+      flex-direction: column; 
+      text-align: center; 
   }
 
   .related-image {
-    width: 100%;
-    height: auto;
-    max-width: 300px;
-    margin: 0 auto 20px;
+      width: 100%;
+      height: auto; 
+      max-width: 300px; 
+      margin: 0 auto 20px; 
   }
 
   .text-content {
-    flex: none;
-  }
-}
+      flex: none; 
+}}
 
 /* LEARN AOUT BLOOD END */
 
@@ -1368,8 +1592,7 @@ h2 {
 .related-image {
   width: 150px;
   height: 150px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 8px;
 }
 
@@ -1398,35 +1621,35 @@ blockquote {
 }
 
 .cta-button:hover {
-  background-color: var(--second--color);
+  background-color:red;
 }
 
-/* Responsive Styles */
 
+/* Responsive Styles */
 @media (max-width: 768px) {
   main {
-    width: 90%;
-    padding: 15px;
+      width: 90%;
+      padding: 15px;
   }
-
+  
   .content-container {
-    flex-direction: column;
-    text-align: center;
+      flex-direction: column;
+      text-align: center;
   }
 
   .related-image {
-    width: 100%;
-    height: auto;
-    max-width: 300px;
-    margin: 0 auto 20px;
+      width: 100%;
+      height: auto;
+      max-width: 300px;
+      margin: 0 auto 20px;
   }
 
   .text-content {
-    flex: none;
+      flex: none;
   }
 }
-
 /*   help end*/
+
 
 /* DONATION PROCEESS OVERVIEW */
 
@@ -1440,8 +1663,7 @@ blockquote {
 .step-icon {
   width: 50px;
   height: 50px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 
 .cta-button {
@@ -1455,38 +1677,39 @@ blockquote {
 }
 
 .cta-button:hover {
-  background-color: var(--second--color);
+  background-color: red;
 }
 
 /* Responsive Styles */
-
 @media (max-width: 768px) {
   main {
-    width: 90%;
-    padding: 15px;
+      width: 90%;
+      padding: 15px;
   }
-
+  
   .step {
-    flex-direction: column;
-    text-align: center;
+      flex-direction: column;
+      text-align: center;
   }
 
   .step-icon {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
   }
 }
 
 /* END PROCEESS DONATION */
 
+
 /* WHAT HAPPENS TO DONATE */
 
+
 .stage-icon {
-  width: 60px;
-  height: 60px;
-  display: block;
-  margin: 10px auto;
+width: 139px;
+height: 142px;
+display: block;
+margin: 10px auto;
 }
 
 ul {
@@ -1501,7 +1724,8 @@ li {
 }
 
 li:before {
-  color: var(--second--color);
+
+  color: var(--second--color); 
   position: absolute;
   left: 0;
 }
@@ -1513,7 +1737,8 @@ li {
 }
 
 li:before {
-  color: var(--second--color);
+
+  color: var(--second--color); 
   position: absolute;
   left: 0;
 }
@@ -1529,22 +1754,94 @@ li:before {
 }
 
 .cta-button:hover {
-  background-color: var(--second--color);
+  background-color: red;
 }
-
 /* Responsive Styles */
-
 @media (max-width: 768px) {
   main {
-    width: 90%;
-    padding: 15px;
+      width: 90%;
+      padding: 15px;
   }
-
+  
   .stage-icon {
-    width: 100px;
-    height: 100px;
+      width: 100px;
+      height: 100px;
   }
 }
+
+
+#translate-btn {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+
+/* BENEFTS */
+
+        /* Benefits Section */
+        #benefits-section {
+          padding: 40px 0;
+          background-color: #fff;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+      }
+      
+      /* Benefits Grid */
+      .benefits-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 20px;
+      }
+      
+      .benefit-card {
+          background-color: #eeeeee;
+          border-radius: 10px;
+          padding: 20px;
+          text-align: center;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .benefit-card h3 {
+          color:#a82a2a;
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+      }
+      
+      .benefit-card p {
+          color: black;
+          font-size: 1rem;
+          line-height: 1.6;
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 768px) {
+          .benefit-card {
+              padding: 15px;
+          }
+      }
+      
+      @media (max-width: 480px) {
+          h2 {
+              font-size: 1.8rem;
+          }
+      
+          .benefit-card h3 {
+              font-size: 1.3rem;
+          }
+      
+          .benefit-card p {
+              font-size: 0.9rem;
+          }
+      }
+/* END OF BENEFITS */
 
 
 .container form{
