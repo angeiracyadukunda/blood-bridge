@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+<body>
+    <%- include('./partials/navbar.ejs') %>
+
+    <main id="contact-section">
+        <header>
+            <p>If you have any questions or need assistance, feel free to reach out to us through the form below. We’ll get back to you as soon as possible.</p>
+        </header>
+
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="alert" style="display: none;">Your message has been sent successfully!</div> <!-- Success message -->
+
+                <form action="/submit-contact-form" method="POST" id="contactForm">
+                    <div class="inputBox">
+                        <input type="text" name="name" placeholder="Your name...." required />
+                    </div>
+                    <div class="inputBox">
+                        <input type="email" name="emailid" placeholder="Your Email....." required />
+                    </div>
+                    <div class="inputBox">
+                        <textarea name="msgContent" cols="30" rows="10" placeholder="Message" required></textarea>
+                    </div>
+                    <div class="inputBox">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/mailFormHandler.js"></script> <!-- Your external script -->
+</body>
+</html>
