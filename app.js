@@ -1,15 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-<<<<<<< HEAD
-const {User,
-    Receiver,
-    Appointment,
-    NotificationReminder,
-    BloodDonationCard,
-    ContactUs,
-    Approval } = require('./Backend/model')
-=======
 const bodyParser = require('body-parser');
 const newLocal = './Backend/firebase/firebaseConfig';
 const {auth, liveDatabase, db } = require(newLocal); // Import the database instance
@@ -17,59 +8,10 @@ const { ref, push, set } = require('firebase/database');
 // const signupRoutes = require('./Backend/routes/signupRoute');
 const authRoutes = require('./Backend/routes/authRoute'); 
 const session = require('express-session');
->>>>>>> 9201bbba1f3a4d6af7ab0d9d05eb48bd72551bc1
 
 // Express app
 const app = express();
 
-<<<<<<< HEAD
-//connecting to mngodb
-const uri = "mongodb+srv://gdm:8520@blooddonation.dgdu5.mongodb.net/?retryWrites=true&w=majority&appName=blooddonation";
-// mongoose.connect(uri)
-//  .then(() => console.log('Connected to MongoDB...'))
-// .then((result)=> app.listen(3000,()=>{
-//     console.log("listening to port 3000");
-//     }))
-// .catch((err) => console.log(err));
-
-app.listen(3000,()=>{
-    console.log("listening to port 3000");
-    });
-
-// Register view engine
-app.set('view engine', 'ejs');
-
-// Middleware to serve static files (CSS, JS, images, etc.)
-
-
-// Listen for requests
-app.use(express.static('public'));
-app.use(morgan('dev'));
-
-app.post(`/create-user`, (req, res) => {
-
-    try {
-        // Get data from query parameters or use default values
-        const { email, role, fullName, phoneNumber, preferredLocation, dateOfBirth } = query.body;
-
-        // Create a new user using the Mongoose model
-        const newUser = new User({
-            email,
-            role,
-            fullName,
-            phoneNumber,
-            preferredLocation,
-            dateOfBirth
-        });
-    
-        newUser.save()
-            .then(() => res.status(201).send('User created successfully'))
-            .catch(err => res.status(500).send('Error creating user'));
-    } catch (error) {
-        res.status(500).json({ message: 'Error creating user', error });
-    }
-});
-=======
 
 app.listen(3000,()=>{
     console.log("listening to port 3000")
@@ -96,7 +38,6 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 // Listen for requests
 
->>>>>>> 9201bbba1f3a4d6af7ab0d9d05eb48bd72551bc1
 
 app.use((req, res, next) => {
     console.log("new request was made:");
@@ -121,57 +62,43 @@ app.get('/appointment', (req, res) => {
     res.render('appointment', { title: 'Appointments' });
 });
 app.get('/beforeafter', (req, res) => {
-<<<<<<< HEAD
-    res.render('beforeafter', { title: 'What to Do Before, During, and After Blood Donation' });
-});
-app.get('/benefits', (req, res) => {
-    res.render('benefits', { title: 'Benefits of Blood Donation' });
-=======
     res.render('beforeafter', { title: 'Before and After Blood donation' });
 });
 app.get('/benefits', (req, res) => {
     res.render('benefits', { title: 'Rewards' });
->>>>>>> 9201bbba1f3a4d6af7ab0d9d05eb48bd72551bc1
-<<<<<<< Tabnine <<<<<<<
-app.post(`/create-user`, (req, res) => {//+
-//+
-    try {//+
-        // Get data from query parameters or use default values//+
-        const { email, role, fullName, phoneNumber, preferredLocation, dateOfBirth } = req.body;//+
-//+
-        // Create a new user using the Mongoose model//+
-        const newUser = new User({//+
-            email,//+
-            role,//+
-            fullName,//+
-            phoneNumber,//+
-            preferredLocation,//+
-            dateOfBirth//+
-        });//+
-    //+
-        newUser.save()//+
-            .then(() => res.status(201).send('User created successfully'))//+
-            .catch(err => res.status(500).send('Error creating user'));//+
-    } catch (error) {//+
-        res.status(500).json({ message: 'Error creating user', error });//+
-    }//+
-});//+
->>>>>>> Tabnine >>>>>>>// {"conversationId":"30d10671-b5ff-4c81-b8c2-88e58ae18d8a","source":"instruct"}
+app.post(`/create-user`, (req, res) => {
+
+    try {
+        // Get data from query parameters or use default values
+        const { email, role, fullName, phoneNumber, preferredLocation, dateOfBirth } = req.body;
+
+        // Create a new user using the Mongoose model
+        const newUser = new User({
+            email,
+            role,
+            fullName,
+            phoneNumber,
+            preferredLocation,
+            dateOfBirth
+        });
+    
+        newUser.save()
+            .then(() => res.status(201).send('User created successfully'))
+            .catch(err => res.status(500).send('Error creating user'));
+    } catch (error) {
+        res.status(500).json({ message: 'Error creating user', error });
+    }
+});
 });
 app.get('/blooddonation', (req, res) => {
     res.render('blooddonation', { title: 'Blood Donatoin' });
 });
 app.get('/concerns', (req, res) => {
-<<<<<<< HEAD
     res.render('concerns', { title: 'Common Concerns About Blood Donation' });
-=======
-    res.render('consers', { title: 'Common Concerns About Blood Donation' });
->>>>>>> 9201bbba1f3a4d6af7ab0d9d05eb48bd72551bc1
 });
 app.get('/contact', (req, res) => {
     res.render('contact', { title: 'Contact' });
 });
-<<<<<<< HEAD
 app.get('/dashboard', (req, res) => {
     res.render('dashboard/maindashboard', { title: 'Dashboard' });
 });
@@ -191,31 +118,6 @@ app.get('/dashboard/manage-donors', (req, res) => {
 app.get('/dashboard/post-announcements', (req, res) => {
     res.render('dashboard/post-announcements', { title: 'Dashboard' });
 });
-=======
-app.post('/submit-contact-form', (req, res) => {
-    const { name, emailid, msgContent } = req.body;
-
-    // Reference your database path
-    const contactFormDB = ref(liveDatabase, "contactForm");
-    const newContactForm = push(contactFormDB);
-
-    // Save the data to Firebase
-    set(newContactForm, {
-        name: name,
-        emailid: emailid,
-        msgContent: msgContent
-    })
-    .then(() => {
-        console.log("Message saved successfully to Firebase");
-        res.redirect('/contact?success=true'); // Redirect with query param to indicate success
-    })
-    .catch((error) => {
-        console.error("Error saving message:", error);
-        res.status(500).send("Error saving message");
-    });
-});
-
->>>>>>> 9201bbba1f3a4d6af7ab0d9d05eb48bd72551bc1
 
 app.get('/:username/dashboard', (req, res) => {
     const username = req.params.username; // Extract the username from the URL
