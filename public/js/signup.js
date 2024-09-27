@@ -58,7 +58,7 @@ function submitForm(e) {
             window.location.href = "api/signup-success"; // Redirect here
         }, 2000);
     })
-    .catch(error => {git 
+    .catch(error => {
         console.error('Error:', error);
         showPopup(error.message || 'An error occurred. Please try again later.', "error");
     });
