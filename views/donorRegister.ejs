@@ -1,0 +1,191 @@
+
+<html lang="en">
+
+<%- include('./partials/header.ejs') %>
+
+<body class="bg-gray-100">
+    <%- include('./partials/navbar.ejs') %>
+
+    <div class="max-w-lg mx-auto mt-10 bg-white p-8 rounded shadow">
+        <h2 class="text-2xl font-bold mb-6">Donor Registration Form</h2>
+        <form action="/register" method="POST">
+            <!-- Full Name -->
+            <div class="mb-4">
+                <label for="fullName" class="block font-semibold">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required class="w-full border p-2 rounded mt-1" placeholder="Enter full name">
+            </div>
+
+              <!-- Email -->
+              <div class="mb-4">
+                <label for="email" class="block font-semibold">Email</label>
+                <input type="email" id="email" name="email" required class="w-full border p-2 rounded mt-1" placeholder="Enter email address">
+            </div>
+
+            <!-- National ID -->
+            <div class="mb-4">
+                <label for="nationalID" class="block font-semibold">National ID</label>
+                <input type="text" id="nationalID" name="nationalID" required class="w-full border p-2 rounded mt-1" placeholder="Enter national ID">
+            </div>
+
+            <!-- Blood Group -->
+            <div class="mb-4">
+                <label for="bloodGroup" class="block font-semibold">Blood Group</label>
+                <input type="text" id="bloodGroup" name="bloodGroup" required class="w-full border p-2 rounded mt-1" placeholder="Enter blood group">
+            </div>
+
+            <!-- Mobile Number -->
+            <div class="mb-4">
+                <label for="mobileNumber" class="block font-semibold">Mobile Number</label>
+                <input type="text" id="mobileNumber" name="mobileNumber" required class="w-full border p-2 rounded mt-1" placeholder="Enter mobile number">
+            </div>
+
+            <!-- Province Dropdown -->
+            <div class="mb-4">
+                <label for="province">Select Province:</label>
+    <select id="province" name="province">
+        <option value="" disabled selected>Select Province</option>
+        <% provinces.forEach(province => { %>
+            <option value="<%= province %>"><%= province %></option>
+        <% }); %>
+
+    </select>
+            </div>
+
+            <!-- District Dropdown -->
+            <div class="mb-4">
+                <label for="district" class="block font-semibold">District</label>
+                <select id="district" name="district" required class="w-full border p-2 rounded mt-1">
+                    <option value="" disabled selected>Select District</option>
+                </select>
+            </div>
+
+            <!-- Sector Dropdown -->
+            <div class="mb-4">
+                <label for="sector" class="block font-semibold">Sector</label>
+                <select id="sector" name="sector" required class="w-full border p-2 rounded mt-1">
+                    <option value="" disabled selected>Select Sector</option>
+                </select>
+            </div>
+
+            <!-- Cell Dropdown -->
+            <div class="mb-4">
+                <label for="cell" class="block font-semibold">Cell</label>
+                <select id="cell" name="cell" required class="w-full border p-2 rounded mt-1">
+                    <option value="" disabled selected>Select Cell</option>
+                </select>
+            </div>
+
+            <!-- Village Dropdown -->
+            <div class="mb-4">
+                <label for="village" class="block font-semibold">Village</label>
+                <select id="village" name="village" required class="w-full border p-2 rounded mt-1">
+                    <option value="" disabled selected>Select Village</option>
+                </select>
+            </div>
+
+            <!-- Created At -->
+            <div class="mb-4">
+                <label for="createdAt" class="block font-semibold">Registration Date</label>
+                <input type="date" id="createdAt" name="createdAt" required class="w-full border p-2 rounded mt-1">
+            </div>
+
+            <!-- Age -->
+            <div class="mb-4">
+                <label for="age" class="block font-semibold">Age</label>
+                <input type="number" id="age" name="age" required class="w-full border p-2 rounded mt-1" placeholder="Enter age">
+            </div>
+
+            <!-- Weight -->
+            <div class="mb-4">
+                <label for="weight" class="block font-semibold">Weight (kg)</label>
+                <input type="number" id="weight" name="weight" required class="w-full border p-2 rounded mt-1" placeholder="Enter weight in kg">
+            </div>
+
+            <!-- Gender -->
+            <div class="mb-4">
+                <label for="gender" class="block font-semibold">Gender</label>
+                <select id="gender" name="gender" required class="w-full border p-2 rounded mt-1">
+                    <option value="" disabled selected>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Last Donation Date -->
+            <div class="mb-4">
+                <label for="lastDonationDate" class="block font-semibold">Last Donation Date</label>
+                <input type="date" id="lastDonationDate" name="lastDonationDate" class="w-full border p-2 rounded mt-1">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-center">
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Register Donor</button>
+            </div>
+        </form>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+
+    <!-- <script src="/js/script.js"></script> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const provinceSelect = document.getElementById('province');
+            const districtSelect = document.getElementById('district');
+            const sectorSelect = document.getElementById('sector');
+            const cellSelect = document.getElementById('cell');
+            const villageSelect = document.getElementById('village');
+        
+            provinceSelect.addEventListener('change', function () {
+                const province = this.value;
+                fetch(`/districts/${province}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        districtSelect.innerHTML = '<option value="" disabled selected>Select District</option>';
+                        data.forEach(district => {
+                            districtSelect.innerHTML += `<option value="${district}">${district}</option>`;
+                        });
+                    });
+            });
+        
+            districtSelect.addEventListener('change', function () {
+                const district = this.value;
+                fetch(`/sectors/${district}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        sectorSelect.innerHTML = '<option value="" disabled selected>Select Sector</option>';
+                        data.forEach(sector => {
+                            sectorSelect.innerHTML += `<option value="${sector}">${sector}</option>`;
+                        });
+                    });
+            });
+        
+            sectorSelect.addEventListener('change', function () {
+                const sector = this.value;
+                fetch(`/cells/${sector}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        cellSelect.innerHTML = '<option value="" disabled selected>Select Cell</option>';
+                        data.forEach(cell => {
+                            cellSelect.innerHTML += `<option value="${cell}">${cell}</option>`;
+                        });
+                    });
+            });
+        
+            cellSelect.addEventListener('change', function () {
+                const cell = this.value;
+                fetch(`/villages/${cell}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        villageSelect.innerHTML = '<option value="" disabled selected>Select Village</option>';
+                        data.forEach(village => {
+                            villageSelect.innerHTML += `<option value="${village}">${village}</option>`;
+                        });
+                    });
+            });
+        });
+        </script>
+        
+</body>
+</html>

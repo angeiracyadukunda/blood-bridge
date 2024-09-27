@@ -12,6 +12,6 @@ router.get('/session', checkUserSession);
 // POST: Logout User
 router.post('/logout', logoutUser);
 
-// router.get('/logout', logoutUser);
+router.get('/logout', logoutUser);
 
 module.exports = router;
