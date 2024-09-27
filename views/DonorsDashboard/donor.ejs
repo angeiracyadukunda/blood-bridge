@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/header-iframes.ejs")  %>
+<body >
+    <%- include('../partials/header-nav.ejs'); %>
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed w-64 bg-red-800 text-white fixed min-h-screen transform -translate-x-full md:translate-x-0 fixed top-16 transition-transform duration-300 ease-in-out">
+            <div class="p-6">
+                <h1 class="text-3xl font-bold mb-8 text-white"> <%= title %></h1>
+                <ul>
+                    <li class="mb-4">
+                        <a href="/donorsdashboard/overview" target="content-frame" class="block p-3 rounded hover:bg-red-900">Overview</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="/donorsdashboard/appointments" target="content-frame" class="block p-3 rounded hover:bg-red-900">All Appointments</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="/donorsdashboard/when-to-donate" target="content-frame" class="block p-3 rounded hover:bg-red-900">When to Donate</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="/donorsdashboard/drives" target="content-frame" class="block p-3 rounded hover:bg-red-900">Drives Near You</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="/donorsdashboard/health-screening" target="content-frame" class="block p-3 rounded hover:bg-red-900">My Health Screening</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="/donorsdashboard/donor-card" target="content-frame" class="block p-3 rounded hover:bg-red-900">View My Donor Card</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="/donorsdashboard/guidelines" target="content-frame" class="block p-3 rounded hover:bg-red-900">Safety Guidelines</a>
+                    </li>
+                </ul>
+            
+                <div class="flex justify-start p-2">
+                    <%- include("../partials/logout.ejs") %>
+                </div>
+            </div>
+            
+            
+        </aside>
+        <!-- Main content area with toggle button -->
+        <div class="flex-grow md:ml-64">
+
+            <!-- Iframe to load content -->
+            <main class="flex-1 px-6 p-4" style="margin-top: 50px;">
+                <iframe name="content-frame" src="/donorsdashboard/overview" class="w-full h-screen border-none"></iframe>
+            </main>
+        </div>
+        
+
+
+        <!-- Main content loaded in iframe -->
+        <!-- <main class="flex-1 px-6 p-4" style="margin-top:2px !important;">
+            <iframe name="content-frame" src="/donorsdashboard/overview" class="w-full h-screen border-none"></iframe>
+        </main> -->
+    </div>
+    <script>
+        // JavaScript to toggle sidebar
+        const toggler = document.getElementById('menu-toggler');
+        const sidebar = document.getElementById('sidebar');
+
+        toggler.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+    </script>
+</body>
+</html>

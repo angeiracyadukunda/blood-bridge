@@ -5,54 +5,81 @@
 
 <body>
     <%- include('./partials/navbar.ejs') %>
-    <!-- Header -->
-    <header>
-        <h1>Who We Are</h1>
-    </header>
+  
+    
+<!-- Main Content Section -->
+<main id="who-we-are">
+    <!-- Our History Section -->
+    <section class="content-section">
+        <h2><i class="fas fa-history"></i> Our History</h2>
+        <p>RBC was established in 2011 through a merger of fourteen key health institutions. RBC strives to improve the health of the Rwandan population by providing high quality, affordable and sustainable health care services...</p>
+    </section>
 
-    <!-- Main Content Section -->
-    <main id="who-we-are">
-        <!-- Our History Section -->
-        <section class="content-section">
-            <h2>Our History</h2>
-            <p>Rwanda Blood Bridge was founded with the mission to ensure a safe and sufficient blood supply for
-                patients in need. Over the years, we have grown into a trusted organization known for our dedication to
-                saving lives through blood donation.</p>
-        </section>
-
-        <!-- Our Values Section -->
-        <section class="content-section">
-            <h2>Our Values</h2>
-            <div class="content-container">
-                <img src="path/to/values.jpg" alt="Our Values" class="related-image">
-                <div class="text-content">
-                    <p>We believe in the power of community, the importance of life-saving blood donations, and the
-                        responsibility of ensuring that every drop of blood counts. We are driven by compassion,
-                        integrity, and service to others.</p>
-                </div>
+    <!-- Our Values Section -->
+    <section class="content-section">
+        <h2><i class="fas fa-bullseye"></i> Mission</h2>
+        <div class="content-container">
+            <!-- <img src="path/to/values.jpg" alt="Our Values" class="related-image"> -->
+            <div class="text-content">
+                <p><i class="fas fa-handshake"></i> RBC promotes high quality, affordable, and sustainable health care services to the population through evidence-based interventions and practices...</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Our Team Section -->
-        <section class="content-section">
-            <h2>Meet Our Team</h2>
-            <div class="content-container">
-                <img src="path/to/team.jpg" alt="Our Team" class="related-image">
-                <div class="text-content">
-                    <p>Our dedicated team of professionals works tirelessly to manage blood donations, coordinate with
-                        hospitals, and engage with the community. Together, we strive to meet the needs of patients
-                        across Rwanda.</p>
-                </div>
+    <!-- Vision Section -->
+    <section class="content-section">
+        <h2><i class="fas fa-eye"></i> Vision</h2>
+        <div class="content-container">
+            <!-- <img src="path/to/vision.jpg" alt="Our Vision" class="related-image"> -->
+            <div class="text-content">
+                <p><i class="fas fa-lightbulb"></i> To become a Center of Excellence for the prosperity of the country, ensuring quality health service delivery, education and research.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Our Partners Section -->
-        <section class="content-section">
-            <h2>Our Partners</h2>
-            <p>We collaborate with hospitals, government agencies, and non-profit organizations to ensure that our
-                services reach those who need them the most. Together, we are building a stronger, healthier Rwanda.</p>
-        </section>
-    </main>
+    <!-- Our Team Section -->
+    <section class="content-section">
+        <h2><i class="fas fa-users"></i> Meet Our Team</h2>
+        <div class="content-container">
+            <!-- <img src="path/to/team.jpg" alt="Our Team" class="related-image"> -->
+            <div class="text-content">
+                <p><i class="fas fa-user-md"></i> Our dedicated team of professionals works tirelessly to manage blood donations, coordinate with hospitals, and engage with the community...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Partners Section -->
+    <section class="content-section">
+        <h2><i class="fas fa-handshake"></i> Our Partners</h2>
+        <p><i class="fas fa-hospital"></i> We collaborate with hospitals, government agencies, and non-profit organizations to ensure that our services reach those who need them the most...</p>
+
+        <section class=" partners-section" style="display: flex; ">
+        <div class="card" style="background-color: #ffffff; ">
+            <img src="images/united nation.png" alt="Image 1">    
+        </div>
+
+        <div class="card"  style="background-color: #ffffff;">
+            <img src="images/university of rwanda.png" alt="Image 1"> 
+        </div>
+
+        <div class="card" style="background-color: #ffffff;">
+            <img src="images/usaid.png" alt="Image 1"> 
+        </div>
+
+        <div class="card" style="background-color: #ffffff;">
+            <img src="images/paterners.png" alt="Image 1"> 
+        </div>
+        <div class="card" style="background-color: #ffffff;">
+            <img src="images/paterns.png" alt="Image 1"> 
+        </div>
+
+        <div class="card" style="background-color: #ffffff;">
+            <img src="images/imbuto.png" alt="Image 1"> 
+        </div>
+        
+    </section>
+    </section>
+</main>
 
     <!-- Footer -->
     <%- include('./partials/footer.ejs') %>   

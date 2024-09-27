@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("../partials/header.ejs")  %>
-<body class="bg-gray-100">
+<%- include("../partials/header-iframes.ejs") %>
+<body>
+    <!-- Header -->
+    <%- include('../partials/header-nav.ejs'); %>
 
     <!-- Main layout with sidebar and content -->
     <div class="flex h-screen">
 
         <!-- Sidebar -->
-        <aside class="w-64 bg-red-800 text-white flex flex-col min-h-screen">
+        <aside id="sidebar" class="fixed w-64 bg-red-800 text-white fixed min-h-screen transform -translate-x-full md:translate-x-0 fixed top-16 transition-transform duration-300 ease-in-out">
             <div class="p-6">
-                <h1 class="text-3xl font-bold mb-8 text-white">Admin Dashboard</h1>
+                <h1 class="text-3xl font-bold mb-8 text-white"> <%= title %></h1>
                 <ul>
                     <li class="mb-4">
                         <a href="dashboard/dashboard-overview" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Dashboard Overview</a>
@@ -28,22 +30,30 @@
                     </li>
                 </ul>
 
-                <div  class="flex justify-start p-2">
-                    <%- include("../partials/logout.ejs")  %>
+                <div class="flex justify-start p-2">
+                    <%- include("../partials/logout.ejs") %>
                 </div>
-
             </div>
-           
-
         </aside>
 
+        <!-- Main content area with toggle button -->
+        <div class="flex-grow md:ml-64 ">
 
-        <!-- Main content area -->
-        <main class="flex-grow">
-            <iframe src="dashboard/dashboard-overview" name="contentFrame" class="w-full h-screen border-0"></iframe>
-        </main>
-
+            <!-- Iframe to load content -->
+            <main style="margin-top: 50px;">
+                <iframe src="dashboard/dashboard-overview" name="contentFrame" class="w-full h-screen border-0 mt-4"></iframe>
+            </main>
+        </div>
     </div>
-    <%- include("../partials/footer.ejs")  %>
+
+    <script>
+        // JavaScript to toggle sidebar
+        const toggler = document.getElementById('menu-toggler');
+        const sidebar = document.getElementById('sidebar');
+
+        toggler.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+    </script>
 </body>
 </html>

@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <title>View My Donor Card</title>
-</head>
+<%- include("../partials/header-iframes.ejs") %>
 <body class="p-6 pt-5">
+    
     <%- include('../partials/goback.ejs')%>
-    <h2 class="text-2xl font-semibold mb-4 mt-6">View My Donor Card</h2>
+    <h2 class="text-2xl font-semibold mb-4 mt-6"><%= title %></h2>
     <div class="bg-white p-6 rounded shadow">
         <p class="text-gray-700">Your donor card:</p>
         <img src="https://via.placeholder.com/400x250" alt="Donor Card" class="mt-4 mb-4 border">
