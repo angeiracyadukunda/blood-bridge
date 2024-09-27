@@ -1,4 +1,4 @@
-const { createUserWithEmailAndPassword, sendEmailVerification } = require('firebase/auth');
+const { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, getAuth, signInWithCustomToken } = require('firebase/auth');
 const fbConfig = '../firebase/firebaseConfig';
 const { auth, db } = require(fbConfig);
 const { setDoc, doc } = require('firebase/firestore');
@@ -14,11 +14,16 @@ const signupUser = async (req, res) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const uid = userCredential.user.uid;
 
+        // await updateProfile(userCredential.user, {
+        //     displayName: fullName, // Set the display name
+        // });
+
         // Send email verification
         const actionCodeSettings = {
-            url: 'http://localhost:3000/verify?uid=' + uid,
+            url: `http://localhost:3000/verify-email?uid=${uid}`,
             handleCodeInApp: true,
         };
+
         await sendEmailVerification(userCredential.user, actionCodeSettings);
 
         // Create user document in Firestore
@@ -47,32 +52,29 @@ const signupSuccess = (req, res) => {
         return res.redirect('/signup');
     }
 
-    res.send(`
-        
-        <h1>Your account was created successfully!</h1>
-        <p>An activation link was sent to your email address. Please verify your email to continue.</p>
-    `);
+    // Render the signup-success.ejs template
+    res.render('signup-success');
 };
 
 // Email verification handler
-const verifyEmail = (req, res) => {
+const verifyEmailLink = async (req, res) => {
     const { uid } = req.query;
 
     if (!uid) {
         return res.status(400).send('Invalid verification link.');
     }
 
-    res.send(`
-        
-        <h1>Your account was successfully verified!</h1>
-        <p>Redirecting to your dashboard...</p>
-      
-        <script>
-            setTimeout(function() {
-                window.location.href = "/dashboard";
-            }, 2000);
-        </script>
-    `);
+    try {
+        const user = await auth.getUser(uid); // Fetch the user by UID
+        const customToken = await auth.createCustomToken(uid); // Create a custom token
+        await signInWithCustomToken(auth, customToken); // Sign in the user
+
+        req.session.user = uid; // Store UID in session for logged-in status
+        res.redirect('/dashboard'); // Redirect to dashboard
+    } catch (error) {
+        console.error('Error verifying email:', error);
+        return res.status(500).send('Error verifying email: ' + error.message);
+    }
 };
 
-module.exports = { signupUser, signupSuccess, verifyEmail };
+module.exports = { signupUser, signupSuccess, verifyEmailLink };

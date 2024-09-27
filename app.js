@@ -2,11 +2,13 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const newLocal = './Backend/firebase/firebaseConfig';
-const {auth, liveDatabase, db } = require(newLocal); // Import the database instance
+const fbConfig = './Backend/firebase/firebaseConfig';
+const {auth, liveDatabase, db } = require(fbConfig); // Import the database instance
 const { ref, push, set } = require('firebase/database');
+
 // const signupRoutes = require('./Backend/routes/signupRoute');
 const authRoutes = require('./Backend/routes/authRoute'); 
+const loginRoutes = require('./Backend/routes/loginRoute');
 const session = require('express-session');
 
 // Express app
@@ -27,12 +29,15 @@ app.use(session({
     secret: '2010373b2911c799435ed43923849612c007ba1d4495e7925133a9114d27d9b3', // Use a strong secret key
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false } // Set to true if using HTTPS in production
+    cookie: { 
+        secure: false,
+        maxAge: 180 * 24 * 60 * 60 * 1000
+     } // Set to true if using HTTPS in production
 }));
 
 // Routes
 app.use('/api', authRoutes);
-
+app.use('/api', loginRoutes);
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
@@ -66,29 +71,6 @@ app.get('/beforeafter', (req, res) => {
 });
 app.get('/benefits', (req, res) => {
     res.render('benefits', { title: 'Rewards' });
-app.post(`/create-user`, (req, res) => {
-
-    try {
-        // Get data from query parameters or use default values
-        const { email, role, fullName, phoneNumber, preferredLocation, dateOfBirth } = req.body;
-
-        // Create a new user using the Mongoose model
-        const newUser = new User({
-            email,
-            role,
-            fullName,
-            phoneNumber,
-            preferredLocation,
-            dateOfBirth
-        });
-    
-        newUser.save()
-            .then(() => res.status(201).send('User created successfully'))
-            .catch(err => res.status(500).send('Error creating user'));
-    } catch (error) {
-        res.status(500).json({ message: 'Error creating user', error });
-    }
-});
 });
 app.get('/blooddonation', (req, res) => {
     res.render('blooddonation', { title: 'Blood Donatoin' });
@@ -143,6 +125,7 @@ app.get('/forgotpassword', (req, res) => {
 app.get('/helps', (req, res) => {
     res.render('helps', { title: 'Helps' });
 });
+
 app.get('/news', (req, res) => {
     res.render('news', { title: 'News and Announcements' });
 });
@@ -150,7 +133,7 @@ app.get('/login', (req, res) => {
     res.render('login', { title: 'Login Page' });
 });
 app.get('/signup', (req, res) => {
-    res.render('signup', { title: 'Login Page' });
+    res.render('signup', { title: 'Signup Page' });
 });
 app.get('/whathappens', (req, res) => {
     res.render('whathappens', { title: 'What Happens' });
