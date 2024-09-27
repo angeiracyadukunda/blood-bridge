@@ -61,7 +61,7 @@ function submitForm(e) {
     .catch(error => {
         console.error('Error:', error);
         showPopup(error.message || 'An error occurred. Please try again later.', "error");
-    });
+    });git 
 }
 
 function showPopup(message, type) {
