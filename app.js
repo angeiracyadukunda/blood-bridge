@@ -99,6 +99,8 @@ app.get('/concerns', (req, res) => {
 app.get('/contact', (req, res) => {
     res.render('contact', { title: 'Contact' });
 });
+
+// Admin Dashboard
 app.get('/dashboard', (req, res) => {
     res.render('dashboard/maindashboard', { title: 'Dashboard' });
 });
@@ -119,6 +121,43 @@ app.get('/dashboard/post-announcements', (req, res) => {
     res.render('dashboard/post-announcements', { title: 'Dashboard' });
 });
 
+// Donor Dashoard
+
+app.get('/DonorsDashbooard/overview', (req, res) => {
+    res.render('DonorsDashbooard/overview', { title: 'Dashboard' });
+});
+
+app.get('/DonorsDashbooard', (req, res) => {
+    res.render('DonorsDashbooard/donor', { title: 'Dashboard' });
+});
+
+app.get('/DonorsDashbooard/appointments', (req, res) => {
+    res.render('DonorsDashbooard/appointments', { title: 'Dashboard' });
+});
+
+app.get('/DonorsDashbooard/donor-card', (req, res) => {
+    res.render('DonorsDashbooard/donor-card', { title: 'Dashboard' });
+});
+
+app.get('/DonorsDashbooard/drives', (req, res) => {
+    res.render('DonorsDashbooard/drives', { title: 'Dashboard' });
+});
+
+app.get('/DonorsDashbooard/guidelines', (req, res) => {
+    res.render('DonorsDashbooard/guidelines', { title: 'Dashboard' });
+});
+
+app.get('/DonorsDashbooard/health-screening', (req, res) => {
+    res.render('DonorsDashbooard/health-screening', { title: 'Dashboard' });
+});
+
+app.get('/DonorsDashbooard/when-to-donate', (req, res) => {
+    res.render('DonorsDashbooard/when-to-donate', { title: 'Dashboard' });
+});
+
+
+
+// User Dashboard
 app.get('/:username/dashboard', (req, res) => {
     const username = req.params.username; // Extract the username from the URL
     res.render('dashboard', { title: 'Dashboard', username });
