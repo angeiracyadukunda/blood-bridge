@@ -84,57 +84,57 @@ app.get('/contact', (req, res) => {
 
 // Admin Dashboard
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard/maindashboard', { title: 'Dashboard' });
+    res.render('dashboard/maindashboard', { title: "Admin Dashboard"});
 });
 app.get('/dashboard/profile', (req, res) => {
-    res.render('dashboard/profile', { title: 'Dashboard' });
+    res.render('dashboard/profile', { title: 'Profile Settings' });
 });
 app.get('/dashboard/dashboard-overview', (req, res) => {
-    res.render('dashboard/dashboard-overview', { title: 'Dashboard' });
+    res.render('dashboard/dashboard-overview', { title: 'Dashboard Overview' });
 });
 
 app.get('/dashboard/manage-appointments', (req, res) => {
-    res.render('dashboard/manage-appointments', { title: 'Dashboard' });
+    res.render('dashboard/manage-appointments', { title: 'Manage Appointments' });
 });
 app.get('/dashboard/manage-donors', (req, res) => {
-    res.render('dashboard/manage-donors', { title: 'Dashboard' });
+    res.render('dashboard/manage-donors', { title: 'Manage Donors' });
 });
 app.get('/dashboard/post-announcements', (req, res) => {
-    res.render('dashboard/post-announcements', { title: 'Dashboard' });
+    res.render('dashboard/post-announcements', { title: 'Post Announcements' });
 });
 
 // Donor Dashoard
 
-app.get('/DonorsDashbooard/overview', (req, res) => {
-    res.render('DonorsDashbooard/overview', { title: 'Dashboard' });
+app.get('/donorsdashboard/overview', (req, res) => {
+    res.render('donorsdashboard/overview', { title: 'Dashboard Overview' });
 });
 
-app.get('/DonorsDashbooard', (req, res) => {
-    res.render('DonorsDashbooard/donor', { title: 'Dashboard' });
+app.get('/donorsdashboard', (req, res) => {
+    res.render('donorsdashboard/donor', { title: 'Dashboard' });
 });
 
-app.get('/DonorsDashbooard/appointments', (req, res) => {
-    res.render('DonorsDashbooard/appointments', { title: 'Dashboard' });
+app.get('/donorsdashboard/appointments', (req, res) => {
+    res.render('donorsdashboard/appointments', { title: 'All Appointments' });
 });
 
-app.get('/DonorsDashbooard/donor-card', (req, res) => {
-    res.render('DonorsDashbooard/donor-card', { title: 'Dashboard' });
+app.get('/donorsdashboard/donor-card', (req, res) => {
+    res.render('donorsdashboard/donor-card', { title: 'View My Donor Card' });
 });
 
-app.get('/DonorsDashbooard/drives', (req, res) => {
-    res.render('DonorsDashbooard/drives', { title: 'Dashboard' });
+app.get('/donorsdashboard/drives', (req, res) => {
+    res.render('donorsdashboard/drives', { title: 'Dashboard' });
 });
 
-app.get('/DonorsDashbooard/guidelines', (req, res) => {
-    res.render('DonorsDashbooard/guidelines', { title: 'Dashboard' });
+app.get('/donorsdashboard/guidelines', (req, res) => {
+    res.render('donorsdashboard/guidelines', { title: 'Dashboard' });
 });
 
-app.get('/DonorsDashbooard/health-screening', (req, res) => {
-    res.render('DonorsDashbooard/health-screening', { title: 'Dashboard' });
+app.get('/donorsdashboard/health-screening', (req, res) => {
+    res.render('donorsdashboard/health-screening', { title: 'Dashboard' });
 });
 
-app.get('/DonorsDashbooard/when-to-donate', (req, res) => {
-    res.render('DonorsDashbooard/when-to-donate', { title: 'Dashboard' });
+app.get('/donorsdashboard/when-to-donate', (req, res) => {
+    res.render('donorsdashboard/when-to-donate', { title: 'Dashboard' });
 });
 
 
@@ -152,13 +152,16 @@ app.get('/:username/donationpro', (req, res) => {
     const username = req.params.username; // Extract the username from the URL
     res.render('donationpro', { title: 'Donation Pro', username });
 });
+app.get('/donationpro', (req, res) => {
+    res.render('donationpro', { title: 'Donation Process' });
+});
 app.get('/eligibility', (req, res) => {
     res.render('eligibility', { title: 'Eligibility Requirements' });
 });
 app.get('/firsttimedoner', (req, res) => {
     res.render('firsttimedoner', { title: 'First-Time Blood Donors' });
 });
-app.get('/forgotpassword', (req, res) => {
+app.get('/forgotpass', (req, res) => {
     res.render('forgotpass', { title: 'Forgot Password' });
 });
 app.get('/helps', (req, res) => {

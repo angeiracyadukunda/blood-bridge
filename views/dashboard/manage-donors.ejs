@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <title>Manage Donors</title>
-</head>
+<%- include("../partials/header-iframes.ejs") %>
 <body class="p-6 pt-5">
     <%- include('../partials/goback.ejs')%>
-    <h2 class="text-2xl font-semibold mb-4 mt-6">Manage Donors</h2>
+    <h2 class="text-2xl font-semibold mb-4 mt-6"><%= title %></h2>
     <p>This section allows you to manage donors.</p>
 </body>
 </html>

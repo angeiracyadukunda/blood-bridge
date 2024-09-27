@@ -1,81 +1,12 @@
-<!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rwanda Blood Bridge</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <%- include('./partials/header.ejs') %>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
 <body>
+
     <!-- Top Nav Bar -->
+    <%- include('./partials/navbar.ejs') %>  
 <!-- Top Nav Bar -->
-<div class="top-nav">
-    <div class="language-dropdown">
-        <a href="./ManageAppoint.html">Sign In</a>
-
-        <a href="./News.html">News/Announcements</a>
-        <a href="#">English <span class="dropdown-icon">&#9660;</span></a>
-        <div class="dropdown-content">
-            <a href="#">Kinyarwanda</a>
-            <a href="#">French</a>
-            
-            
-        </div>
-    </div>
-</div>
-
-    <!-- Main Navigation -->
-    <nav class="main-nav">
-        <div class="logo">
-            <a href="./index.html">
-                <img src="./images/blood.png" alt="Rwanda Blood Bridge Logo">
-                <div class="title">
-                    <h1>Rwanda Blood Bridge</h1>
-                </div>
-            </a>
-        </div>
-        <ul class="nav-links">
-            <li class="dropdown">
-                <a href="#">Donate Blood<span class="dropdown-icon">&#9660;</span></a>
-                <div class="dropdown-content">
-                    <a href="./Appiontment.html">Schedule an Appointment</a>
-                    <a href="./ManageAppoint.html">Manage Existing Appointment</a>
-                    <a href="./DonationHis.html">View My Donation History</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#">How to Donate <span class="dropdown-icon">&#9660;</span></a>
-                <div class="dropdown-content">
-                    <a href="./Eligibility.html">Eligibility Requirements</a>
-                    <a href="./BloodDonation.html">Types of Blood Donation</a>
-                    <a href="./aboutBlood.html">Learn About Blood</a>
-                    <a href="./helps.html">How Blood Donation Helps</a>
-                    <a href="./concerns.html">Common Concerns</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#">Blood Donation Process<span class="dropdown-icon">&#9660;</span></a>
-                <div class="dropdown-content">
-                    <a href="./DonationPro.html">Donation Process Overview</a>
-                    <a href="./BeforeAfter.html">What to do Before, During, After</a>
-                    <a href="./whatHappens.html">What Happens to Donated Blood</a>
-                    <a href="./firstTimeDoner.html">First Time Blood Donors</a>
-                    <!-- <a href="./benefits.html">Benefits of Blood Donating</a> -->
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#">Biomedical Service <span class="dropdown-icon">&#9660;</span></a>
-                <div class="dropdown-content">
-                    <a href="./WhoweAre.html">Who We Are</a>
-                    <a href="./whatwedo.html">What We Do</a>
-                    <a href="./News.html">Announcements</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
 
         <!-- Main Content Section -->
         <main id="donating-rewards-section">
@@ -137,17 +68,10 @@
                 </div>
             </section>
         </main>
-    <!-- Footer -->
-    <footer>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-        </div>
-    </footer>
-    
+   
+     <!-- Footer -->
+     <%- include('./partials/footer.ejs') %> 
+       
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="/js/scripts.js"></script>
 
