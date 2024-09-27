@@ -10,6 +10,7 @@ const { ref, push, set } = require('firebase/database');
 const authRoutes = require('./Backend/routes/authRoute'); 
 const loginRoutes = require('./Backend/routes/loginRoute');
 const session = require('express-session');
+const appointmentRoutes = require('./Backend/routes/appointmentRoutes'); 
 
 // Express app
 const app = express();
@@ -38,6 +39,7 @@ app.use(session({
 // Routes
 app.use('/api', authRoutes);
 app.use('/api', loginRoutes);
+app.use('/api', appointmentRoutes);
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));

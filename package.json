@@ -17,11 +17,12 @@
   "author": "Ange && Gdm",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
-    "body-parser": "^1.20.3",
     "express-session": "^1.18.0",
     "firebase": "^10.13.2",
+    "firebase-admin": "^12.5.0",
     "flowbite": "^2.5.1",
     "lodash": "^4.17.21",
     "mongodb": "^6.9.0",
