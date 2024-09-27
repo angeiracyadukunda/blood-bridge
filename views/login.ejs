@@ -1,48 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/header.ejs') %>   
+<%- include('./partials/header.ejs') %>   
 <body>
    
 <!-- Top Nav Bar -->
 
 <%- include('./partials/navbar.ejs') %>
 
-    <!-- Sign-in/Sign-up Section -->
-<section id="auth-section">
-    <div class="auth-container">
-      <h2>Login</h2>
-      <form id="login-form">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" placeholder="Enter Username">
-        
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter Password">
-        
-        <button type="button" onclick="window.location.href='./pages/Appiontment.html'">Sign-in</button>
-        <div class="keep-signed-in">
-          <input type="checkbox" id="keep-signed-in">
-          <label for="keep-signed-in">Keep Me Signed In</label>
+    <!-- Sign-in Section -->
+    <section id="auth-section">
+        <div class="auth-container">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter Username" required>
+                
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                
+                <button type="submit">Sign-in</button>
+                <div class="keep-signed-in">
+                    <input type="checkbox" id="keep-signed-in">
+                    <label for="keep-signed-in">Keep Me Signed In</label>
+                </div>
+                <a href="./forgotPass" class="forgot-password">I Forgot My Username/Password</a>
+            </form>
+            <a href="./signup" class="create-account-link">I Need to Create an Account</a>
+            <div class="account-benefits">
+                <p><strong>Account Benefits:</strong> Create an account to easily schedule future appointments, manage existing appointments, see your blood type, view results of your mini-physical, and track donation history.</p>
+            </div>
         </div>
-        <a href="./forgotPass" class="forgot-password">I Forgot My Username/Password</a>
-      </form>
-      <a href="./signup" class="create-account-link">I Need to Create an Account</a>
-      <div class="account-benefits">
-        <p><strong>Account Benefits:</strong> Create an account to easily schedule future appointments, manage existing appointments, see your blood type, view results of your mini-physical, and track donation history.</p>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Dashboard Section (after login) -->
-  <%- include('./partials/footer.ejs') %>   
+    </section>
 
-    <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    document.getElementById('auth-section').style.display = 'none';
-    document.getElementById('dashboard-section').style.display = 'block';
-});
+    <!-- Popup Alert -->
+    <div class="alert" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); padding: 10px; color: white; font-weight: bold; border-radius: 5px;"></div>
 
-    </script>
-        
-    </body>
-   </html>
+    <!-- Footer -->
+    <%- include('./partials/footer.ejs') %>
+
+    <script src="/js/login.js"></script> <!-- Link to your login.js script -->
+</body>
+</html>

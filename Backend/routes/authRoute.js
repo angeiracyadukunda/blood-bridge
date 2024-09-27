@@ -1,5 +1,5 @@
 const express = require('express');
-const { signupUser, signupSuccess, verifyEmail } = require('../controllers/authController');
+const { signupUser, signupSuccess, verifyEmailLink } = require('../controllers/authController');
 const router = express.Router();
 
 // Route for signup
@@ -9,6 +9,6 @@ router.post('/signup', signupUser);
 router.get('/signup-success', signupSuccess);
 
 // Route for email verification
-router.get('/verify', verifyEmail);
+router.get('/verify-email', verifyEmailLink);
 
 module.exports = router;
