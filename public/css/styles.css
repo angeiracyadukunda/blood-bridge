@@ -1143,7 +1143,7 @@ button[type="button"]:hover {
 /* Basic styles for the sign-in and dashboard sections */
 .auth-container, .dashboard-container {
   width: 90%;
-  max-width: 400px;
+  max-width: 600px;
   margin: auto;
   padding: 20px;
   border: 1px solid #ddd;
@@ -1266,7 +1266,7 @@ input[type="text"], input[type="password"] {
   font-size: 0.9em;
 }
 
-.create-account-link {
+.create-account-link, .forgot-password {
   color: blue;
   text-decoration: underline;
   cursor: pointer;
