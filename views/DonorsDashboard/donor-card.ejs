@@ -2,16 +2,84 @@
 <html lang="en">
 <%- include("../partials/header-iframes.ejs") %>
 <body class="p-6 pt-5">
-    
+
     <%- include('../partials/goback.ejs')%>
-    <h2 class="text-2xl font-semibold mb-4 mt-6"><%= title %></h2>
-    <div class="bg-white p-6 rounded shadow">
-        <p class="text-gray-700">Your donor card:</p>
-        <img src="https://via.placeholder.com/400x250" alt="Donor Card" class="mt-4 mb-4 border">
-        <div class="space-x-4">
-            <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Download</button>
-            <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Print</button>
+    <div class="bg-red-600 p-4 text-white font-semibold">
+      
+        <h2 class="text-3xl font-bold mt-2">My Donor Card</h2>
+    </div>
+    
+    <div class="flex justify-center mt-6">
+        <div class="bg-white p-6 rounded shadow-lg border w-full max-w-4xl">
+            <div class="text-center mb-4">
+                <h3 class="text-xl font-semibold">Rwanda Blood Bridge</h3>
+                <div class="border-b mb-4"></div>
+            </div>
+            
+            <!-- Table Format for Donor Information -->
+            <table class="table-auto w-full border border-gray-300 text-left">
+                <tbody>
+                    <tr class="bg-gray-100">
+                        <td class="p-2 font-semibold border">NAME</td>
+                        <td class="p-2 border"><%= signature %></td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 font-semibold border">BLOOD GROUP</td>
+                        <td class="p-2 border"><%= bloodGroup %> (<%= rhesus %>)</td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-2 font-semibold border">DATE OF DONATION</td>
+                        <td class="p-2 border"><%= donationDate %></td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 font-semibold border">TIMES OF DONATION</td>
+                        <td class="p-2 border"><%= timesOfDonation %></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-2 font-semibold border">LOCATION</td>
+                        <td class="p-2 border"><%= location %></td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 font-semibold border">DATE OF BIRTH</td>
+                        <td class="p-2 border"><%= dob %></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-2 font-semibold border">FIRST BLOOD CHECK</td>
+                        <td class="p-2 border"><%= firstBloodCheck %></td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 font-semibold border">SECOND BLOOD CHECK</td>
+                        <td class="p-2 border"><%= secondBloodCheck %></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-2 font-semibold border">NAME OF DOCTOR</td>
+                        <td class="p-2 border"><%= doctorName %></td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 font-semibold border">DONOR ID</td>
+                        <td class="p-2 border"><%= cardNo %></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-2 font-semibold border">BLOOD QUANTITY</td>
+                        <td class="p-2 border"><%= bloodQuantity %></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Barcode Placeholder -->
+            <div class="flex justify-center mt-6">
+                <img src="https://via.placeholder.com/150x50?text=Barcode" alt="Barcode">
+            </div>
+
+            <p class="text-sm text-gray-600 mt-2 text-center">Valued Blood Donor</p>
+
+            <!-- Buttons -->
+            <div class="flex justify-center mt-4 space-x-4">
+                <button class="bg-green-500 text-white py-2 px-6 rounded hover:bg-green-600">Print Card</button>
+                <button class="bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600">Download</button>
+            </div>
         </div>
     </div>
+
 </body>
 </html>

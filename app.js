@@ -5,6 +5,10 @@ const bodyParser = require('body-parser');
 const fbConfig = './Backend/firebase/firebaseConfig';
 const {auth, liveDatabase, db } = require(fbConfig); // Import the database instance
 const { ref, push, set } = require('firebase/database');
+const rwanda = require('rwanda');
+
+
+
 
 // const signupRoutes = require('./Backend/routes/signupRoute');
 const authRoutes = require('./Backend/routes/authRoute'); 
@@ -121,8 +125,27 @@ app.get('/donorsdashboard/appointments', (req, res) => {
 });
 
 app.get('/donorsdashboard/donor-card', (req, res) => {
-    res.render('donorsdashboard/donor-card', { title: 'View My Donor Card' });
+
+    const donorData = {
+        title: 'View My Donor Card',
+        bloodGroup: "O+",
+        donationDate: "2024-09-27",
+        timesOfDonation: 3,
+        rhesus: "Positive",
+        signature: "John Doe",
+        location: "Kigali, Rwanda",
+        dob: "1990-01-15",
+        firstBloodCheck: "Normal",
+        secondBloodCheck: "Normal",
+        doctorName: "Dr. Sarah Smith",
+        cardNo: "123456",
+        bloodQuantity: "500ml"
+    };
+
+    // Render the donor card template and pass the donorData to it
+    res.render('donorsdashboard/donor-card', donorData);
 });
+
 
 app.get('/donorsdashboard/drives', (req, res) => {
     res.render('donorsdashboard/drives', { title: 'Dashboard' });
@@ -180,6 +203,11 @@ app.get('/login', (req, res) => {
 app.get('/signup', (req, res) => {
     res.render('signup', { title: 'Signup Page' });
 });
+
+app.get('/signup1', (req, res) => {
+    res.render('signup1', { title: 'Signup1 Page' });
+});
+
 app.get('/whathappens', (req, res) => {
     res.render('whathappens', { title: 'What Happens' });
 });
@@ -189,7 +217,42 @@ app.get('/whatwedo', (req, res) => {
 app.get('/whoweare', (req, res) => {
     res.render('whoweare', { title: 'Who we are' });
 });
-// 404 page
-app.use((req, res) => {
-    res.status(404).render('404', { title: 'Error: 404' });
+
+
+// Donor Registration Route
+app.get('/donorRegister', (req, res) => {
+    try {
+        const provinces = rwanda.Provinces(); // Fetch provinces for the form
+        res.render('donorRegister', { title: 'Donor Register Page', provinces });
+    } catch (error) {
+        console.error('Error fetching provinces:', error);
+        res.status(500).send('Internal Server Error'); // Handle errors appropriately
+    }
+});
+
+app.get('/districts/:province', (req, res) => {
+    const province = req.params.province;
+    const districts = districts.filter(district => district.province === province); // Example filtering
+    res.json(districts);
+});
+
+// Endpoint to get sectors based on district
+app.get('/sectors/:district', (req, res) => {
+    const district = req.params.district;
+    const sectors = Sectors.filter(sector => sector.district === district); // Example filtering
+    res.json(sectors);
+});
+
+// Endpoint to get cells based on sector
+app.get('/cells/:sector', (req, res) => {
+    const sector = req.params.sector;
+    const cells = Cells.filter(cell => cell.sector === sector); // Example filtering
+    res.json(cells);
+});
+
+// Endpoint to get villages based on cell
+app.get('/villages/:cell', (req, res) => {
+    const cell = req.params.cell;
+    const villages = Villages.filter(village => village.cell === cell); // Example filtering
+    res.json(villages);
 });
