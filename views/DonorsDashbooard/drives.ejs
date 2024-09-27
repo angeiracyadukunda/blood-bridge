@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Drives Near You</title>
+</head>
+<body class="p-6 pt-5">
+    <%- include('../partials/goback.ejs')%>
+    <h2 class="text-2xl font-semibold mb-4 mt-6" >Drives Near You</h2>
+    <div class="bg-white p-6 rounded shadow">
+        <p class="text-gray-700">Upcoming blood donation drives near your location:</p>
+        <ul class="mt-4 space-y-2">
+            <li class="p-4 bg-gray-100 rounded">Drive at <strong>Central Park</strong> on <strong>30th Sept 2024</strong></li>
+            <li class="p-4 bg-gray-100 rounded">Drive at <strong>Downtown Community Center</strong> on <strong>10th Oct 2024</strong></li>
+        </ul>
+    </div>
+</body>
+</html>

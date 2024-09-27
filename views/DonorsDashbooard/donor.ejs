@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/header.ejs")  %>
+<body class="bg-gray-100 min-h-screen">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-red-800 min-h-screen p-4">
+            <nav class="space-y-4">
+                <h1 class="text-white text-2xl font-semibold mb-4">Donor Dashboard</h1>
+                <a href="/DonorsDashbooard/overview" target="content-frame" class="block text-white hover:bg-red-900 p-2 rounded">Overview</a>
+                <a href="/DonorsDashbooard/appointments" target="content-frame" class="block text-white hover:bg-red-900 p-2 rounded">All Appointments</a>
+                <a href="/DonorsDashbooard/when-to-donate" target="content-frame" class="block text-white hover:bg-red-900 p-2 rounded">When to Donate</a>
+                <a href="/DonorsDashbooard/drives" target="content-frame" class="block text-white hover:bg-red-900 p-2 rounded">Drives Near You</a>
+                <a href="/DonorsDashbooard/health-screening" target="content-frame" class="block text-white hover:bg-red-900 p-2 rounded">My Health Screening</a>
+                <a href="/DonorsDashbooard/donor-card" target="content-frame" class="block text-white hover:bg-red-900 p-2 rounded">View My Donor Card</a>
+                <a href="/DonorsDashbooard/guidelines" target="content-frame" class="block text-white hover:bg-red-900p-2 rounded">Safety Guidelines</a>
+            </nav>
+            <div  class="flex justify-start p-2">
+                <%- include("../partials/logout.ejs")  %>
+            </div>
+            
+        </aside>
+        
+
+        
+
+        <!-- Main content loaded in iframe -->
+        <main class="flex-1 px-6 p-4" style="margin-top:2px !important;">
+            <iframe name="content-frame" src="/DonorsDashbooard/overview" class="w-full h-screen border-none"></iframe>
+        </main>
+    </div>
+
+    <%- include("../partials/footer.ejs")  %>
+</body>
+</html>

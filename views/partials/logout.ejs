@@ -1,0 +1,9 @@
+
+<button onclick="logout()" class=" py-2 px-4 mb-2 bg-red-500 rounded-md mt-4  left-0 text-white text-center">logout</button>
+
+<script>
+    function logout() {
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+    }
+</script>
