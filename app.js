@@ -70,7 +70,10 @@ app.get('/beforeafter', (req, res) => {
     res.render('beforeafter', { title: 'Before and After Blood donation' });
 });
 app.get('/benefits', (req, res) => {
-    res.render('benefits', { title: 'Rewards' });
+    res.render('benefits', { title: 'Benefits' });
+});
+app.get('/rewards', (req, res) => {
+    res.render('rewards', { title: 'Rewards' });
 });
 app.get('/blooddonation', (req, res) => {
     res.render('blooddonation', { title: 'Blood Donatoin' });
