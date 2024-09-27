@@ -2,11 +2,13 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const newLocal = './Backend/firebase/firebaseConfig';
-const {auth, liveDatabase, db } = require(newLocal); // Import the database instance
+const fbConfig = './Backend/firebase/firebaseConfig';
+const {auth, liveDatabase, db } = require(fbConfig); // Import the database instance
 const { ref, push, set } = require('firebase/database');
+
 // const signupRoutes = require('./Backend/routes/signupRoute');
 const authRoutes = require('./Backend/routes/authRoute'); 
+const loginRoutes = require('./Backend/routes/loginRoute');
 const session = require('express-session');
 
 // Express app
@@ -27,12 +29,15 @@ app.use(session({
     secret: '2010373b2911c799435ed43923849612c007ba1d4495e7925133a9114d27d9b3', // Use a strong secret key
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false } // Set to true if using HTTPS in production
+    cookie: { 
+        secure: false,
+        maxAge: 180 * 24 * 60 * 60 * 1000
+     } // Set to true if using HTTPS in production
 }));
 
 // Routes
 app.use('/api', authRoutes);
-
+app.use('/api', loginRoutes);
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
@@ -71,34 +76,30 @@ app.get('/blooddonation', (req, res) => {
     res.render('blooddonation', { title: 'Blood Donatoin' });
 });
 app.get('/concerns', (req, res) => {
-    res.render('consers', { title: 'Common Concerns About Blood Donation' });
+    res.render('concerns', { title: 'Common Concerns About Blood Donation' });
 });
 app.get('/contact', (req, res) => {
     res.render('contact', { title: 'Contact' });
 });
-app.post('/submit-contact-form', (req, res) => {
-    const { name, emailid, msgContent } = req.body;
-
-    // Reference your database path
-    const contactFormDB = ref(liveDatabase, "contactForm");
-    const newContactForm = push(contactFormDB);
-
-    // Save the data to Firebase
-    set(newContactForm, {
-        name: name,
-        emailid: emailid,
-        msgContent: msgContent
-    })
-    .then(() => {
-        console.log("Message saved successfully to Firebase");
-        res.redirect('/contact?success=true'); // Redirect with query param to indicate success
-    })
-    .catch((error) => {
-        console.error("Error saving message:", error);
-        res.status(500).send("Error saving message");
-    });
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard/maindashboard', { title: 'Dashboard' });
+});
+app.get('/dashboard/profile', (req, res) => {
+    res.render('dashboard/profile', { title: 'Dashboard' });
+});
+app.get('/dashboard/dashboard-overview', (req, res) => {
+    res.render('dashboard/dashboard-overview', { title: 'Dashboard' });
 });
 
+app.get('/dashboard/manage-appointments', (req, res) => {
+    res.render('dashboard/manage-appointments', { title: 'Dashboard' });
+});
+app.get('/dashboard/manage-donors', (req, res) => {
+    res.render('dashboard/manage-donors', { title: 'Dashboard' });
+});
+app.get('/dashboard/post-announcements', (req, res) => {
+    res.render('dashboard/post-announcements', { title: 'Dashboard' });
+});
 
 app.get('/:username/dashboard', (req, res) => {
     const username = req.params.username; // Extract the username from the URL
@@ -124,6 +125,7 @@ app.get('/forgotpassword', (req, res) => {
 app.get('/helps', (req, res) => {
     res.render('helps', { title: 'Helps' });
 });
+
 app.get('/news', (req, res) => {
     res.render('news', { title: 'News and Announcements' });
 });
@@ -131,7 +133,7 @@ app.get('/login', (req, res) => {
     res.render('login', { title: 'Login Page' });
 });
 app.get('/signup', (req, res) => {
-    res.render('signup', { title: 'Login Page' });
+    res.render('signup', { title: 'Signup Page' });
 });
 app.get('/whathappens', (req, res) => {
     res.render('whathappens', { title: 'What Happens' });

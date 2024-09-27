@@ -1,15 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup Success</title>
-    <link rel="stylesheet" href="/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Account Created</title>
+  <style>
+    /* General reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f7f6;
+      color: #333;
+    }
+
+    .signup-success {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px 40px;
+      max-width: 500px;
+      text-align: center;
+      border-top: 5px solid #4caf50;
+      animation: fadeIn 0.7s ease-in-out;
+    }
+
+    /* Animation for fading in the success box */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .signup-success h2 {
+      font-size: 1.8rem;
+      color: #4caf50;
+      margin-bottom: 15px;
+    }
+
+    .signup-success p {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .signup-success a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 25px;
+      background-color: #4caf50;
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    .signup-success a:hover {
+      background-color: #45a049;
+    }
+
+    /* For responsiveness on smaller screens */
+    @media (max-width: 600px) {
+      .signup-success {
+        padding: 20px 15px;
+      }
+      
+      .signup-success h2 {
+        font-size: 1.5rem;
+      }
+
+      .signup-success p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="alert alert-success">
-        <h2>Your account was created successfully!</h2>
-        <p>An activation link has been sent to your email address. Please check your inbox and click the link to activate your account.</p>
-    </div>
+
+  <div class="signup-success">
+    <h2>Your account was created successfully!</h2>
+    <p>An activation link has been sent to your email address. Please check your inbox and click the link to activate your account.</p>
+    <a href="/login">Go to the Login page</a>
+  </div>
+
 </body>
 </html>

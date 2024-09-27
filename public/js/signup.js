@@ -56,7 +56,7 @@ function submitForm(e) {
         // Redirect to the signup success page
         setTimeout(()=>{
             window.location.href = "api/signup-success"; // Redirect here
-        }, 3000);
+        }, 2000);
     })
     .catch(error => {
         console.error('Error:', error);
@@ -77,5 +77,5 @@ function showPopup(message, type) {
     popup.style.display = "block";
     setTimeout(() => {
         popup.style.display = "none";
-    }, 3000);
+    }, 2000);
 }
