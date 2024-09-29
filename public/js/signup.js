@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("signup-form").addEventListener("submit", submitForm);
+    document.getElementById("signupForm").addEventListener("submit", submitForm);
 });
 
 function submitForm(e) {
@@ -7,16 +7,16 @@ function submitForm(e) {
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirm-password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
     const role = document.getElementById("role").value;
-    const fullName = document.getElementById("full-name").value || "no info";
-    const phoneNumber = document.getElementById("phone-number").value || "no info";
-    const idType = document.getElementById("id-type").value;
-    const idNumber = document.getElementById("id-number").value;
-    const province = document.getElementById("province").value;
-    const fullAddress = document.getElementById("full-address").value || "no info";
-    const preferredLocation = province + ', ' + fullAddress;
-    const dateOfBirth = document.getElementById("date-of-birth").value || null;
+    const fullName = document.getElementById("fullName").value || "no info";
+    // const phoneNumber = document.getElementById("phone-number").value || "no info";
+    // const idType = document.getElementById("id-type").value;
+    // const idNumber = document.getElementById("id-number").value;
+    // const province = document.getElementById("province").value;
+    // const fullAddress = document.getElementById("full-address").value || "no info";
+    // const preferredLocation = province + ', ' + fullAddress;
+    // const dateOfBirth = document.getElementById("date-of-birth").value || null;
 
     // Check if passwords match
     if (password !== confirmPassword) {
@@ -29,16 +29,16 @@ function submitForm(e) {
         password,
         role,
         fullName,
-        phoneNumber,
-        idType,
-        idNumber,
-        rewards: '0',
-        bloodType: 'no info',
-        preferredLocation,
-        dateOfBirth
+        // phoneNumber,
+        // idType,
+        // idNumber,
+        // rewards: '0',
+        // bloodType: 'no info',
+        // preferredLocation,
+        // dateOfBirth
     };
 
-    fetch('/api/signup', {
+    fetch('/api/signup1', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -61,7 +61,7 @@ function submitForm(e) {
     .catch(error => {
         console.error('Error:', error);
         showPopup(error.message || 'An error occurred. Please try again later.', "error");
-    });git 
+    });
 }
 
 function showPopup(message, type) {

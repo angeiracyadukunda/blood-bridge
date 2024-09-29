@@ -3,7 +3,7 @@ const { signupUser, signupSuccess, verifyEmailLink } = require('../controllers/a
 const router = express.Router();
 
 // Route for signup
-router.post('/signup', signupUser);
+router.post('/signup1', signupUser);
 
 // Route for signup success page
 router.get('/signup-success', signupSuccess);

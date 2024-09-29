@@ -1,6 +1,6 @@
 const { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, getAuth, signInWithCustomToken } = require('firebase/auth');
 const fbConfig = '../firebase/firebaseConfig';
-const { auth, db } = require(fbConfig);
+const { authentication, db } = require(fbConfig);
 const { setDoc, doc } = require('firebase/firestore');
 const uModel = '../models/userModel';
 const { createUserData } = require(uModel);
@@ -11,7 +11,7 @@ const signupUser = async (req, res) => {
 
     try {
         // Create the user in Firebase Auth
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(authentication, email, password);
         const uid = userCredential.user.uid;
 
         // await updateProfile(userCredential.user, {

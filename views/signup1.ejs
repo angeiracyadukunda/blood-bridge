@@ -1,4 +1,4 @@
-<html lang="en"></html>
+<html lang="en">
 
 <%- include('./partials/header.ejs') %>
 
@@ -9,14 +9,15 @@
 
   <!-- Sign-up Section -->
   <section id="auth-section">
-    <div class="auth-container">
-      <h2>Sign Up</h2>
+    <div class="auth-container shadow-md">
       <!-- Alert popup for success/error messages -->
       <div class="alert" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); padding: 10px; color: white; font-weight: bold; border-radius: 5px;"></div>
       
-      <form id="signup-form" method="POST" action="/api/signup">
-        <label for="full-name">Full Name <span style="color: red;">*</span></label>
-        <input type="text" id="full-name" name="fullName" placeholder="Enter Full Name" required>
+      <form id="signupForm" method="POST" action="/api/signup1">
+        <h2 class="text-2xl font-bold mb-6 text-center text-red-900">Create an Account</h2>
+        
+        <label for="fullName">Full Name <span style="color: red;">*</span></label>
+        <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name" required>
     
         <label for="email">Email <span style="color: red;">*</span></label>
         <input type="email" id="email" name="email" placeholder="Enter Email" required>
@@ -31,8 +32,8 @@
         <label for="password">Password <span style="color: red;">*</span></label>
         <input type="password" id="password" name="password" placeholder="Enter Password" required>
     
-        <label for="confirm-password">Confirm Password <span style="color: red;">*</span></label>
-        <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm Password" required>
+        <label for="confirmPassword">Confirm Password <span style="color: red;">*</span></label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
     
         
         <button type="submit">Sign Up</button>
@@ -42,57 +43,18 @@
             <label for="agree-terms">I agree to the <a href="#">terms and conditions</a></label>
         </div>
     </form>
-    
+    <!-- <div class="alert" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); padding: 10px; color: white; font-weight: bold; border-radius: 5px;"></div> -->
       <a href="/login" class="create-account-link">Already have an account? Sign in</a>
       <div class="account-benefits">
         <p><strong>Account Benefits:</strong> Create an account to easily schedule future appointments, manage existing
           appointments, see your blood type, view results of your mini-physical, and track donation history.</p>
       </div>
+      
     </div>
   </section>
 
 
-  <!-- <script>
-    document.getElementById('signup-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      // Basic validation
-      const username = document.getElementById('username').value;
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirm-password').value;
-
-      // Clear previous error messages
-      document.querySelectorAll('.error').forEach(error => error.textContent = '');
-
-      if (username.length < 3) {
-        alert('Username must be at least 3 characters long.');
-        return;
-      }
-
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
-        alert('Please enter a valid email address.');
-        return;
-      }
-
-      if (password.length < 6) {
-        alert('Password must be at least 6 characters long.');
-        return;
-      }
-
-      if (password !== confirmPassword) {
-        alert('Passwords do not match.');
-        return;
-      }
-
-      // All checks passed
-      alert('Account created successfully!');
-      // Redirect or perform further actions
-      window.location.href = './dashboard.html';
-    });
-  </script> -->
-  <script src="/js/signup.js"></script>
+  <script src="/js/signup1.js"></script>
   <!-- Footer -->
   <%- include('./partials/footer.ejs') %>
   <!-- <script src="/js/scripts.js"></script> -->

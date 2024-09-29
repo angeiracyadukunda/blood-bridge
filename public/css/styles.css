@@ -333,6 +333,10 @@ textarea {
 Remove the inheritance of text transform in Edge and Firefox.
 */
 
+select {
+  border: 1px solid #ddd !important;
+  border-radius: 5px !important;
+}
 button,
 select {
   text-transform: none;
@@ -1077,6 +1081,8 @@ input[type="tel"],
 input[type="date"],
 input[type="time"],
 input[type="number"],
+input[type="password"],
+button[type="submit"],
 select,
 textarea {
   padding: 10px;
@@ -1146,9 +1152,8 @@ button[type="button"]:hover {
   max-width: 600px;
   margin: auto;
   padding: 20px;
-  border: 1px solid #ddd;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 5px 5px 5px 3px rgba(0,0,0,0.1);
 }
 .dashboard-container {
   display: flex;

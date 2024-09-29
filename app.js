@@ -3,16 +3,15 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fbConfig = './Backend/firebase/firebaseConfig';
-const {auth, liveDatabase, db } = require(fbConfig); // Import the database instance
+const {authentication, liveDatabase, db } = require(fbConfig); // Import the database instance
 const { ref, push, set } = require('firebase/database');
 const rwanda = require('rwanda');
-
-
-
+require('dotenv').config(); 
 
 // const signupRoutes = require('./Backend/routes/signupRoute');
 const authRoutes = require('./Backend/routes/authRoute'); 
 const loginRoutes = require('./Backend/routes/loginRoute');
+const signupRoute = require('./Backend/routes/signupRoute');
 const session = require('express-session');
 
 // Express app
@@ -30,7 +29,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));  // Serve static files from public folder
 
 app.use(session({
-    secret: '2010373b2911c799435ed43923849612c007ba1d4495e7925133a9114d27d9b3', // Use a strong secret key
+    secret: process.env.SESSION_KEY, // Use a strong secret key
     resave: false,
     saveUninitialized: false,
     cookie: { 
@@ -40,8 +39,9 @@ app.use(session({
 }));
 
 // Routes
-app.use('/api', authRoutes);
+//app.use('/api', authRoutes);
 app.use('/api', loginRoutes);
+app.use('/api', signupRoute);
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
@@ -59,6 +59,14 @@ app.use((req, res, next) => {
 // Routes
 app.get('/', (req, res) => {
     res.render('index', { title: 'Home' });
+});
+app.get('/register', (req, res) => {
+    const { email, fullName } = req.query;
+    res.render('register', { 
+        title: 'Register', 
+        email, 
+        fullName 
+    });
 });
 
 app.get('/about', (req, res) => {
