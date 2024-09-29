@@ -14,6 +14,48 @@
         <h2 class="text-2xl font-semibold">Dashboard Overview</h2>
     </header>
    
-    <p>Welcome to the admin dashboard! Here you can manage appointments, post announcements, and more.</p>
+    <p> <b> <%= user.fullName %> </b> Welcome to the Donor dashboard! Here you can manage appointments, post announcements, and more.</p>
+    <table border="1" style="width: 100%; border-collapse: collapse;">
+        <h2>Dashboard Overview</h2>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (user) { %>
+                <tr>
+                    <td><strong>Name</strong></td>
+                    <td><%= user.fullName %></td>
+                </tr>
+                <tr>
+                    <td><strong>Email</strong></td>
+                    <td><%= user.email %></td>
+                </tr>
+                <tr>
+                    <td><strong>Role</strong></td>
+                    <td><%= user.role %></td>
+                </tr>
+                <tr>
+                    <td><strong>Province</strong></td>
+                    <td><%= user.province %></td>
+                </tr>
+                <tr>
+                    <td><strong>District</strong></td>
+                    <td><%= user.district %></td>
+                </tr>
+                <tr>
+                    <td><strong>Sector</strong></td>
+                    <td><%= user.sector %></td>
+                </tr>
+                <!-- Add more rows for additional user data as necessary -->
+            <% } else { %>
+                <tr>
+                    <td colspan="2">No user data found.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
 </body>
 </html>

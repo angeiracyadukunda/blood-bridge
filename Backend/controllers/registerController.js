@@ -33,21 +33,19 @@ const registerDonor = async (req, res) => {
     try {
         // Get the user's UID using the email
         const uid = await getUserUidByEmail(email);
-
+        
         // Now that we have the UID, we can create the donor data
-        const donorRef = db.collection('donors').doc(uid); // Correct usage in Admin SDK: db.collection().doc()
+        await db.collection('donors').doc(uid).set(createDonorData(uid, data)); // Correct usage in Admin SDK: db.collection().doc()
         const donorData = {
             uid,
-            fullName,
             ...data,
         };
 
-        // Create a new donor entry with the same UID
-        await donorRef.set(donorData); // Use .set() directly on the document reference
+        
+        //await donorRef.set(createDonorData(uid, data)); // Use .set() directly on the document reference
         //res.render('registration-success', { fullName });
         req.session.registrationComplete = true;
         req.session.registrationTime = Date.now();
-
         res.status(201).json({ message: `Donor ${fullName} registered successfully.` });
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -76,7 +74,6 @@ const checkAlreadyRegistered = (req, res, next) => {
         next(); // Continue if not already logged in
     }
 };
-
 
 module.exports = {
     registerDonor,

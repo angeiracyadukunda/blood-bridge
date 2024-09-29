@@ -1,13 +1,13 @@
-const { serverTimestamp } = require('firebase/firestore');
+const { FieldValue } = require('firebase-admin/firestore'); 
 const createDonorData = (uid, donorInfo) => {
     return {
         uid,
         ...donorInfo,
         rewards: 0,  // Default reward points
-        imageLink: donorData.imageLink || null,  // Can be null
-        bio: donorData.bio || null,  // Can be null
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
+        imageLink: null,  // Can be null
+        bio: null,  // Can be null
+        createdAt: FieldValue.serverTimestamp(),
+        updatedAt: FieldValue.serverTimestamp(),
     };
 };
 // Create donor data model

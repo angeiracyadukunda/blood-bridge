@@ -10,25 +10,25 @@
                 <h1 class="text-3xl font-bold mb-8 text-white"> <%= title %></h1>
                 <ul>
                     <li class="mb-4">
-                        <a href="/donorsdashboard/overview" target="content-frame" class="block p-3 rounded hover:bg-red-900">Overview</a>
+                        <a href="/<%= user.uid %>/donorsdashboard/overview" target="content-frame" class="block p-3 rounded hover:bg-red-900">Overview</a>
                     </li>
                     <li class="mb-4">
-                        <a href="/donorsdashboard/appointments" target="content-frame" class="block p-3 rounded hover:bg-red-900">All Appointments</a>
+                        <a href="/<%= user.uid %>/donorsdashboard/appointments" target="content-frame" class="block p-3 rounded hover:bg-red-900">All Appointments</a>
                     </li>
                     <li class="mb-4">
-                        <a href="/donorsdashboard/when-to-donate" target="content-frame" class="block p-3 rounded hover:bg-red-900">When to Donate</a>
+                        <a href="/<%= user.uid %>/donorsdashboard/when-to-donate" target="content-frame" class="block p-3 rounded hover:bg-red-900">When to Donate</a>
                     </li>
                     <li class="mb-4">
-                        <a href="/donorsdashboard/drives" target="content-frame" class="block p-3 rounded hover:bg-red-900">Drives Near You</a>
+                        <a href="/<%= user.uid %>/donorsdashboard/drives" target="content-frame" class="block p-3 rounded hover:bg-red-900">Drives Near You</a>
                     </li>
                     <li class="mb-4">
-                        <a href="/donorsdashboard/health-screening" target="content-frame" class="block p-3 rounded hover:bg-red-900">My Health Screening</a>
+                        <a href="/<%= user.uid %>/donorsdashboard/health-screening" target="content-frame" class="block p-3 rounded hover:bg-red-900">My Health Screening</a>
                     </li>
                     <li class="mb-4">
-                        <a href="/donorsdashboard/donor-card" target="content-frame" class="block p-3 rounded hover:bg-red-900">View My Donor Card</a>
+                        <a href="/<%= user.uid %>/donorsdashboard/donor-card" target="content-frame" class="block p-3 rounded hover:bg-red-900">View My Donor Card</a>
                     </li>
                     <li class="mb-4">
-                        <a href="/donorsdashboard/guidelines" target="content-frame" class="block p-3 rounded hover:bg-red-900">Safety Guidelines</a>
+                        <a href="/<%= user.uid %>/donorsdashboard/guidelines" target="content-frame" class="block p-3 rounded hover:bg-red-900">Safety Guidelines</a>
                     </li>
                 </ul>
             
@@ -44,7 +44,7 @@
 
             <!-- Iframe to load content -->
             <main class="flex-1 px-6 p-4" style="margin-top: 50px;">
-                <iframe name="content-frame" src="/donorsdashboard/overview" class="w-full h-screen border-none"></iframe>
+                <iframe name="content-frame" src="/<%= user.uid %>/donorsdashboard/overview" class="w-full h-screen border-none"></iframe>
             </main>
         </div>
         

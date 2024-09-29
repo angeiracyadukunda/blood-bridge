@@ -10,5 +10,13 @@ const createUserData = (uid, userData) => {
         updatedAt: serverTimestamp()
     };
 };
+const createReceipient= (uid) => {
+    return {
+        userId: uid,
+        bio: null,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+    };
+};
 
-module.exports = { createUserData };
+module.exports = { createUserData, createReceipient };

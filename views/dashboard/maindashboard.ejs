@@ -14,19 +14,19 @@
                 <h1 class="text-3xl font-bold mb-8 text-white"> <%= title %></h1>
                 <ul>
                     <li class="mb-4">
-                        <a href="dashboard/dashboard-overview" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Dashboard Overview</a>
+                        <a href="/<%= user.uid %>/dashboard/dashboard-overview" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Dashboard Overview</a>
                     </li>
                     <li class="mb-4">
-                        <a href="dashboard/manage-appointments" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Manage Appointments</a>
+                        <a href="/<%= user.uid %>/dashboard/manage-appointments" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Manage Appointments</a>
                     </li>
                     <li class="mb-4">
-                        <a href="dashboard/post-announcements" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Post Announcements</a>
+                        <a href="/<%= user.uid %>/dashboard/post-announcements" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Post Announcements</a>
                     </li>
                     <li class="mb-4">
-                        <a href="dashboard/manage-donors" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Manage Donors</a>
+                        <a href="/<%= user.uid %>/dashboard/manage-donors" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Manage Donors</a>
                     </li>
                     <li class="mb-4">
-                        <a href="dashboard/profile" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Settings</a>
+                        <a href="/<%= user.uid %>/dashboard/profile" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Settings</a>
                     </li>
                 </ul>
 
@@ -41,7 +41,7 @@
 
             <!-- Iframe to load content -->
             <main style="margin-top: 50px;">
-                <iframe src="dashboard/dashboard-overview" name="contentFrame" class="w-full h-screen border-0 mt-4"></iframe>
+                <iframe src="/<%= user.uid %>/dashboard/dashboard-overview" name="contentFrame" class="w-full h-screen border-0 mt-4"></iframe>
             </main>
         </div>
     </div>

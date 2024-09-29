@@ -18,6 +18,8 @@ const loginUser = async (req, res) => {
         } else {
             req.session.cookie.expires = false; // Session ends when the browser is closed
         }
+        
+
 
         // Save user session
         req.session.user = {

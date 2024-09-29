@@ -16,27 +16,38 @@ const loginUser = async (req, res) => {
         const userDoc = await userRef.get();
 
         //Check if the document exists and if the email is verified
-        if (userDoc.exists){
-            if(!userDoc.data().emailVerified) {
-                return res.status(403).json({ message: 'Email not verified. Please verify your email before signing in.' });
+         if (userDoc.exists) {
+            if (!userDoc.data().emailVerified) {
+                return res.status(403).json({ message: 'Email not verified. Please verify your email.' });
             }
-        } else{
+
+            const userData = userDoc.data();
+            const role = userData.role;
+
+            // Set session details
+            req.session.user = {
+                uid: user.uid,
+                email: user.email,
+                role: userData.role,
+            };
+
+            if (keepSignedIn) {
+                req.session.cookie.maxAge = 90 * 24 * 60 * 60 * 1000; // 3 months
+            }
+
+            // Redirect to the appropriate dashboard based on the user's role
+            if (role === 'donor') {
+                res.status(200).json({ message: 'Login successful, Welcome.', redirectUrl: `/${user.uid}/donorsdashboard` });
+            } else if (role === 'recipient') {
+                res.status(200).json({ message: 'Login successful, Welcome .', redirectUrl: `/${user.uid}/dashboard` });
+            } else {
+                res.status(403).json({ message: 'Invalid role' });
+            }
+        } else {
             res.status(403).json({ message: 'Invalid login credentials' });
         }
-        
-        if (keepSignedIn) {
-            req.session.cookie.maxAge = 90 * 24 * 60 * 60 * 1000; // 3 months in milliseconds
-        } else {
-            req.session.cookie.expires = false; // Session ends when the browser is closed
-        }
-
-        req.session.user = {
-            uid: user.uid,
-            email: user.email,
-        };
-        res.status(200).json({ message: 'Login successful. Welcome!' });
     } catch (error) {
-        res.status(401).json({ message: 'Invalid login credentials' });
+        res.status(401).json({ message: 'Err: Invalid login credentials' });
     }
 };
 

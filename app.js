@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const fbConfig = './Backend/firebase/firebaseConfig';
 const {authentication, liveDatabase, db } = require(fbConfig); // Import the database instance
 const { ref, push, set } = require('firebase/database');
+
 const rwanda = require('rwanda');
 require('dotenv').config(); 
 
@@ -12,6 +13,7 @@ require('dotenv').config();
 const authRoutes = require('./Backend/routes/authRoute'); 
 const loginRoutes = require('./Backend/routes/loginRoute');
 const signupRoute = require('./Backend/routes/signupRoute');
+const dashboardRoutes = require('./Backend/routes/dashboardRoute');
 const session = require('express-session');
 
 // Express app
@@ -42,7 +44,7 @@ app.use(session({
 //app.use('/api', authRoutes);
 app.use('/api', loginRoutes);
 app.use('/api', signupRoute);
-
+app.use('/', dashboardRoutes);
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 // Listen for requests
@@ -98,86 +100,87 @@ app.get('/contact', (req, res) => {
 });
 
 // Admin Dashboard
-app.get('/dashboard', (req, res) => {
-    res.render('dashboard/maindashboard', { title: "Admin Dashboard"});
-});
-app.get('/dashboard/profile', (req, res) => {
-    res.render('dashboard/profile', { title: 'Profile Settings' });
-});
-app.get('/dashboard/dashboard-overview', (req, res) => {
-    res.render('dashboard/dashboard-overview', { title: 'Dashboard Overview' });
-});
+// app.get('/dashboard', (req, res) => {
+//     res.render('dashboard/maindashboard', { title: "Admin Dashboard"});
+// });
+// app.get('/dashboard/profile', (req, res) => {
+//     res.render('dashboard/profile', { title: 'Profile Settings' });
+// });
+// app.get('/dashboard/dashboard-overview', (req, res) => {
+//     res.render('dashboard/dashboard-overview', { title: 'Dashboard Overview' });
+// });
 
-app.get('/dashboard/manage-appointments', (req, res) => {
-    res.render('dashboard/manage-appointments', { title: 'Manage Appointments' });
-});
-app.get('/dashboard/manage-donors', (req, res) => {
-    res.render('dashboard/manage-donors', { title: 'Manage Donors' });
-});
-app.get('/dashboard/post-announcements', (req, res) => {
-    res.render('dashboard/post-announcements', { title: 'Post Announcements' });
-});
+// app.get('/dashboard/manage-appointments', (req, res) => {
+//     res.render('dashboard/manage-appointments', { title: 'Manage Appointments' });
+// });
+// app.get('/dashboard/manage-donors', (req, res) => {
+//     res.render('dashboard/manage-donors', { title: 'Manage Donors' });
+// });
+// app.get('/dashboard/post-announcements', (req, res) => {
+//     res.render('dashboard/post-announcements', { title: 'Post Announcements' });
+// });
 
-// Donor Dashoard
+// // Donor Dashoard
 
-app.get('/donorsdashboard/overview', (req, res) => {
-    res.render('donorsdashboard/overview', { title: 'Dashboard Overview' });
-});
+// app.get('/donorsdashboard/overview', (req, res) => {
+//     res.render('donorsdashboard/overview', { title: 'Dashboard Overview' });
+// });
 
-app.get('/donorsdashboard', (req, res) => {
-    res.render('donorsdashboard/donor', { title: 'Dashboard' });
-});
+// app.get('/donorsdashboard', (req, res) => {
+//     res.render('donorsdashboard/donor', { title: 'Dashboard' });
+// });
 
-app.get('/donorsdashboard/appointments', (req, res) => {
-    res.render('donorsdashboard/appointments', { title: 'All Appointments' });
-});
+// app.get('/donorsdashboard/appointments', (req, res) => {
+//     res.render('donorsdashboard/appointments', { title: 'All Appointments' });
+// });
 
-app.get('/donorsdashboard/donor-card', (req, res) => {
+// app.get('/donorsdashboard/donor-card', (req, res) => {
 
-    const donorData = {
-        title: 'View My Donor Card',
-        bloodGroup: "O+",
-        donationDate: "2024-09-27",
-        timesOfDonation: 3,
-        rhesus: "Positive",
-        signature: "John Doe",
-        location: "Kigali, Rwanda",
-        dob: "1990-01-15",
-        firstBloodCheck: "Normal",
-        secondBloodCheck: "Normal",
-        doctorName: "Dr. Sarah Smith",
-        cardNo: "123456",
-        bloodQuantity: "500ml"
-    };
+//     const donorData = {
+//         title: 'View My Donor Card',
+//         bloodGroup: "O+",
+//         donationDate: "2024-09-27",
+//         timesOfDonation: 3,
+//         rhesus: "Positive",
+//         signature: "John Doe",
+//         location: "Kigali, Rwanda",
+//         dob: "1990-01-15",
+//         firstBloodCheck: "Normal",
+//         secondBloodCheck: "Normal",
+//         doctorName: "Dr. Sarah Smith",
+//         cardNo: "123456",
+//         bloodQuantity: "500ml"
+//     };
 
-    // Render the donor card template and pass the donorData to it
-    res.render('donorsdashboard/donor-card', donorData);
-});
+//     // Render the donor card template and pass the donorData to it
+//     res.render('donorsdashboard/donor-card', donorData);
+// });
 
 
-app.get('/donorsdashboard/drives', (req, res) => {
-    res.render('donorsdashboard/drives', { title: 'Dashboard' });
-});
+// app.get('/donorsdashboard/drives', (req, res) => {
+//     res.render('donorsdashboard/drives', { title: 'Dashboard' });
+// });
 
-app.get('/donorsdashboard/guidelines', (req, res) => {
-    res.render('donorsdashboard/guidelines', { title: 'Dashboard' });
-});
+// app.get('/donorsdashboard/guidelines', (req, res) => {
+//     res.render('donorsdashboard/guidelines', { title: 'Dashboard' });
+// });
 
-app.get('/donorsdashboard/health-screening', (req, res) => {
-    res.render('donorsdashboard/health-screening', { title: 'Dashboard' });
-});
+// app.get('/donorsdashboard/health-screening', (req, res) => {
+//     res.render('donorsdashboard/health-screening', { title: 'Dashboard' });
+// });
 
-app.get('/donorsdashboard/when-to-donate', (req, res) => {
-    res.render('donorsdashboard/when-to-donate', { title: 'Dashboard' });
-});
+// app.get('/donorsdashboard/when-to-donate', (req, res) => {
+//     res.render('donorsdashboard/when-to-donate', { title: 'Dashboard' });
+// });
 
 
 
 // User Dashboard
-app.get('/:username/dashboard', (req, res) => {
-    const username = req.params.username; // Extract the username from the URL
-    res.render('dashboard', { title: 'Dashboard', username });
-});
+// app.get('/:uid/dashboard', (req, res) => {
+//     const username = req.params.uid; // Extract the username from the URL
+//     res.render('dashboard', { title: 'Dashboard', username });
+// });
+
 app.get('/:username/donatehistory', (req, res) => {
     const username = req.params.username; // Extract the username from the URL
     res.render('donatehistory', { title: 'Donation History', username });

@@ -5,8 +5,8 @@ const fbConfig = '../firebase/firebaseConfig';
 const { authentication, db } = require(fbConfig);
 const { setDoc, doc, getDoc, serverTimestamp } = require('firebase/firestore');
 const uModel = '../models/user';
-const { createUserData } = require(uModel);
-
+const { createUserData, createReceipient } = require(uModel);
+const { FieldValue } = require('firebase-admin/firestore'); 
 const { auth, db:dbAdmin } = require('../firebase/firebaseAdmin');
 
 
@@ -26,12 +26,19 @@ const signupUser = async (req, res) => {
          const userData = createUserData(uid, { email, fullName, password, role });
          const userRef = doc(db, 'users', uid);
          
+         
+         
          // Store user data in Firestore
          await setDoc(userRef, userData);
- 
+        
          // Log to check if Firestore storage worked
          console.log(`User data stored in Firestore for UID: ${uid}`);
- 
+         if (role==="recipient"){
+            const userDataReceipient = createReceipient(uid);
+            const userRefReceipient = doc(db, 'recipients', uid);
+            await setDoc(userRefReceipient, userDataReceipient);
+            console.log(`Recipient data stored in Firestore for UID: ${uid}`);
+         }
          // Send verification email
          const verificationLink = `http://localhost:3000/api/verify-email?uid=${uid}`;
          try {
@@ -83,7 +90,7 @@ const verifyEmailLink = async (req, res) => {
         }
 
         // Mark user as verified in Firestore
-        await userRef.update({ emailVerified: true, updatedAt: serverTimestamp() });
+        await userRef.update({ emailVerified: true, updatedAt: FieldValue.serverTimestamp() });
 
         res.redirect('/login'); // Redirect user to login after verification
     } catch (error) {

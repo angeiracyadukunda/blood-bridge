@@ -21,29 +21,29 @@
                 <tbody>
                     <tr class="bg-gray-100">
                         <td class="p-2 font-semibold border">NAME</td>
-                        <td class="p-2 border"><%= signature %></td>
+                        <td class="p-2 border"><%= user.fullName %></td>
                     </tr>
                     <tr>
                         <td class="p-2 font-semibold border">BLOOD GROUP</td>
-                        <td class="p-2 border"><%= bloodGroup %> (<%= rhesus %>)</td>
+                        <td class="p-2 border"><%= user.bloodGroup %> (<%= rhesus %>)</td>
                     </tr>
                     <tr class="bg-gray-100">
                         <td class="p-2 font-semibold border">DATE OF DONATION</td>
-                        <td class="p-2 border"><%= donationDate %></td>
+                        <td class="p-2 border"><%= user.modifiedAt %></td>
                     </tr>
                     <tr>
                         <td class="p-2 font-semibold border">TIMES OF DONATION</td>
-                        <td class="p-2 border"><%= timesOfDonation %></td>
+                        <td class="p-2 border"><%= user.CreatedAr %></td>
                     </tr>
                     <tr class="bg-gray-100">
                         <td class="p-2 font-semibold border">LOCATION</td>
-                        <td class="p-2 border"><%= location %></td>
+                        <td class="p-2 border"><%= user.province %></td>
                     </tr>
                     <tr>
                         <td class="p-2 font-semibold border">DATE OF BIRTH</td>
-                        <td class="p-2 border"><%= dob %></td>
+                        <td class="p-2 border"><%= user.dob %></td>
                     </tr>
-                    <tr class="bg-gray-100">
+                    <!-- <tr class="bg-gray-100">
                         <td class="p-2 font-semibold border">FIRST BLOOD CHECK</td>
                         <td class="p-2 border"><%= firstBloodCheck %></td>
                     </tr>
@@ -62,7 +62,7 @@
                     <tr class="bg-gray-100">
                         <td class="p-2 font-semibold border">BLOOD QUANTITY</td>
                         <td class="p-2 border"><%= bloodQuantity %></td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
 
