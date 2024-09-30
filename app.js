@@ -5,6 +5,10 @@ const bodyParser = require('body-parser');
 const fbConfig = './Backend/firebase/firebaseConfig';
 const {authentication, liveDatabase, db } = require(fbConfig); // Import the database instance
 const { ref, push, set } = require('firebase/database');
+const {Translate} = require('@google-cloud/translate').v2;
+const translate = new Translate();
+
+
 
 const rwanda = require('rwanda');
 require('dotenv').config(); 
@@ -58,10 +62,10 @@ app.use((req, res, next) => {
     next();
 });
 
-// Routes
 app.get('/', (req, res) => {
     res.render('index', { title: 'Home' });
 });
+
 app.get('/register', (req, res) => {
     const { email, fullName } = req.query;
     res.render('register', { 
