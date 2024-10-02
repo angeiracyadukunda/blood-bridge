@@ -1817,6 +1817,71 @@ li:before {
               font-size: 0.9rem;
           }
       }
+
+
+      
+#google_translate_element {
+  color: white;
+  font-size: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.hoverNav {
+  border-radius: 0.25rem !important; /* Rounded corners */
+  transition: background-color 0.2s ease-in-out !important; /* Smooth transition for the hover effect */
+}
+
+.hoverNav:hover {
+  background-color: #9CA3AF !important; /* Gray-400 background color on hover */
+}
+
+.goog-te-combo {
+  background-color: white;
+  color: #313233;
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+  outline: none;
+   /* Subtle shadow for a clean look */
+}
+
+.goog-te-combo:hover {
+  background-color: #707376;
+  color: white;
+  cursor: pointer;
+}
+
+/* Hide all Google marks (logo, branding) */
+.goog-logo-link, .goog-te-gadget span {
+  display: none !important;
+}
+
+/* Add flag icons before each language in the dropdown */
+.goog-te-combo option[value='fr']:before {
+  content: url('https://flagcdn.com/w20/fr.png');
+  margin-right: 5px;
+}
+
+.goog-te-combo option[value='en']:before {
+  content: url('https://flagcdn.com/w20/gb.png');
+  margin-right: 5px;
+}
+
+.goog-te-combo option[value='rw']:before {
+  content: url('https://flagcdn.com/w20/rw.png');
+  margin-right: 5px;
+}
+
+/* Styling for the dropdown */
+.goog-te-combo option {
+  padding-left: 25px; /* Space for flag icons */
+  font-size: 14px;
+}
+
+.goog-te-combo option[value=""] {
+  display: none;
+}
 /* END OF BENEFITS */
 
 

@@ -1,9 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include("../partials/header-iframes.ejs") %>
-<body class="p-6 pt-5">
+<body class="p-6 pt-5 bg-gray-100 min-h-screen">
     <%- include('../partials/goback.ejs')%>
+
+    <!-- Header -->
     <h2 class="text-2xl font-semibold mb-4 mt-6"><%= title %></h2>
     <p>This section allows you to manage donors.</p>
+
+    <!-- Donor Table -->
+    <table class="min-w-full bg-white shadow rounded-lg mt-6">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="py-2 px-4">Full Name</th>
+                <th class="py-2 px-4">Date of Donation</th>
+                <th class="py-2 px-4">Quantity of Blood</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% donors.forEach(donor => { %>
+                <tr class="<%= (loop.index % 2 === 0) ? 'bg-gray-100' : 'bg-white' %>">
+                    <td class="py-2 px-4 cursor-pointer text-blue-500 hover:underline" onclick="showDonorDetails('<%= donor.uid %>')">
+                        <%= donor.fullName %>
+                    </td>
+                    <td class="py-2 px-4"><%= donor.dateOfDonation %></td>
+                    <td class="py-2 px-4"><%= donor.bloodQuantity %> liters</td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <!-- Donor Details Modal -->
+    <div id="donor-details-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg w-1/2">
+            <h3 class="text-xl font-semibold mb-4">Donor Details</h3>
+            <table class="min-w-full bg-white">
+                <tbody>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">Full Name:</td>
+                        <td class="py-2 px-4" id="donor-full-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">Email:</td>
+                        <td class="py-2 px-4" id="donor-email"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">Gender:</td>
+                        <td class="py-2 px-4" id="donor-gender"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">Date of Birth:</td>
+                        <td class="py-2 px-4" id="donor-dob"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">ID Type:</td>
+                        <td class="py-2 px-4" id="donor-id-type"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">ID No:</td>
+                        <td class="py-2 px-4" id="donor-id-no"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">Weight:</td>
+                        <td class="py-2 px-4" id="donor-weight"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">Blood Group:</td>
+                        <td class="py-2 px-4" id="donor-blood-group"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">Province:</td>
+                        <td class="py-2 px-4" id="donor-province"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">District:</td>
+                        <td class="py-2 px-4" id="donor-district"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">Sector:</td>
+                        <td class="py-2 px-4" id="donor-sector"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">Rewards:</td>
+                        <td class="py-2 px-4" id="donor-rewards"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 font-semibold">Bio:</td>
+                        <td class="py-2 px-4" id="donor-bio"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="closeModal()" class="mt-4 px-4 py-2 bg-red-500 text-white rounded">Close</button>
+        </div>
+    </div>
+
+    <script src="/js/manage-donors.js"></script>
 </body>
 </html>

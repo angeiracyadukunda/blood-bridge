@@ -1,85 +1,54 @@
 <!-- Top Nav Bar -->
 <div class="top-nav text-sm md:text-md" style="align-items: center !important;">
-  <a href="/login"  style="align-items: center !important;">Sign In</a>
-  <a href="/news"  style="align-items: center !important;">News/Announcements</a>
-  
+  <a href="/news" class="hoverNav" style="align-items: center !important;">News/Announcements</a>
   <div class="flex justify-self-end justify-end">
-      <div class="translate-container flex align-middle">
-        <span class="flex text-sm align-items-center mr-2" style="align-items: center !important;">Translate: </span>
-          <div id="google_translate_element" class="flex justify-items-center align-middle"></div>
+    <div class="translate-container relative flex items-center">
+      <span class="text-sm mr-2">Translate:</span>
+      <div id="translate-btn" class="flex items-center justify-center w-8 h-8 border-2 border-gray-500 rounded-full text-gray-500 hover:bg-gray-200 focus:outline-none">
+          <i class="fas fa-globe"></i> <!-- Translate icon -->
       </div>
+      <div id="google_translate_element" class="hidden absolute mt-2 top-full left-0"></div>
+  </div>
       <a href="/contact" class="cta-button ml-3 h-12">Contact Us</a>
+      <a href="/login" class="text-gray-800 hoverNav h-12" id="sign-in-link" style="align-items: center !important;">Sign In</a>
   </div>
 </div>
 
   <style>
 
 
-#google_translate_element {
-    color: white;
-    font-size: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.goog-te-combo {
-    background-color: white;
-    color: #313233;
-    padding: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-    outline: none;
-     /* Subtle shadow for a clean look */
-}
-
-.goog-te-combo:hover {
-    background-color: #707376;
-    color: white;
-    cursor: pointer;
-}
-
-/* Hide all Google marks (logo, branding) */
-.goog-logo-link, .goog-te-gadget span {
-    display: none !important;
-}
-
-/* Add flag icons before each language in the dropdown */
-.goog-te-combo option[value='fr']:before {
-    content: url('https://flagcdn.com/w20/fr.png');
-    margin-right: 5px;
-}
-
-.goog-te-combo option[value='en']:before {
-    content: url('https://flagcdn.com/w20/gb.png');
-    margin-right: 5px;
-}
-
-.goog-te-combo option[value='rw']:before {
-    content: url('https://flagcdn.com/w20/rw.png');
-    margin-right: 5px;
-}
-
-/* Styling for the dropdown */
-.goog-te-combo option {
-    padding-left: 25px; /* Space for flag icons */
-    font-size: 14px;
-}
 
   </style>
 
   <!-- Google Translate Script -->
   <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'en,fr,sw,rw', // Specify available languages
-        layout: google.translate.TranslateElement.InlineLayout.VERTICAL,
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const dropdowns = document.querySelectorAll("li.relative");
+
+    dropdowns.forEach(dropdown => {
+        // Show dropdown on mouse enter
+        dropdown.addEventListener("mouseenter", function() {
+            const menu = dropdown.querySelector("ul");
+            if (menu) {
+                menu.classList.remove("hidden");
+            }
+        });
+
+        // Hide dropdown on mouse leave
+        dropdown.addEventListener("mouseleave", function() {
+            const menu = dropdown.querySelector("ul");
+            if (menu) {
+                menu.classList.add("hidden");
+            }
+        });
+    });
+});
   </script>
 
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+  <script type="text/javascript" src="/js/signedincheck.js"></script>
+  <script type="text/javascript" src="/js/handleTranslate.js"></script>
     <!-- Main Navigation -->
 <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 hover:text-red-800">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

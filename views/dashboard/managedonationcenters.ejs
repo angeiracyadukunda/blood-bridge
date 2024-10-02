@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/header-iframes.ejs") %>
+<body class="p-6 pt-5 bg-gray-100 min-h-screen">
+    <%- include('../partials/goback.ejs') %>
+
+    <!-- Profile Settings Header -->
+    <header class="bg-white shadow p-4 mb-8 mt-6">
+        <h2 class="text-2xl font-semibold"><%= title %></h2>
+    </header>
+
+    <!-- Manage Donation Centers -->
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-semibold">Donation Centers</h3>
+            <button id="addCenterBtn" class="text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded">
+                +
+            </button>
+        </div>
+        
+        <!-- Form for Adding/Editing Donation Center -->
+        <div id="centerForm" class="hidden mb-4 p-6 bg-white rounded-lg shadow-lg w-full max-w-xl mx-auto">
+            <h4 class="text-2xl font-semibold text-gray-800 mb-4">Add / Edit Donation Center</h4>
+            <form id="donationCenterForm" class="space-y-4">
+                <input type="hidden" id="centerId" name="centerId" value="">
+                
+                <!-- Center's Name -->
+                <div class="flex flex-col">
+                    <label for="name" class="text-gray-700 font-medium mb-1">Center's Name</label>
+                    <input type="text" id="name" name="name" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                </div>
+        
+                <!-- Province -->
+                <div class="flex flex-col">
+                    <label for="province" class="text-gray-700 font-medium mb-1">Province</label>
+                    <select id="province" name="province" onchange="fetchDistricts()" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select Province</option>
+                    </select>
+                </div>
+        
+                <!-- District -->
+                <div class="flex flex-col">
+                    <label for="district" class="text-gray-700 font-medium mb-1">District</label>
+                    <select id="district" name="district" onchange="fetchSectors()" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select District</option>
+                    </select>
+                </div>
+        
+                <!-- Sector -->
+                <div class="flex flex-col">
+                    <label for="sector" class="text-gray-700 font-medium mb-1">Sector</label>
+                    <select id="sector" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" name="sector" onchange="autofillDistrictAndProvince()">
+                        <option value="">Select Sector</option>
+                    </select>
+                </div>
+        
+                <!-- Contact Number -->
+                <div class="flex flex-col">
+                    <label for="contact" class="text-gray-700 font-medium mb-1">Contact No.</label>
+                    <input type="text" id="contact" name="contact" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                </div>
+        
+                <!-- Submit Button -->
+                <div class="flex justify-end">
+                    <button type="submit" class="mt-4 bg-green-600 text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 font-bold py-2 px-6 rounded-lg">
+                        Add Center
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+
+        <!-- Table to display Donation Centers -->
+        <table class="min-w-full border-collapse border border-gray-200">
+            <thead>
+                <tr>
+                    <th class="border border-gray-200 px-4 py-2">Center's Name</th>
+                    <th class="border border-gray-200 px-4 py-2">Province</th>
+                    <th class="border border-gray-200 px-4 py-2">District</th>
+                    <th class="border border-gray-200 px-4 py-2">Sector</th>
+                    <th class="border border-gray-200 px-4 py-2">Contact No.</th>
+                    <th class="border border-gray-200 px-4 py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="centersTableBody">
+                <!-- Donation Centers will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/js/locationsLoader.js"></script>
+    <script src="/js/managecenters.js"></script>
+</body>
+</html>

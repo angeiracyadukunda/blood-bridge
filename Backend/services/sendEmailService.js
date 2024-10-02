@@ -17,7 +17,7 @@ const sendVerificationEmail = async (email,name, verificationLink) => {
     from: 'Rwanda Blood Bridge <rwandabloodbridge@gmail.com>', // sender address
     to: email, // recipient email
     subject: 'Email Verification', // Subject line
-    html: `<p>Dear ${name},</p> <p>Thank you for signing up at <b>Rwanda Blood Bridge</b></p><p>Click <a href="${verificationLink}">here</a> to verify your email account.</p>`, // HTML body
+    html: `<p>Dear ${name},</p> <p>Thank you for signing up at <b>Rwanda Blood Bridge</b></p><p>Click <a href="${verificationLink}"> <b>here</b> </a> to verify your email account.</p>`, // HTML body
   };
 
   // Send email

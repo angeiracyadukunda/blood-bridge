@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+
+
+<%- include("../partials/header-iframes.ejs") %>
+<body class="p-6 pt-5 bg-gray-100 min-h-screen">
+    <%- include('../partials/goback.ejs')%>
+
+    <!-- Profile Settings Header -->
+    <header class="bg-white shadow p-4 mb-8 mt-6">
+        <h2 class="text-2xl font-semibold"><%= title %></h2>
+    </header>
+
+    <!-- Manage Schedules Section -->
+    <section id="schedules-section">
+        <button id="add-schedule-btn" class="mb-4 px-4 py-2 bg-green-500 text-white rounded">+</button>
+        
+        <table class="min-w-full bg-white shadow rounded-lg">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="py-2 px-4">Date</th>
+                    <th class="py-2 px-4">Time Range</th>
+                    <th class="py-2 px-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="schedules-table">
+                <!-- Existing schedules will be dynamically inserted here -->
+            </tbody>
+        </table>
+
+        <div id="schedule-form" class="hidden mt-6">
+            <h3 class="text-xl mb-4">Add Schedule</h3>
+            
+            <label>Select Days:</label>
+            <input type="text" id="date-picker" placeholder="Select Dates" class="mb-2 border rounded p-2 w-full"/>
+
+            <label for="time-range">Select Time Range:</label>
+            <input type="text" id="time-range" placeholder="e.g., 09:00 AM - 05:00 PM" class="mb-4 border rounded p-2 w-full"/>
+
+            <button id="submit-schedule" class="px-4 py-2 bg-blue-500 text-white rounded">Add Schedule</button>
+        </div>
+    </section>
+
+    <!-- Include Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
+    <script src="/js/manageschedules.js"></script>
+
+    <script>
+        // Initialize flatpickr
+        flatpickr("#date-picker", {
+            mode: "multiple", // allows multiple date selection
+            dateFormat: "Y-m-d", // format for sending to server
+            enableTime: false, // disable time selection on calendar
+            altInput: true, // for better UX
+            altFormat: "F j, Y", // display format
+            onChange: function(selectedDates, dateStr, instance) {
+                console.log(selectedDates); // log selected dates
+            }
+        });
+    </script>
+</body>
+</html>

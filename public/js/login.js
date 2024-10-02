@@ -1,7 +1,10 @@
 // login.js
 document.getElementById('login-form').addEventListener('submit', async function (event) {
     event.preventDefault();
-
+    
+    // Show loader when the form is submitted
+    showLoader();
+    
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const keepSignedIn = document.getElementById('keep-signed-in').checked;
@@ -16,6 +19,10 @@ document.getElementById('login-form').addEventListener('submit', async function 
         });
 
         const data = await response.json();
+        
+        // Hide the loader after receiving a response
+        hideLoader();
+        
         if (response.ok) {
             showPopup(data.message, "success");
             window.location.href = data.redirectUrl; // Use the redirect URL from the server response
@@ -24,19 +31,23 @@ document.getElementById('login-form').addEventListener('submit', async function 
         }
     } catch (error) {
         console.error('Error logging in:', error);
+        hideLoader(); // Ensure loader is hidden in case of an error
         showPopup('An error occurred. Please try again later.', "error");
     }
 });
 
 // Check if the user is already logged in
 (async function checkSession() {
+    // Show loader when checking the session
+    showLoader();
+
     try {
         const response = await fetch('/api/session'); // Fetch session data from server
         const data = await response.json();
-        console.log("session data" +data);
+        
         if (data.loggedIn) {
-            const { uid, role } = data; // Extract uid and role from session data
-
+            const { uid, role } = data.user; // Extract uid and role from session data
+            
             // Conditional redirect based on role
             if (role === 'recipient') {
                 window.location.href = `/${uid}/dashboard`; // Redirect to recipient dashboard
@@ -48,6 +59,9 @@ document.getElementById('login-form').addEventListener('submit', async function 
         }
     } catch (error) {
         console.error('Error checking session:', error);
+    } finally {
+        // Hide loader after session check completes
+        hideLoader();
     }
 })();
 
@@ -67,4 +81,14 @@ function showPopup(message, type) {
     setTimeout(() => {
         popup.style.display = "none";
     }, 2000);
+}
+
+// Function to show the loader
+function showLoader() {
+    document.getElementById('loading-spinner').classList.remove('hidden');
+}
+
+// Function to hide the loader
+function hideLoader() {
+    document.getElementById('loading-spinner').classList.add('hidden');
 }

@@ -1,10 +1,10 @@
-const { serverTimestamp } = require('firebase/firestore');
+const { FieldValue } = require('firebase-admin/firestore');
 
 const createDonation = (uid, donationData) => {
     return {
         donationId: uid,
         ...donationData,
-        createdAt: serverTimestamp(),
+        createdAt: FieldValue.serverTimestamp(),
     };
 };
 

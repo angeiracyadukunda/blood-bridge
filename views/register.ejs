@@ -21,6 +21,10 @@
 
             <label for="fullName" class="ml-3 block text-gray-700">Full Name</label>
             <input type="text" id="fullName" name="fullName" value="<%= fullName %>" readonly>
+            
+            <label for="phoneNo" class="ml-3 block text-gray-700">Phone Number</label>
+            <input type="phoneNo" id="phoneNo" name="phoneNo" placeholder="+250 XXX XXX XXX (Entre the no with country code)" required>
+
                         <!-- <input type="text" id="fullName" name="fullName" value="" class="mt-2 p-2 border border-gray-300 rounded w-full focus:outline-none focus:border-red-900"> -->
 
             <label for="gender" class="ml-3 block text-gray-700">Gender</label>
@@ -56,16 +60,23 @@
                 <option value="O+">O+</option>
                 <option value="O-">O-</option>
                 <option value="I am not sure">I am not sure</option>
-            </select>
+            </select>          
+
 
             <label for="province" class="ml-3 block text-gray-700">Province</label>
-            <input type="text" id="province" name="province" required >
+            <select id="province" name="province" onchange="fetchDistricts()">
+                <option value="">Select Province</option>
+            </select>
 
             <label for="district" class="ml-3 block text-gray-700">District</label>
-            <input type="text" id="district" name="district" required >
+            <select id="district" name="district" onchange="fetchSectors()">
+                <option value="">Select District</option>
+            </select>
 
             <label for="sector" class="ml-3 block text-gray-700">Sector</label>
-            <input type="text" id="sector" name="sector" required >
+            <select id="sector" class="mb-3" name="sector" onchange="autofillDistrictAndProvince()">
+                <option value="">Select Sector</option>
+            </select>
 
         <button type="submit" >Complete Registration</button>
     </form>
@@ -75,6 +86,7 @@
   </section>  
 
 <script src="/js/register.js"></script>
+<script src="/js/locationsLoader.js"></script>
 <%- include('./partials/footer.ejs') %>
 <!-- <script src="/js/scripts.js"></script> -->
 

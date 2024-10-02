@@ -26,7 +26,10 @@
                         <a href="/<%= user.uid %>/dashboard/manage-donors" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Manage Donors</a>
                     </li>
                     <li class="mb-4">
-                        <a href="/<%= user.uid %>/dashboard/profile" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Settings</a>
+                        <a href="/<%= user.uid %>/dashboard/managedonationcenters" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Manage Donation Centers</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="/<%= user.uid %>/dashboard/manageschedules" target="contentFrame" class="block p-3 rounded hover:bg-red-900">Manage Schedules</a>
                     </li>
                 </ul>
 
@@ -57,3 +60,50 @@
     </script>
 </body>
 </html>
+<script>
+(async function checkSession() {
+    let sessionExpired = false; // Flag to track whether the alert has been shown
+
+    // Function to check login status
+    async function checkLoginStatus() {
+        try {
+            const response = await fetch('/api/session'); // Fetch session data from the server
+
+            // Check if the response is successful (status 200)
+            if (response.ok) {
+                const data = await response.json();
+
+                // If the user is not logged in and the alert hasn't been shown yet
+                if (!data.loggedIn && !sessionExpired) {
+                    sessionExpired = true;
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 2000);
+                    alert('Your session has expired. You will be redirected to the homepage.');
+                    
+                }
+            } else {
+                throw new Error('Session check failed');
+            }
+        } catch (error) {
+            console.error('Error checking session:', error);
+
+            // If an error occurs (network failure, server issue, etc.)
+            if (!sessionExpired) {
+                sessionExpired = true;
+                alert('Your session has expired. You will be redirected to the homepage.');
+                window.location.href = '/';
+            }
+        }
+    }
+
+    // Initial session check when the page loads
+    await checkLoginStatus();
+
+    // Continuously check the session every 5 seconds if the session hasn't expired
+    if (!sessionExpired) {
+        const intervalId = setInterval(checkLoginStatus, 5000); // Check every 5 seconds
+    }
+})();
+
+</script>

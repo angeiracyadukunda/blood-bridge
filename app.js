@@ -7,10 +7,8 @@ const {authentication, liveDatabase, db } = require(fbConfig); // Import the dat
 const { ref, push, set } = require('firebase/database');
 const {Translate} = require('@google-cloud/translate').v2;
 const translate = new Translate();
-
-
-
 const rwanda = require('rwanda');
+const { Provinces, Districts, Sectors } = require('rwanda');
 require('dotenv').config(); 
 
 // const signupRoutes = require('./Backend/routes/signupRoute');
@@ -18,8 +16,10 @@ const authRoutes = require('./Backend/routes/authRoute');
 const loginRoutes = require('./Backend/routes/loginRoute');
 const signupRoute = require('./Backend/routes/signupRoute');
 const dashboardRoutes = require('./Backend/routes/dashboardRoute');
+const manageDonorsRoute = require('./Backend/routes/manageDonorsRoute');
 const session = require('express-session');
-
+const scheduleRoutes = require("./Backend/routes/scheduleRoutes");
+const donationCentersRoutes = require("./Backend/routes/donationCentersRoute");
 // Express app
 const app = express();
 
@@ -32,6 +32,7 @@ app.set('view engine', 'ejs');
 
 // Middleware
 app.use(bodyParser.json());
+
 app.use(express.static('public'));  // Serve static files from public folder
 
 app.use(session({
@@ -49,6 +50,10 @@ app.use(session({
 app.use('/api', loginRoutes);
 app.use('/api', signupRoute);
 app.use('/', dashboardRoutes);
+app.use('/api', donationCentersRoutes);
+
+app.use('/api', scheduleRoutes);
+app.use('/api', manageDonorsRoute);
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 // Listen for requests
@@ -245,29 +250,43 @@ app.get('/donorRegister', (req, res) => {
     }
 });
 
-app.get('/districts/:province', (req, res) => {
+app.get('/provinces', (req, res) => {
+    res.json(Provinces());
+  });
+  
+  app.get('/districts/:province', (req, res) => {
     const province = req.params.province;
-    const districts = districts.filter(district => district.province === province); // Example filtering
-    res.json(districts);
-});
+    res.json(Districts(province));
+  });
+  
+  app.get('/sectors/:province/:district', (req, res) => {
+    const { province, district } = req.params;
+    res.json(Sectors(province, district));
+  });
 
-// Endpoint to get sectors based on district
-app.get('/sectors/:district', (req, res) => {
-    const district = req.params.district;
-    const sectors = Sectors.filter(sector => sector.district === district); // Example filtering
-    res.json(sectors);
-});
+// app.get('/districts/:province', (req, res) => {
+//     const province = req.params.province;
+//     const districts = districts.filter(district => district.province === province); // Example filtering
+//     res.json(districts);
+// });
 
-// Endpoint to get cells based on sector
-app.get('/cells/:sector', (req, res) => {
-    const sector = req.params.sector;
-    const cells = Cells.filter(cell => cell.sector === sector); // Example filtering
-    res.json(cells);
-});
+// // Endpoint to get sectors based on district
+// app.get('/sectors/:district', (req, res) => {
+//     const district = req.params.district;
+//     const sectors = Sectors.filter(sector => sector.district === district); // Example filtering
+//     res.json(sectors);
+// });
 
-// Endpoint to get villages based on cell
-app.get('/villages/:cell', (req, res) => {
-    const cell = req.params.cell;
-    const villages = Villages.filter(village => village.cell === cell); // Example filtering
-    res.json(villages);
-});
+// // Endpoint to get cells based on sector
+// app.get('/cells/:sector', (req, res) => {
+//     const sector = req.params.sector;
+//     const cells = Cells.filter(cell => cell.sector === sector); // Example filtering
+//     res.json(cells);
+// });
+
+// // Endpoint to get villages based on cell
+// app.get('/villages/:cell', (req, res) => {
+//     const cell = req.params.cell;
+//     const villages = Villages.filter(village => village.cell === cell); // Example filtering
+//     res.json(villages);
+// });
