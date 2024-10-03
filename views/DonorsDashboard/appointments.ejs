@@ -3,15 +3,128 @@
 <%- include("../partials/header-iframes.ejs") %>
 
 <body class="p-6 pt-5" style="margin:0 !important;">
+    <%- include('../partials/goback.ejs') %>
+    <h2 class="text-2xl font-semibold mb-4 mt-6"><%= title %></h2>
 
-    <%- include('../partials/goback.ejs')%>
-    <h2 class="text-2xl font-semibold mb-4 mt-6 "> <%= title %></h2>
     <div class="bg-white p-6 rounded shadow">
         <p class="text-gray-700">Here are all the appointments you’ve made:</p>
-        <ul class="mt-4 space-y-2">
-            <li class="p-4 bg-gray-100 rounded">Appointment on <strong>25th Sept 2024</strong> at <strong>City Hospital</strong></li>
-            <li class="p-4 bg-gray-100 rounded">Appointment on <strong>15th Oct 2024</strong> at <strong>Red Cross Center</strong></li>
-        </ul>
+        <table id="appointmentsContainer" class="mt-4 w-full table-auto border-collapse">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border border-gray-300 px-4 py-2 text-left">Center</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Schedule Time</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Notes</th>
+                    <th class="border border-gray-300 px-4 py-2 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="appointments-list">
+                <!-- Appointment rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+        <button id="schedule-btn" class="mt-6 bg-green-600 text-white py-2 px-6 rounded-md hover:bg-green-700 focus:outline-none">
+            + Schedule an Appointment
+        </button>
     </div>
+
+    <!-- Appointment Form -->
+    <div id="appointment-form" class="hidden mb-4 p-6 bg-white rounded-lg shadow-lg w-full max-w-xl mx-auto">
+        <h4 class="text-2xl font-semibold text-gray-800 mb-4">Schedule a Blood Donation Appointment</h4>
+        <form id="appointment-form-submit" class="space-y-4">
+            <!-- Full Name -->
+            <div class="flex flex-col">
+                <label for="name" class="text-gray-700 font-medium mb-1">Full Name:</label>
+                <input type="text" id="name" name="name" readonly class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
+            </div>
+            
+            <!-- Email -->
+            <div class="flex flex-col">
+                <label for="email" class="text-gray-700 font-medium mb-1">Email Address:</label>
+                <input type="email" id="email" name="email" readonly class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
+            </div>
+            
+            <!-- Phone Number -->
+            <div class="flex flex-col">
+                <label for="phone" class="text-gray-700 font-medium mb-1">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="flex flex-col">
+                <label for="dob" class="text-gray-700 font-medium mb-1">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="province" class="text-gray-700 font-medium mb-1">Province</label>
+                <select id="province" name="province" onchange="fetchDistricts()" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="">Select Province</option>
+                </select>
+            </div>
+    
+            <!-- District -->
+            <div class="flex flex-col">
+                <label for="district" class="text-gray-700 font-medium mb-1">District</label>
+                <select id="district" name="district" onchange="fetchSectors()" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="">Select District</option>
+                </select>
+            </div>
+    
+            <!-- Sector -->
+            <div class="flex flex-col">
+                <label for="sector" class="text-gray-700 font-medium mb-1">Sector</label>
+                <select id="sector" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" name="sector" onchange="autofillDistrictAndProvince()">
+                    <option value="">Select Sector</option>
+                </select>
+            </div>
+
+
+            <!-- Donation Center -->
+            <div class="flex flex-col">
+                <label for="donationCenter" class="text-gray-700 font-medium mb-1">Donation Center</label>
+                <select id="donationCenter" name="donationCenter" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none">
+                    <option value="">Select Donation Center</option>
+                </select>
+            </div>
+
+            <!-- Preferred Date -->
+            <div class="flex flex-col">
+                <label for="scheduleDate" class="text-gray-700 font-medium mb-1">Preferred Date:</label>
+                <select id="scheduleDate" name="scheduleDate" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none">
+                    <!-- Options will be dynamically populated by JS -->
+                </select>
+            </div>
+
+            <!-- Preferred Time -->
+            <div class="flex flex-col">
+                <label for="scheduleTime" class="text-gray-700 font-medium mb-1">Preferred Time:</label>
+                <input type="time" id="scheduleTime" name="scheduleTime" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
+            </div>
+
+            <!-- Blood Type -->
+            <div class="flex flex-col">
+                <label for="bloodGroup" class="text-gray-700 font-medium mb-1">Blood Type:</label>
+                <select id="bloodGroup" name="bloodGroup" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none">
+                    <option value="">Select Blood Type</option>
+                    <!-- Options for blood type can be dynamically populated -->
+                </select>
+            </div>
+            
+            <!-- Notes -->
+            <div class="flex flex-col">
+                <label for="notes" class="text-gray-700 font-medium mb-1">Additional Information:</label>
+                <textarea id="notes" name="notes" rows="4" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-end">
+                <button type="submit" class="mt-4 bg-green-600 text-white hover:bg-green-700 focus:outline-none font-bold py-2 px-6 rounded-lg">
+                    Schedule Appointment
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/js/appointments.js"></script>  <!-- JavaScript for handling appointments -->
+    <script src="/js/locationsLoader.js"></script>  <!-- JavaScript for handling dynamic locations -->
 </body>
 </html>

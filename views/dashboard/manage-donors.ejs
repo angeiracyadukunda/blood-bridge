@@ -18,15 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            <% donors.forEach(donor => { %>
-                <tr class="<%= (loop.index % 2 === 0) ? 'bg-gray-100' : 'bg-white' %>">
-                    <td class="py-2 px-4 cursor-pointer text-blue-500 hover:underline" onclick="showDonorDetails('<%= donor.uid %>')">
-                        <%= donor.fullName %>
-                    </td>
-                    <td class="py-2 px-4"><%= donor.dateOfDonation %></td>
-                    <td class="py-2 px-4"><%= donor.bloodQuantity %> liters</td>
-                </tr>
-            <% }) %>
+           
         </tbody>
     </table>
 

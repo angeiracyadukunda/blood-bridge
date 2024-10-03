@@ -24,5 +24,17 @@ const sendVerificationEmail = async (email,name, verificationLink) => {
   await transporter.sendMail(mailOptions);
   console.log(`Verification email sent to ${email}`);
 };
+const sendEmail = async (email, message) => {
+  const mailOptions = {
+    from: message.from, // sender address
+    to: email, // recipient email
+    subject: message.subject, // Subject line
+    html: message.html, // HTML body
+  };
 
-module.exports = { sendVerificationEmail };
+  // Send email
+  await transporter.sendMail(mailOptions);
+  console.log(`Message sent to ${email}`);
+};
+
+module.exports = { sendVerificationEmail, sendEmail };

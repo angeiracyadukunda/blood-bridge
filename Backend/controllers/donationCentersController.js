@@ -18,16 +18,19 @@ const addDonationCenter = async (req, res) => {
     try {
         const { name, province, district, sector, contact } = req.body;
 
-        // Generate a unique UID if it doesn't exist in the request
-        const uid = uuidv4(); 
+        // Generate a unique UID for the donation center
+        const donationCenterId = uuidv4(); 
 
-        // Create the donation center with the unique ID
-        const donationCenter = createDonationCenter(uid, { name, province, district, sector, contact });
+        // Use the model function to create the donation center object
+        const donationCenter = createDonationCenter(donationCenterId, { name, province, district, sector, contact });
 
-        const docRef = await db.collection('donationCenters').add(donationCenter);
-        console.log('Donation center created with ID:', docRef.id); // Debugging: Log the newly created doc ID
+        // Add the donation center to Firestore using the donationCenterId as the document ID
+        await db.collection('donationCenters').doc(donationCenterId).set(donationCenter); // Use the generated UID as the document ID
 
-        res.status(201).json({ message: 'Donation center created successfully', id: docRef.id });
+        console.log('Donation center created with ID:', donationCenterId); // Debugging: Log the newly created doc ID
+
+        // Return success response with the donation center ID
+        res.status(201).json({ message: 'Donation center created successfully', id: donationCenterId });
     } catch (error) {
         console.error('Error creating donation center:', error); // Log the error
         res.status(500).json({ message: 'Error creating donation center', error });

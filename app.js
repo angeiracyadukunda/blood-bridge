@@ -20,6 +20,7 @@ const manageDonorsRoute = require('./Backend/routes/manageDonorsRoute');
 const session = require('express-session');
 const scheduleRoutes = require("./Backend/routes/scheduleRoutes");
 const donationCentersRoutes = require("./Backend/routes/donationCentersRoute");
+const appointmentRoutes = require('./Backend/routes/appointmentRoute');
 // Express app
 const app = express();
 
@@ -51,6 +52,7 @@ app.use('/api', loginRoutes);
 app.use('/api', signupRoute);
 app.use('/', dashboardRoutes);
 app.use('/api', donationCentersRoutes);
+app.use('/api', appointmentRoutes);
 
 app.use('/api', scheduleRoutes);
 app.use('/api', manageDonorsRoute);

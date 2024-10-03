@@ -10,7 +10,7 @@ const createUserData = (uid, userData) => {
         idType: userData.idType, // Include ID type
         idNumber: userData.idNumber, // Include ID number
         rewards: userData.rewards || '0',
-        bloodType: userData.bloodType || 'no info',
+        bloodGroup: userData.bloodGroup || 'no info',
         preferredLocation: userData.preferredLocation,
         dateOfBirth: userData.dateOfBirth,
         createdAt: serverTimestamp(),

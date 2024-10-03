@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'no info'
     },
-    bloodType: {
+    bloodGroup: {
         type: String,
         default: 'no info'
     },

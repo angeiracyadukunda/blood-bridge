@@ -33,7 +33,7 @@ function submitForm(e) {
         // idType,
         // idNumber,
         // rewards: '0',
-        // bloodType: 'no info',
+        // bloodGroup: 'no info',
         // preferredLocation,
         // dateOfBirth
     };
