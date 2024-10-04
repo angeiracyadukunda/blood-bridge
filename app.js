@@ -220,7 +220,7 @@ app.get('/news', (req, res) => {
     res.render('news', { title: 'News and Announcements' });
 });
 app.get('/login', (req, res) => {
-    res.render('login', { title: 'Login Page' });
+    res.render('login', { title: '' });
 });
 app.get('/signup', (req, res) => {
     res.render('signup', { title: 'Signup Page' });
