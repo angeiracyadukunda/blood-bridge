@@ -8,6 +8,30 @@
     <h2 class="text-2xl font-semibold mb-4 mt-6"><%= title %></h2>
     <p>This section allows you to manage donors.</p>
 
+    <!-- Button to Add Donation -->
+    <button id="add-donation-btn" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Add Donation</button>
+
+    <!-- Appointments List Modal -->
+    <div id="appointments-list-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg w-1/2 max-h-[80vh] overflow-y-auto">
+            <h3 class="text-xl font-semibold mb-4">Select an Appointment</h3>
+            <table class="min-w-full bg-white shadow rounded-lg mt-6" id="appointments-list">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="py-2 px-4">Appointment Date</th>
+                        <th class="py-2 px-4">Donor Name</th>
+                        <th class="py-2 px-4">Status</th>
+                        <th class="py-2 px-4">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic Appointment Content will be injected here -->
+                </tbody>
+            </table>
+            <button id= "closeAppointmentsModal" class="mt-4 px-4 py-2 bg-red-500 text-white rounded">Close</button>
+        </div>
+    </div>
+
     <!-- Donor Table -->
     <table class="min-w-full bg-white shadow rounded-lg mt-6">
         <thead>
@@ -15,10 +39,11 @@
                 <th class="py-2 px-4">Full Name</th>
                 <th class="py-2 px-4">Date of Donation</th>
                 <th class="py-2 px-4">Quantity of Blood</th>
+                <th class="py-2 px-4">Action</th>
             </tr>
         </thead>
-        <tbody>
-           
+        <tbody id="donations-list">
+            <!-- Dynamic Content will be injected here -->
         </tbody>
     </table>
 
@@ -82,10 +107,106 @@
                     </tr>
                 </tbody>
             </table>
-            <button onclick="closeModal()" class="mt-4 px-4 py-2 bg-red-500 text-white rounded">Close</button>
+            <button id="closeModal" class="mt-4 px-4 py-2 bg-red-500 text-white rounded">Close</button>
         </div>
     </div>
 
-    <script src="/js/manage-donors.js"></script>
+    <!-- Update Status Modal -->
+    <div id="update-status-modal" class="hidden fixed z-50 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+            <!-- Modal Content -->
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Update Appointment Status
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">
+                                    Please update the status of this appointment before proceeding with the donation.
+                                </p>
+                                <!-- Status Update Form -->
+                                <form id="status-update-form" class="mt-4">
+                                    <label for="appointment-status" class="block text-sm font-medium text-gray-700">Status</label>
+                                    <select id="appointment-status" name="appointment-status" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        <option value="pending">Pending</option>
+                                        <option value="approved">Approved</option>
+                                        <option value="rejected">Rejected</option>
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" id="confirm-update-status-btn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        Confirm
+                    </button>
+                    <button type="button" id="close-status-modal-btn" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Donation Modal -->
+    <div id="add-donation-modal" class="hidden inset-0 bg-gray-900/80 bg-opacity-80 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg w-1/2 max-h-[80vh] overflow-y-auto my-10 mx-auto">
+            <h3 class="text-xl font-semibold mb-4">Add Donation</h3>
+            <form id="add-donation-form">
+                <input type="hidden" id="donor-id-hidden" name="donorId" >
+                <input type="hidden" id="donationCenter-id-hidden" name="donationCenter" >
+                <div class="mb-4">
+                    <label class="block text-gray-700">Donor Name</label>
+                    <input type="text" id="donor-name" name="donorName" class="border px-4 py-2 w-full" readonly required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Email</label>
+                    <input type="text" id="donorEmailInput" name="donorEmail" class="border px-4 py-2 w-full" readonly required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Donation Center</label>
+                    <input type="text" id="donation-center" name="Center" class="border px-4 py-2 w-full" readonly required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Donation Date</label>
+                    <input type="date" id="donation-date" name="donationDate" class="border px-4 py-2 w-full" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Rhesus</label>
+                    <input type="text" id="rhesus" name="rhesus" class="border px-4 py-2 w-full" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Signature</label>
+                    <input type="text" id="signature" name="signature" class="border px-4 py-2 w-full" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">First Blood Check</label>
+                    <input type="text" id="first-blood-check" name="firstBloodCheck" class="border px-4 py-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Second Blood Check</label>
+                    <input type="text" id="second-blood-check" name="secondBloodCheck" class="border px-4 py-2 w-full" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Doctor Name</label>
+                    <input type="text" id="doctor-name" name="doctorName" class="border px-4 py-2 w-full" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Blood Quantity in ml</label>
+                    <input type="number" id="blood-quantity" name="bloodQuantity" class="border px-4 py-2 w-full" required>
+                </div>
+                <button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Submit Donation</button>
+            </form>
+            
+            <button id ="closeAddDonationModal" class="mt-4 px-4 py-2 bg-red-500 text-white rounded">Close</button>
+        </div>
+    </div>
+
+    <script src="/js/manage-donations.js"></script>
 </body>
 </html>
