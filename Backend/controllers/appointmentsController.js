@@ -116,10 +116,22 @@ const deleteAppointmentController = async (req, res) => {
         const appointmentId = req.params.id;
 
         // Delete the appointment from the 'appointments' collection
-        await db.collection('appointments').doc(appointmentId).delete();
-
+        const appointmentToDelete = await db.collection('appointments').doc(appointmentId);
+        const appointmentSnapshot = await appointmentToDelete.get();
+        let userId="";
+        if (appointmentSnapshot.exists) {
+            userId = appointmentSnapshot.data().donorId;
+            
+            // Now, delete the appointment
+            await appointmentToDelete.delete();
+            
+            console.log(`Appointment with ID ${appointmentId} for donor ${userId} has been deleted.`);
+        } else {
+            console.log(`Appointment with ID ${appointmentId} does not exist.`);
+        }
+        
         // Remove the appointment from the donor's list
-        const donorRef = db.collection('donors').doc(req.user.uid);
+        const donorRef = db.collection('donors').doc(userId);
         await donorRef.update({
             appointments: FieldValue.arrayRemove(appointmentId),
         });
