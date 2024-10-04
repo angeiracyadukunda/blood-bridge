@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
 
                 // Attach edit and delete event listeners
-                appointmentRow.querySelector(".edit-btn").addEventListener("click", handleEdit);
                 appointmentRow.querySelector(".delete-btn").addEventListener("click", handleDelete);
 
                 tbody.appendChild(appointmentRow);
