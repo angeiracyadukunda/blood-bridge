@@ -1,6 +1,8 @@
 const { db } = require('../firebase/firebaseAdmin');  // Assumes you've already set up Firebase Admin SDK
 const {createDonation} =require("../models/donationModel")
 const { v4: uuidv4 } = require('uuid');
+const { FieldValue } = require('firebase-admin/firestore');
+
 // List all donations
 const listDonations = async (req, res) => {
     try {
@@ -80,7 +82,10 @@ const addDonation = async (req, res) => {
         const currentRewards = Number(donorData.rewards) || 0; // Ensure current rewards is a number
         const updatedRewards = currentRewards + 1; // Increment rewards by 1
 
-        await donorRef.update({ rewards: updatedRewards });
+        await donorRef.update({ 
+            rewards: updatedRewards, 
+            updatedAt: FieldValue.serverTimestamp() 
+        });
 
         // Log the updated rewards
         console.log(`Updated rewards for donor ${donorId}: ${updatedRewards}`);
@@ -187,7 +192,10 @@ const updateAppointmentStatus = async (req, res) => {
         const { status } = req.body;
 
         const appointmentRef = db.collection('appointments').doc(appointmentId);
-        await appointmentRef.update({ status });
+        await appointmentRef.update({
+            status,
+            updatedAt: FieldValue.serverTimestamp() // Make sure to use admin for accessing FieldValue
+        });
 
         res.json({ success: true });
     } catch (error) {
