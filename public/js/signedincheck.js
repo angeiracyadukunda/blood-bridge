@@ -3,7 +3,8 @@
         const response = await fetch('/api/session'); // Fetch session data from server
         const data = await response.json();
         const signInLink = document.querySelector('#sign-in-link'); // Update this selector to match your HTML structure
-
+        const dashboardLink = document.getElementById("dashboard-link");
+        const dashboardLinkDonations = document.getElementById("dashboard-link-donations");
         if (data.loggedIn) {
             const { fullName, uid, role } = data.user; // Extract fullName from session data
          
@@ -23,16 +24,20 @@
                 </div>
             `;
 
-            
-            console.log("Full name: "+fullName);
             if (role === "donor"){
                 signInLink.href = `/${uid}/donorsdashboard/profile`;
+                dashboardLink.href=`/${uid}/donorsdashboard/appointments`;
+                dashboardLinkDonations.href=`/${uid}/donorsdashboard`;
             }else if(role === "recipient"){
                 signInLink.href = `/${uid}/dashboard`;
+                dashboardLink.href=`/${uid}/dashboard/manage-appointments`;
+                dashboardLinkDonations.href=`/${uid}/dashboard/manage-donors`;
             } // Redirect to the user's profile if clicked
         } else {
             signInLink.textContent = 'Sign In'; // Keep 'Sign In' if not logged in
-            signInLink.href = '/login'; // Link to the login page
+            signInLink.href = '/login';
+            dashboardLink.href=`/login`;
+                dashboardLinkDonations.href=`/login`; // Link to the login page
         }
     } catch (error) {
         console.error('Error checking session:', error);

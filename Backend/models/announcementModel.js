@@ -1,12 +1,16 @@
-const { serverTimestamp } = require('firebase/firestore');
+const { FieldValue } = require('firebase-admin/firestore');
 
-const createAnnouncement = (uid, announcementData) => {
+const createAnnouncement = (id, announcementData) => {
     return {
-        announcementId: uid,
-        ...announcementData,
+        announcementId: id,
+        announcementType: announcementData.announcementType,
+        announcementTile: announcementData.announcementTile,
+        announcementBody: announcementData.announcementBody,
+        announcementDate: announcementData.announcementDate,
+        announcementLocation: announcementData.announcementLocation,
         status: "valid",
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp()
+        createdAt: FieldValue.serverTimestamp(),
+        updatedAt: FieldValue.serverTimestamp(),
     };
 };
 
