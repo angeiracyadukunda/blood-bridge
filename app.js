@@ -16,11 +16,12 @@ const authRoutes = require('./Backend/routes/authRoute');
 const loginRoutes = require('./Backend/routes/loginRoute');
 const signupRoute = require('./Backend/routes/signupRoute');
 const dashboardRoutes = require('./Backend/routes/dashboardRoute');
-const manageDonorsRoute = require('./Backend/routes/manageDonorsRoute');
+const donationRoute = require('./Backend/routes/manageDonationsRoute');
 const session = require('express-session');
 const scheduleRoutes = require("./Backend/routes/scheduleRoutes");
 const donationCentersRoutes = require("./Backend/routes/donationCentersRoute");
 const appointmentRoutes = require('./Backend/routes/appointmentRoute');
+
 // Express app
 const app = express();
 
@@ -53,9 +54,9 @@ app.use('/api', signupRoute);
 app.use('/', dashboardRoutes);
 app.use('/api', donationCentersRoutes);
 app.use('/api', appointmentRoutes);
+app.use('/api/donations', donationRoute);
 
 app.use('/api', scheduleRoutes);
-app.use('/api', manageDonorsRoute);
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 // Listen for requests

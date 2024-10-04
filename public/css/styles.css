@@ -1882,6 +1882,19 @@ li:before {
 .goog-te-combo option[value=""] {
   display: none;
 }
+
+#add-donation-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+#add-donation-modal::-webkit-scrollbar-thumb {
+  background: #4a5568; /* Adjust color for scrollbar thumb */
+  border-radius: 10px;
+}
+
+#add-donation-modal::-webkit-scrollbar-track {
+  background: #edf2f7; /* Adjust color for scrollbar track */
+}
 /* END OF BENEFITS */
 
 
