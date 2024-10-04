@@ -2,16 +2,45 @@
 <html lang="en">
 <%- include("../partials/header-iframes.ejs") %>
 <body class="p-6 pt-5">
-    <%- include('../partials/goback.ejs')%>
+    <%- include('../partials/goback.ejs') %>
     <h2 class="text-2xl font-semibold mb-4 mt-6"> <%= title %></h2>
-    <form action="#" method="POST" class="flex space-x-4">
-        <input type="text" name="announcement" placeholder="Enter announcement text" class="flex-grow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+
+    <form id="announcementForm" class="flex flex-col space-y-4">
+        <input type="text" name="announcementTile" placeholder="Announcement Title" class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        
+        <textarea name="announcementBody" placeholder="Announcement Body" rows="4" class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+        
+        <select name="announcementType" class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <option value="" disabled selected>Select Announcement Type</option>
+            <option value="Latest News">Latest News</option>
+            <option value="Upcoming Events">Upcoming Events</option>
+            <option value="Success Stories">Success Stories</option>
+            <option value="Event Highlights">Event Highlights</option>
+        </select>
+        
+        <input type="date" name="announcementDate" class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        
+        <input type="text" name="announcementLocation" placeholder="Announcement Location (optional)" class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+
         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Post</button>
     </form>
+
     <div class="mt-6">
-        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-            <span class="text-gray-700">Blood donation drive happening on 2024-09-25!</span>
-        </div>
+        <table id="announcementsTable" class="min-w-full bg-white">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b">Type</th>
+                    <th class="py-2 px-4 border-b">Title</th>
+                    <th class="py-2 px-4 border-b">Date</th>
+                    <th class="py-2 px-4 border-b">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="announcementsBody">
+                <!-- Announcements will be populated here by JavaScript -->
+            </tbody>
+        </table>
     </div>
+
+    <script src="/path/to/announcement.js"></script> <!-- Link to your frontend JavaScript file -->
 </body>
 </html>

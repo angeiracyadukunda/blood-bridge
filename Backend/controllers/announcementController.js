@@ -4,8 +4,8 @@ const { v4: uuidv4 } = require('uuid');
 
 const postAnnouncement = async (req, res) => {
     try {
-        const announcementData = req.body;
-        const announcementId = announcementId = uuidv4(); // Generate new document ID
+        const {} = req.body;
+        const announcementId = uuidv4(); // Generate new document ID
         const announcement = createAnnouncement(announcementId, announcementData);
         
         await db.collection('announcements').doc(announcementId).set(announcement);
