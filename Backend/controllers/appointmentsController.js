@@ -42,19 +42,30 @@ const createAppointmentController = async (req, res) => {
 };
 
 // Fetch all appointments
-    const getAllAppointmentsController = async (req, res) => {
-        try {
-            const centerSnapshot = await db.collection('donationCenters').get();
-            const centers = centerSnapshot.docs.map(doc => ({
-                id: doc.id,
-                name: doc.data().name
-            }));
+const getAllAppointmentsController = async (req, res) => {
+    try {
+        // Assuming the user ID is stored in the session, accessed via req.session
+        const userId = req.session.user.uid; // Accessing userId from the session
 
-            const appointmentsSnapshot = await db.collection('appointments').get();
-            const appointmentsDb = appointmentsSnapshot.docs.map(doc => doc.data());
+        if (!userId) {
+            return res.status(401).json({ error: 'User not authenticated.' });
+        }
 
-            // Map over the appointments and add the corresponding center name
-            const appointments = appointmentsDb.map(appointment => {
+        // Fetch all donation centers
+        const centerSnapshot = await db.collection('donationCenters').get();
+        const centers = centerSnapshot.docs.map(doc => ({
+            id: doc.id,
+            name: doc.data().name
+        }));
+
+        // Fetch all appointments
+        const appointmentsSnapshot = await db.collection('appointments').get();
+        const appointmentsDb = appointmentsSnapshot.docs.map(doc => doc.data());
+
+        // Filter and map over the appointments to include only those for the authenticated user
+        const appointments = appointmentsDb
+            .filter(appointment => appointment.donorId === userId) // Filter by donorId from the session
+            .map(appointment => {
                 const center = centers.find(c => c.id === appointment.centerId); // Find the matching center by ID
                 return {
                     ...appointment,
@@ -62,14 +73,15 @@ const createAppointmentController = async (req, res) => {
                 };
             });
 
-        console.log("The appointment are "+appointments); 
-        
+        console.log("Filtered appointments for user " + userId + ": " + JSON.stringify(appointments));
+
         res.status(200).json(appointments);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to fetch appointments.' });
     }
 };
+
 
 // Fetch a single appointment by ID
 const getAppointmentController = async (req, res) => {

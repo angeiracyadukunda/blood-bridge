@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 appointmentTIME=appointment.scheduleDate;
                 appointmentRow.innerHTML = `
                     <td class="border border-gray-200 px-4 py-2">${appointment.centerName}</td>
-                    <td class="border border-gray-200 px-4 py-2">${appointment.scheduleTime}</td>
+                    <td class="border border-gray-200 px-4 py-2">${appointment.scheduleDate}</td>
                     <td class="border border-gray-200 px-4 py-2">${appointment.notes}</td>
                     <td class="border border-gray-200 px-4 py-2 text-center">
                         <button class="delete-btn bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 ml-2" data-id="${appointment.appointmentId}">
