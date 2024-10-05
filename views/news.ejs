@@ -1,91 +1,58 @@
-
 <html lang="en">
     <%- include('./partials/header.ejs') %>
 
-<body>
+<body class="bg-gray-100">
     <!-- Top Nav Bar -->
     <%- include('./partials/navbar.ejs') %>
-<!-- Top Nav Bar -->
-<!-- <div class="top-nav">
-    <a href="./ManageAppoint.html">Sign In</a>
-    <a href="./News.html">News/Announcements</a>
-    <div class="language-dropdown">
-        <a href="#">English <span class="dropdown-icon">&#9660;</span></a>
-        <div class="dropdown-content">
-            <a href="#">Kinyarwanda</a>
-            <a href="#">French</a>
-        </div>
-    </div>
-    <a href="/contact" class="cta-button">Contact Us</a>
-</div> -->
-
-  
-
-      <!-- Header -->
-      <!-- <header>
-        <h1>News and Announcements</h1>
-    </header> -->
 
     <!-- Main Content Section -->
-    <main id="news-announcements">
+    <main id="news-announcements" class="p-6 container mx-auto">
+        <!-- Skeleton Loader -->
+        <div id="loadingSkeleton" class="space-y-6">
+            <div class="animate-pulse space-y-4">
+                <div class="h-6 bg-gray-300 rounded w-3/4 mb-2"></div>
+                <div class="space-y-2">
+                    <div class="h-4 bg-gray-300 rounded w-full"></div>
+                    <div class="h-4 bg-gray-300 rounded w-5/6"></div>
+                </div>
+            </div>
+            <div class="animate-pulse space-y-4">
+                <div class="h-6 bg-gray-300 rounded w-3/4 mb-2"></div>
+                <div class="space-y-2">
+                    <div class="h-4 bg-gray-300 rounded w-full"></div>
+                    <div class="h-4 bg-gray-300 rounded w-5/6"></div>
+                </div>
+            </div>
+        </div>
+
         <!-- Latest News Section -->
-        <section class="content-section">
-            <h2>Latest News</h2>
-            <article>
-                <h3>New Partnership with XYZ Hospital</h3>
-                <p>We are thrilled to announce our new partnership with XYZ Hospital to increase blood supply for emergency cases.</p>
-                <p><strong>Date:</strong> September 5, 2024</p>
-            </article>
-            <article>
-                <h3>Blood Donation Milestone Achieved</h3>
-                <p>We have successfully reached 10,000 blood donations this year! Thank you to all our donors and volunteers for making this possible.</p>
-                <p><strong>Date:</strong> August 30, 2024</p>
-            </article>
+        <section id="latestNewsSection" class="content-section hidden mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2 mb-4">Latest News</h2>
+            <div id="latestNews" class="space-y-6"></div>
         </section>
 
         <!-- Upcoming Events Section -->
-        <section class="content-section">
-            <h2>Upcoming Events</h2>
-            <ul>
-                <li>
-                    <h3>Blood Donation Drive at Kigali</h3>
-                    <p><strong>Date:</strong> September 12, 2024</p>
-                    <p><strong>Location:</strong> Kigali Convention Center</p>
-                    <p><strong>Details:</strong> Join us for a city-wide blood donation drive.</p>
-                </li>
-                <li>
-                    <h3>Community Health Fair</h3>
-                    <p><strong>Date:</strong> September 20, 2024</p>
-                    <p><strong>Location:</strong> Nyamirambo Health Center</p>
-                    <p><strong>Details:</strong> Get free health checks and learn more about the benefits of donating blood.</p>
-                </li>
-            </ul>
+        <section id="upcomingEventsSection" class="content-section hidden mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2 mb-4">Upcoming Events</h2>
+            <ul id="upcomingEvents" class="space-y-6"></ul>
         </section>
 
         <!-- Success Stories Section -->
-        <section class="content-section">
-            <h2>Success Stories</h2>
-            <article>
-                <h3>Jane Doe's Story</h3>
-                <p>Thanks to our dedicated donors, Jane received a life-saving blood transfusion. Read her inspirational story and learn how you can help others.</p>
-            </article>
+        <section id="successStoriesSection" class="content-section hidden mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2 mb-4">Success Stories</h2>
+            <div id="successStories" class="space-y-6"></div>
         </section>
 
-        <!-- Photo Gallery Section -->
-        <section class="content-section">
-            <h2>Event Highlights</h2>
-            <div class="photo-gallery">
-                <img src="path/to/event1.jpg" alt="Blood Drive Event">
-                <img src="path/to/event2.jpg" alt="Community Engagement">
-                <img src="path/to/event3.jpg" alt="Health Fair">
-            </div>
+        <!-- Event Highlights Section -->
+        <section id="eventHighlightsSection" class="content-section hidden mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2 mb-4">Event Highlights</h2>
+            <div id="eventHighlights" class="space-y-6"></div>
         </section>
     </main>
 
-       <!-- Footer -->
-       <%- include('./partials/footer.ejs') %>
-       <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-
-
+    <!-- Footer -->
+    <%- include('./partials/footer.ejs') %>
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <script src="/js/news.js"></script>
 </body>
 </html>

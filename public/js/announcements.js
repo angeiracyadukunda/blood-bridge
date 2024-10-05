@@ -37,14 +37,14 @@ const fetchAnnouncements = async () => {
 };
 
 // Function to handle form submission
-// Global variable to track edit mode
 let isEditMode = false; // Flag to track if we are in edit mode
 let currentEditId = null; // Variable to store the ID of the announcement being edited
 
 const editAnnouncement = (id, title, body, date, type, location, status) => {
     isEditMode = true; // Set edit mode
     currentEditId = id; // Store the ID for the update
-
+    const announcementForm = document.getElementById('announcementForm');
+    announcementForm.classList.remove('hidden');
     // Populate the form with current data
     document.querySelector('input[name="announcementTitle"]').value = title;
     document.querySelector('textarea[name="announcementBody"]').value = body;
@@ -55,6 +55,7 @@ const editAnnouncement = (id, title, body, date, type, location, status) => {
     // Create and populate the status select element
     const statusSelect = document.createElement('select');
     statusSelect.name = "status";
+    statusSelect.id = "status";
     statusSelect.className = "p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500";
     
     const validOption = document.createElement('option');
@@ -97,7 +98,8 @@ const editAnnouncement = (id, title, body, date, type, location, status) => {
 };
 
 // Form submission handler
-document.getElementById('announcementForm').addEventListener('submit', async (e) => {
+const announcementForm = document.getElementById('announcementForm');
+announcementForm.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent form from refreshing the page
     const formData = new FormData(e.target);
     const announcementData = Object.fromEntries(formData.entries());
@@ -111,7 +113,6 @@ document.getElementById('announcementForm').addEventListener('submit', async (e)
             body: JSON.stringify(announcementData)
         });
 
-        // Reset to original submission
         isEditMode = false; // Reset edit mode flag
         currentEditId = null; // Clear current edit ID
 
@@ -119,18 +120,9 @@ document.getElementById('announcementForm').addEventListener('submit', async (e)
         e.target.reset(); // Reset the form
         fetchAnnouncements(); // Refresh the announcements table
 
-        // Change button back to "Post Announcement"
-        const postButton = document.createElement('button');
-        postButton.type = 'submit';
-        postButton.textContent = 'Post Announcement';
-        postButton.className = "bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded";
-        const form = document.getElementById('announcementForm');
-        const editButton = form.querySelector('button[type="submit"]');
-        
-        if (editButton) {
-           form.removeChild(editButton); // Remove the original submit button
-        }
-        form.appendChild(postButton);
+        // Show success message
+        showMessage('Announcement updated successfully!', 'success');
+
     } else {
         // Add a new announcement via POST request
         await fetch('/api/announcements', {
@@ -141,20 +133,27 @@ document.getElementById('announcementForm').addEventListener('submit', async (e)
 
         e.target.reset(); // Reset the form
         fetchAnnouncements(); // Refresh the announcements table
+        
+        // Show success message
+        showMessage('Announcement added successfully!', 'success');
     }
+
+    // Hide the form again after submission
+    announcementForm.style.display = 'none';
 });
 
-// Example function to call when creating announcements
-const createAnnouncement = async (data) => {
-    // Call this function to create an announcement if not in edit mode
-    // You can use this function in your other parts of the code as needed
-    await fetch('/api/announcements', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    });
-};
+// Function to show messages
+const showMessage = (message, type) => {
+    const messageContainer = document.createElement('div');
+    messageContainer.textContent = message;
+    messageContainer.className = `p-4 my-4 text-white rounded ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
+    document.body.prepend(messageContainer);
 
+    // Automatically remove the message after 3 seconds
+    setTimeout(() => {
+        messageContainer.remove();
+    }, 3000);
+};
 
 // Function to delete an announcement
 const deleteAnnouncement = async (id) => {
@@ -164,61 +163,33 @@ const deleteAnnouncement = async (id) => {
     fetchAnnouncements(); // Refresh the announcements table
 };
 
-// Function to edit an announcement
-// const editAnnouncement = (id, title, body, date, type, location, status) => {
-//     // Populate the form with current data
-//     document.querySelector('input[name="announcementTitle"]').value = title;
-//     document.querySelector('textarea[name="announcementBody"]').value = body;
-//     document.querySelector('input[name="announcementDate"]').value = date;
-//     document.querySelector('select[name="announcementType"]').value = type;
-//     document.querySelector('input[name="announcementLocation"]').value = location;
-
-//     // Create and populate the status select element
-//     const statusSelect = document.createElement('select');
-//     statusSelect.name = "status";
-//     statusSelect.className = "p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500";
+// Function to show/hide the announcement form
+const toggleAnnouncementForm = () => {
+    const formL = document.getElementById('announcementForm');
     
-//     const validOption = document.createElement('option');
-//     validOption.value = "valid";
-//     validOption.textContent = "Valid";
-//     statusSelect.appendChild(validOption);
-    
-//     const expiredOption = document.createElement('option');
-//     expiredOption.value = "expired";
-//     expiredOption.textContent = "Expired";
-//     statusSelect.appendChild(expiredOption);
+    // Check if the form is hidden
+    if (formL.classList.contains('hidden')) {
+        formL.classList.remove('hidden'); // Show the form
+        // Optionally clear the fields if needed when toggling for a new announcement
+        document.querySelector('[name="announcementTitle"]').value = '';
+        document.querySelector('[name="announcementBody"]').value = '';
+        document.querySelector('[name="announcementType"]').value = '';
+        document.querySelector('[name="announcementDate"]').value = '';
+        document.querySelector('[name="announcementLocation"]').value = '';
+        // Remove status field if it exists (since it's for editing only)
+        const statusField = document.getElementById('status');
+        if (statusField) {
+            statusField.remove();
+        }
+    } else {
+        formL.classList.add('hidden'); // Hide the form
+    }
+};
 
-//     // Set the current status value
-//     statusSelect.value = status;
 
-//     // Insert the status select before the submit button
-//     const form = document.getElementById('announcementForm');
 
-//     const existingStatusSelect = document.querySelector('select[name="status"]');
+// Attach toggle function to the button
+// document.getElementById('addAnnouncementButton').addEventListener('click', toggleAnnouncementForm);
 
-//     if (existingStatusSelect) {
-//         form.removeChild(existingStatusSelect); // Remove previous status field if it exists
-//     }
-//     form.insertBefore(statusSelect, form.querySelector('button[type="submit"]'));
-
-//     // Change form submission to update
-//     form.onsubmit = async (e) => {
-//         e.preventDefault(); // Prevent form from refreshing the page
-//         const formData = new FormData(e.target);
-//         const announcementData = Object.fromEntries(formData.entries());
-
-//         // Update the existing announcement via PUT request
-//         await fetch(`/api/announcements/${id}`, {
-//             method: 'PUT',
-//             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify(announcementData)
-//         });
-
-//         e.target.reset(); // Reset the form
-//         fetchAnnouncements(); // Refresh the announcements table
-//         form.onsubmit = null; // Reset to original submission
-//     };
-// };
-
-// Fetch announcements when the page loads
-document.addEventListener('DOMContentLoaded', fetchAnnouncements);
+// Initial fetch to populate the announcements table
+fetchAnnouncements();
