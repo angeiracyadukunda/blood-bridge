@@ -24,6 +24,7 @@ const appointmentRoutes = require('./Backend/routes/appointmentRoute');
 const announcementRoutes = require('./Backend/routes/announcementRoute');
 const newsRoutes = require('./Backend/routes/newsRoutes');
 const adminAppointmentsRoutes = require('./Backend/routes/manageAppointmentsRoute');
+const adminDashboardRoutes = require('./Backend/routes/adminDashboardRouter');
 
 // Express app
 const app = express();
@@ -60,6 +61,8 @@ app.use('/api', newsRoutes);
 app.use('/api/donations', donationRoute);
 app.use('/api/announcements', announcementRoutes);
 app.use('/api/admin/appointments', adminAppointmentsRoutes);
+app.use('/api', adminDashboardRoutes);
+
 
 app.use('/api', scheduleRoutes);
 app.use(morgan('dev'));

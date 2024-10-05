@@ -7,7 +7,7 @@ router.get('/:uid/dashboard', isAuthenticated('recipient'), renderDashboardView(
 router.get('/:uid/dashboard/managedonationcenters', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/managedonationcenters', 'Manage Donation Centers'));
 router.get('/:uid/dashboard/manage-appointments', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/manage-appointments', 'Manage Appointments'));
 router.get('/:uid/dashboard/dashboard-overview', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/dashboard-overview', 'Dashboard Overview'));
-router.get('/:uid/dashboard/manage-donors', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/manage-donors', 'Manage Donors'));
+router.get('/:uid/dashboard/manage-donors', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/manage-donors', 'Manage Blood donation'));
 router.get('/:uid/dashboard/post-announcements', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/post-announcements', 'Post Announcements'));
 router.get('/:uid/dashboard/manageschedules', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/manageschedules', 'Manage Schedules'));
 
