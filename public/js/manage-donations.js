@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const skeletonRows = document.querySelectorAll('#donor-details-modal .animate-pulse'); 
     const addDonationBtn = document.getElementById('add-donation-btn');
     const donorDetailsModal = document.getElementById('donor-details-modal');
     const addDonationModal = document.getElementById('add-donation-modal');
@@ -10,8 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             const donationsList = document.getElementById('donations-list');
             donationsList.innerHTML = '';  // Clear existing content
-            data.forEach(donation => {
+            data.forEach((donation, index) => {
                 const row = document.createElement('tr');
+                row.className = index % 2 === 0 ? 'bg-gray-100' : 'bg-white';
                 row.innerHTML = `
                     <td class="py-2 px-4">${donation.fullName}</td>
                     <td class="py-2 px-4">${new Date(donation.donationDate).toLocaleDateString()}</td>
@@ -35,8 +37,9 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 const appointmentsList = document.getElementById('appointments-list');
                 appointmentsList.innerHTML = ''; // Clear existing content
-                data.forEach(appointment => {
+                data.forEach((appointment, index) => {
                     const row = document.createElement('tr');
+                    row.className = index % 2 === 0 ? 'bg-gray-100' : 'bg-white';
                     row.innerHTML = `
                         <td class="py-2 px-4">${appointment.scheduleDate}</td>
                         <td class="py-2 px-4">${appointment.donorName}</td>
@@ -223,9 +226,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Open Donor Details Modal
     function openDonorDetailsModal(donorId) {
+        const donorDetailsModal = document.getElementById('donor-details-modal');
+        const skeletonRows = document.querySelectorAll('.animate-pulse');
+    
+        // Show skeletons
+        skeletonRows.forEach(row => {
+            row.classList.remove('hidden'); // Show the skeletons
+        });
+    
+        // Clear previous donor details
+        const detailElements = [
+            'donor-full-name',
+            'donor-email',
+            'donor-gender',
+            'donor-dob',
+            'donor-id-type',
+            'donor-id-no',
+            'donor-weight',
+            'donor-blood-group',
+            'donor-province',
+            'donor-district',
+            'donor-sector',
+            'donor-rewards',
+            'donor-bio'
+        ];
+    
+        detailElements.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.innerText = ''; // Clear previous text
+                element.classList.add('hidden'); // Hide the actual content until we fetch data
+            }
+        });
+    
+        // Fetch donor details
         fetch(`/api/donations/donor/${donorId}`)
             .then(response => response.json())
             .then(donor => {
+                // Populate the modal with donor details
                 document.getElementById('donor-full-name').innerText = donor.fullName;
                 document.getElementById('donor-email').innerText = donor.email;
                 document.getElementById('donor-gender').innerText = donor.gender;
@@ -239,12 +277,35 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('donor-sector').innerText = donor.sector;
                 document.getElementById('donor-rewards').innerText = donor.rewards;
                 document.getElementById('donor-bio').innerText = donor.bio;
-
-                donorDetailsModal.classList.remove('hidden');
+    
+                // Hide skeletons and show actual content
+                skeletonRows.forEach(row => {
+                    row.classList.add('hidden'); // Hide the skeletons
+                });
+    
+                // Show the populated elements
+                detailElements.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.classList.remove('hidden'); // Show the actual content
+                    }
+                });
             })
-            .catch(err => console.error('Error fetching donor details:', err));
+            .catch(error => {
+                console.error('Error fetching donor details:', error);
+                // Handle error (e.g., show an error message)
+            });
+    
+        // Show the modal
+        donorDetailsModal.classList.remove('hidden');
     }
-
+    
+    // Close modal functionality
+    document.getElementById('closeModal').addEventListener('click', () => {
+        document.getElementById('donor-details-modal').classList.add('hidden');
+    });
+    
+    
     // Close Modals
     document.querySelectorAll('.modal-close').forEach(btn => {
         btn.addEventListener('click', function () {

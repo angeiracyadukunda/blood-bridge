@@ -21,10 +21,12 @@ const session = require('express-session');
 const scheduleRoutes = require("./Backend/routes/scheduleRoutes");
 const donationCentersRoutes = require("./Backend/routes/donationCentersRoute");
 const appointmentRoutes = require('./Backend/routes/appointmentRoute');
+const announcementRoutes = require('./Backend/routes/announcementRoute');
+const newsRoutes = require('./Backend/routes/newsRoutes');
+const adminAppointmentsRoutes = require('./Backend/routes/manageAppointmentsRoute');
 
 // Express app
 const app = express();
-
 
 app.listen(3000,()=>{
     console.log("listening to port 3000")
@@ -54,7 +56,10 @@ app.use('/api', signupRoute);
 app.use('/', dashboardRoutes);
 app.use('/api', donationCentersRoutes);
 app.use('/api', appointmentRoutes);
+app.use('/api', newsRoutes);
 app.use('/api/donations', donationRoute);
+app.use('/api/announcements', announcementRoutes);
+app.use('/api/admin/appointments', adminAppointmentsRoutes);
 
 app.use('/api', scheduleRoutes);
 app.use(morgan('dev'));

@@ -50,9 +50,9 @@ async function fetchSchedules() {
         const schedulesTable = document.getElementById('schedules-table');
         schedulesTable.innerHTML = ''; // Clear existing schedules
 
-        schedules.forEach(schedule => {
+        schedules.forEach((schedule, index) => {
             const row = document.createElement('tr');
-            row.className = 'bg-gray-100'; // Alternating row color
+            row.className = index % 2 === 0 ? 'bg-gray-100' : 'bg-white';  // Alternating row color
             row.innerHTML = `
                 <td class="py-2 px-4">${schedule.date}</td>
                 <td class="py-2 px-4">${schedule.timeRange}</td>
