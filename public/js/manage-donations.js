@@ -10,8 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             const donationsList = document.getElementById('donations-list');
             donationsList.innerHTML = '';  // Clear existing content
-            data.forEach(donation => {
+            data.forEach((donation, index) => {
                 const row = document.createElement('tr');
+                row.className = index % 2 === 0 ? 'bg-gray-100' : 'bg-white';
                 row.innerHTML = `
                     <td class="py-2 px-4">${donation.fullName}</td>
                     <td class="py-2 px-4">${new Date(donation.donationDate).toLocaleDateString()}</td>
@@ -35,8 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 const appointmentsList = document.getElementById('appointments-list');
                 appointmentsList.innerHTML = ''; // Clear existing content
-                data.forEach(appointment => {
+                data.forEach((appointment, index) => {
                     const row = document.createElement('tr');
+                    row.className = index % 2 === 0 ? 'bg-gray-100' : 'bg-white';
                     row.innerHTML = `
                         <td class="py-2 px-4">${appointment.scheduleDate}</td>
                         <td class="py-2 px-4">${appointment.donorName}</td>

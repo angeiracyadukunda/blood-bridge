@@ -5,9 +5,10 @@ const fetchAnnouncements = async () => {
     const announcementsBody = document.getElementById('announcementsBody');
     announcementsBody.innerHTML = ''; // Clear the table body before populating
 
-    announcements.forEach(announcement => {
-        announcementsBody.innerHTML += `
-            <tr>
+    announcements.forEach((announcement, index) => {
+        const row = document.createElement('tr');
+        row.className = index % 2 === 0 ? 'bg-gray-100' : 'bg-white';
+        row.innerHTML += `
                 <td class="py-2 px-4 border-b">${announcement.announcementType}</td>
                 <td class="py-2 px-4 border-b">${announcement.announcementTitle}</td>
                 <td class="py-2 px-4 border-b">${announcement.announcementDate}</td>
@@ -30,8 +31,8 @@ const fetchAnnouncements = async () => {
                         Delete
                     </button>
                 </td>
-            </tr>
         `;
+        announcementsBody.appendChild(row);
     });
 };
 
