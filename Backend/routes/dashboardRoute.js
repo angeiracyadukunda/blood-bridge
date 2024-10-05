@@ -3,7 +3,7 @@ const router = express.Router();
 const { isAuthenticated, renderDashboardView } = require('../controllers/dashboadController');
 
 // Routes for Receiver Dashboard
-router.get('/:uid/dashboard', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/maindashboard', 'a Dashboard'));
+router.get('/:uid/dashboard', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/maindashboard', 'Admin Dashboard'));
 router.get('/:uid/dashboard/managedonationcenters', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/managedonationcenters', 'Manage Donation Centers'));
 router.get('/:uid/dashboard/manage-appointments', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/manage-appointments', 'Manage Appointments'));
 router.get('/:uid/dashboard/dashboard-overview', isAuthenticated('recipient'), renderDashboardView('recipient', 'dashboard/dashboard-overview', 'Dashboard Overview'));

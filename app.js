@@ -21,6 +21,7 @@ const session = require('express-session');
 const scheduleRoutes = require("./Backend/routes/scheduleRoutes");
 const donationCentersRoutes = require("./Backend/routes/donationCentersRoute");
 const appointmentRoutes = require('./Backend/routes/appointmentRoute');
+const announcementRoutes = require('./Backend/routes/announcementRoute');
 
 // Express app
 const app = express();
@@ -55,6 +56,7 @@ app.use('/', dashboardRoutes);
 app.use('/api', donationCentersRoutes);
 app.use('/api', appointmentRoutes);
 app.use('/api/donations', donationRoute);
+app.use('/api/announcements', announcementRoutes);
 
 app.use('/api', scheduleRoutes);
 app.use(morgan('dev'));
@@ -221,7 +223,7 @@ app.get('/news', (req, res) => {
     res.render('news', { title: 'News and Announcements' });
 });
 app.get('/login', (req, res) => {
-    res.render('login', { title: 'Login Page' });
+    res.render('login', { title: '' });
 });
 app.get('/signup', (req, res) => {
     res.render('signup', { title: 'Signup Page' });

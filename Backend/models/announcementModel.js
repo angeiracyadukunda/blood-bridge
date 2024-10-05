@@ -1,10 +1,10 @@
 const { FieldValue } = require('firebase-admin/firestore');
 
-const createAnnouncement = (id, announcementData) => {
+const createNewAnnouncement = (id, announcementData) => {
     return {
         announcementId: id,
         announcementType: announcementData.announcementType,
-        announcementTile: announcementData.announcementTile,
+        announcementTitle: announcementData.announcementTitle,
         announcementBody: announcementData.announcementBody,
         announcementDate: announcementData.announcementDate,
         announcementLocation: announcementData.announcementLocation,
@@ -14,4 +14,4 @@ const createAnnouncement = (id, announcementData) => {
     };
 };
 
-module.exports = {createAnnouncement};
+module.exports = {createNewAnnouncement};
