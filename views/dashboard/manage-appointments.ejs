@@ -1,17 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
- <%- include("../partials/header-iframes.ejs") %>
+<%- include("../partials/header-iframes.ejs") %>
 <body class="p-6 pt-5">
-    <%- include('../partials/goback.ejs')%>
-    <h2 class="text-2xl font-semibold mb-4 mt-6"><%= title %></h2>
-    <div class="bg-white p-4 rounded-lg shadow-md mb-4 flex justify-between items-center">
-        <div>
-            <span class="text-gray-700 font-medium">John Doe - 2024-09-18</span>
+    <%- include('../partials/goback.ejs') %>
+
+    <h2 class="text-2xl font-semibold mb-6 mt-6">Manage Appointments</h2>
+    <%- include("../partials//loading.ejs") %>
+    <!-- Appointment Table -->
+    <div class="container mx-auto p-6">
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Donor Name
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Center Name
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Scheduled Date
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Scheduled Time
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Status
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="appointmentsTableBody" class="bg-white divide-y divide-gray-200">
+                    <!-- Skeleton loading state -->
+                    <tr class="animate-pulse">
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                    </tr>
+                    <tr class="animate-pulse">
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                    </tr>
+                    <tr class="animate-pulse">
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="flex space-x-4">
-            <button class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Approve</button>
-            <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">Deny</button>
-        </div>
-    </div>
+    </div>    
+
+    <!-- Include your JavaScript -->
+    <script src="/js/adminAppointments.js"></script>
 </body>
 </html>

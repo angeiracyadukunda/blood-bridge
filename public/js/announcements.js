@@ -22,12 +22,12 @@ const fetchAnnouncements = async () => {
                         '${announcement.announcementType}', 
                         '${announcement.announcementLocation}', 
                         '${announcement.status}'
-                        )" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                        )" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded m-1">
                         Edit
                     </button>
                     <button onclick="deleteAnnouncement(
                         '${announcement.announcementId}'
-                        )" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-2">
+                        )" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded m-1">
                         Delete
                     </button>
                 </td>
