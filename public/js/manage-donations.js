@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleAddDonationClick(appointment) {
         const { donorName, donor_email, donationCenter, status, appointmentId, donorId, centerId } = appointment; // Get appointment ID from the parameter
         
-        if (status === "pending") {
+        if (status === "pending" || status === "denied" ) {
             
             updateStatusModal.classList.remove('hidden');
             

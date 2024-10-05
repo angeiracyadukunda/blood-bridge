@@ -1895,6 +1895,37 @@ li:before {
 #add-donation-modal::-webkit-scrollbar-track {
   background: #edf2f7; /* Adjust color for scrollbar track */
 }
+.skeleton {
+  animation: pulse 1.5s infinite;
+  min-width: 100%;
+  min-height: 12rem; /* Adjust as needed */
+  border-radius: 0.5rem; /* Rounded corners */
+}
+
+@keyframes pulse {
+  0% {
+      opacity: 0.3;
+  }
+  50% {
+      opacity: 0.5;
+  }
+  100% {
+      opacity: 0.3;
+  }
+}
+
+.diagram div {
+  background-color: #f3f4f6; /* Light gray for cards */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.diagram div:hover {
+  transform: translateY(-2px);
+}
+
 /* END OF BENEFITS */
 
 

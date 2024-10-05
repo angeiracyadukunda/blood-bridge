@@ -1,14 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
- <%- include("../partials/header-iframes.ejs") %>
-<body class="p-6 pt-5 top-16">
-    <%- include('../partials/goback.ejs')%>
-    <header class="bg-white shadow p-4 mb-8 mt-6">
-        <h2 class="text-2xl font-semibold"><%= title %></h2>
+  <%- include("../partials/header-iframes.ejs") %>
+  <body class="bg-gray-100 p-6 pt-5 top-16">
+    <%- include('../partials/goback.ejs') %>
+    <header class="bg-white shadow-lg p-4 mb-8 rounded-lg">
+      <h2 class="text-3xl font-semibold text-gray-800">Admin Dashboard</h2>
     </header>
-    <p>Welcome to the admin dashboard! Here you can manage appointments, post announcements, and more.</p>
-    
 
-    
-</body>
+    <!-- Filters Section -->
+    <div class="flex space-x-4 mb-6">
+      <select id="genderFilter" class="border border-gray-300 rounded-lg p-2">
+        <option value="">All Genders</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <select id="provinceFilter" class="border border-gray-300 rounded-lg p-2">
+        <option value="">All Provinces</option>
+        <!-- Populate with provinces -->
+      </select>
+      <select id="bloodGroupFilter" class="border border-gray-300 rounded-lg p-2">
+        <option value="">All Blood Groups</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+      </select>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <!-- Diagrams -->
+      <div id="donationsDiagram" class="bg-white p-4 rounded-lg shadow-md">
+          <div class="skeleton h-32 bg-gray-300 rounded-lg"></div>
+      </div>
+      <div id="appointmentsDiagram" class="bg-white p-4 rounded-lg shadow-md">
+          <div class="skeleton h-32 bg-gray-300 rounded-lg"></div>
+      </div>
+    </div>
+
+    <!-- Tables -->
+    <h3 class="text-xl font-semibold mb-4">Donors</h3>
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr>
+          <th class="p-2">Name</th>
+          <th class="p-2">Blood Group</th>
+          <th class="p-2">Email</th>
+          <th class="p-2">Province</th>
+          <th class="p-2">District</th>
+        </tr>
+      </thead>
+      <tbody id="donorsTableBody" class="bg-gray-200"></tbody>
+    </table>
+
+    <h3 class="text-xl font-semibold mb-4 mt-8">Donations</h3>
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr>
+          <th class="p-2">Donor</th>
+          <th class="p-2">Donation Date</th>
+          <th class="p-2">Center</th>
+          <th class="p-2">Blood Group</th>
+        </tr>
+      </thead>
+      <tbody id="donationsTableBody" class="bg-gray-200"></tbody>
+    </table>
+
+    <h3 class="text-xl font-semibold mb-4 mt-8">Appointments</h3>
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr>
+          <th class="p-2">Donor</th>
+          <th class="p-2">Schedule Date</th>
+          <th class="p-2">Center</th>
+          <th class="p-2">Status</th>
+        </tr>
+      </thead>
+      <tbody id="appointmentsTableBody" class="bg-gray-200"></tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="/js/dashboard.js"></script>
+  </body>
 </html>
