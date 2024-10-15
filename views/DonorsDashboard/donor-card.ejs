@@ -3,11 +3,10 @@
 <%- include("../partials/header-iframes.ejs") %>
 <body class="p-6 pt-5">
 
-    <%- include('../partials/goback.ejs')%>
-    <div class="bg-red-600 p-4 text-white font-semibold">
-      
-        <h2 class="text-3xl font-bold mt-2">My Donor Card</h2>
-    </div>
+    <header class="bg-white shadow p-4 mt-6">
+        <h2 class="text-2xl font-semibold"><%= title %></h2>
+    </header>
+    <%- include('../partials/mini-nav-donors.ejs'); %>
     
     <div class="flex justify-center mt-6">
         <div class="bg-white p-6 rounded shadow-lg border w-full max-w-4xl">
@@ -15,71 +14,163 @@
                 <h3 class="text-xl font-semibold">Rwanda Blood Bridge</h3>
                 <div class="border-b mb-4"></div>
             </div>
-            
+
+            <!-- Skeleton Loader -->
+            <div id="skeletonLoader" class="animate-pulse">
+                <div class="space-y-4">
+                    <div class="bg-gray-300 h-6 rounded"></div>
+                    <div class="bg-gray-300 h-6 rounded"></div>
+                    <div class="bg-gray-300 h-6 rounded"></div>
+                    <div class="bg-gray-300 h-6 rounded"></div>
+                    <div class="bg-gray-300 h-6 rounded"></div>
+                    <div class="bg-gray-300 h-6 rounded"></div>
+                    <div class="bg-gray-300 h-6 rounded"></div>
+                    <div class="bg-gray-300 h-6 rounded"></div>
+                </div>
+            </div>
+
             <!-- Table Format for Donor Information -->
-            <table class="table-auto w-full border border-gray-300 text-left">
+            <table class="table-auto w-full border border-gray-300 text-left hidden" id="donorInfoTable">
                 <tbody>
                     <tr class="bg-gray-100">
                         <td class="p-2 font-semibold border">NAME</td>
-                        <td class="p-2 border"><%= user.fullName %></td>
+                        <td class="p-2 border" id="userName"><!-- Will be populated from JS --></td>
                     </tr>
                     <tr>
                         <td class="p-2 font-semibold border">BLOOD GROUP</td>
-                        <td class="p-2 border"><%= user.bloodGroup %> </td>
+                        <td class="p-2 border" id="bloodGroup"><!-- Will be populated from JS --></td>
                     </tr>
-                    <!-- <tr class="bg-gray-100">
-                        <td class="p-2 font-semibold border">DATE OF DONATION</td>
-                        <td class="p-2 border"><%= user.modifiedAt %></td>
-                    </tr> -->
-                    <!-- <tr>
-                        <td class="p-2 font-semibold border">TIMES OF DONATION</td>
-                        <td class="p-2 border"><%= user.CreatedAr %></td>
-                    </tr> -->
                     <tr class="bg-gray-100">
                         <td class="p-2 font-semibold border">LOCATION</td>
-                        <td class="p-2 border"><%= user.province %></td>
+                        <td class="p-2 border" id="location"><!-- Will be populated from JS --></td>
                     </tr>
                     <tr>
                         <td class="p-2 font-semibold border">DATE OF BIRTH</td>
-                        <td class="p-2 border"><%= user.dob %></td>
-                    </tr>
-                    <!-- <tr class="bg-gray-100">
-                        <td class="p-2 font-semibold border">FIRST BLOOD CHECK</td>
-                        <td class="p-2 border"><= firstBloodCheck %></td>
-                    </tr>
-                    <tr>
-                        <td class="p-2 font-semibold border">SECOND BLOOD CHECK</td>
-                        <td class="p-2 border"><= secondBloodCheck %></td>
+                        <td class="p-2 border" id="dateOfBirth"><!-- Will be populated from JS --></td>
                     </tr>
                     <tr class="bg-gray-100">
-                        <td class="p-2 font-semibold border">NAME OF DOCTOR</td>
-                        <td class="p-2 border"><= doctorName %></td>
+                        <td class="p-2 font-semibold border">DATE OF DONATION</td>
+                        <td class="p-2 border" id="donationDate"><!-- Will be populated from JS --></td>
                     </tr>
                     <tr>
-                        <td class="p-2 font-semibold border">DONOR ID</td>
-                        <td class="p-2 border"><= cardNo %></td>
+                        <td class="p-2 font-semibold border">NAME OF DOCTOR</td>
+                        <td class="p-2 border" id="doctorName"><!-- Will be populated from JS --></td>
                     </tr>
                     <tr class="bg-gray-100">
                         <td class="p-2 font-semibold border">BLOOD QUANTITY</td>
-                        <td class="p-2 border"><= bloodQuantity %></td>
-                    </tr> -->
+                        <td class="p-2 border" id="bloodQuantity"><!-- Will be populated from JS --></td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 font-semibold border">DONOR ID</td>
+                        <td class="p-2 border" id="donorId"><!-- Will be populated from JS --></td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 font-semibold border">REWARDS</td>
+                        <td class="p-2 border" id="rewards"><!-- Will be populated from JS --></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-2 font-semibold border">FIRST BLOOD CHECK</td>
+                        <td class="p-2 border" id="firstBloodCheck"><!-- Will be populated from JS --></td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 font-semibold border">SECOND BLOOD CHECK</td>
+                        <td class="p-2 border" id="secondBloodCheck"><!-- Will be populated from JS --></td>
+                    </tr>
                 </tbody>
             </table>
 
-            <!-- Barcode Placeholder -->
-            <div class="flex justify-center mt-6">
-                <img src="https://via.placeholder.com/150x50?text=Barcode" alt="Barcode">
+            <!-- No Donation Message -->
+            <div id="noDonationMessage" class="hidden text-center mt-4">
+                <p class="text-lg text-red-500 font-semibold">No donation yet.</p>
+                <p class="text-gray-600">You haven't donated blood yet. Please schedule an appointment to become a donor.</p>
+                <a href="/<%= user.uid %>/donorsdashboard/appointments" class="mt-4 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Schedule Appointment</a>
             </div>
+            <div id="divBarcode" class="justify-center my-3 hidden">
+                <svg id="barcode"></svg>
+            </div>
+            <!-- Barcode Placeholder -->
 
             <p class="text-sm text-gray-600 mt-2 text-center">Valued Blood Donor</p>
 
             <!-- Buttons -->
             <div class="flex justify-center mt-4 space-x-4">
-                <button class="bg-green-500 text-white py-2 px-6 rounded hover:bg-green-600">Print Card</button>
-                <button class="bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600">Download</button>
+                <button id="printCard" class="bg-green-500 text-white py-2 px-6 rounded hover:bg-green-600">Print Card</button>
+                <button id="downloadCard" class="bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600">Download</button>
             </div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.0/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const skeletonLoader = document.getElementById('skeletonLoader');
+            const donorInfoTable = document.getElementById('donorInfoTable');
+            const noDonationMessage = document.getElementById('noDonationMessage');
+            const divBarcode = document.getElementById('divBarcode');
+
+            // Simulate fetching dashboard data
+            setTimeout(async function() {
+                const response = await fetch('/api/admin/dashboard'); // Fetch dashboard data from server
+                const dashboardData = await response.json();
+                
+                // Assuming the user ID is stored in the session or accessible here
+                const userId = '<%= user.uid %>'; // Replace with actual method to get user ID
+
+                // Filter donor data for the current user
+                const donorData = dashboardData.donors.find(donor => donor.uid === userId);
+                const donationData = dashboardData.donations.find(donation => donation.donor.uid === userId);
+
+                if (donationData) {
+                    // Populate the donor information
+                    document.getElementById('userName').textContent = donorData.fullName;
+                    document.getElementById('bloodGroup').textContent = donorData.bloodGroup;
+                    document.getElementById('location').textContent = donorData.province;
+                    document.getElementById('dateOfBirth').textContent = donorData.dob;
+                    document.getElementById('donationDate').textContent = donationData.donationDate;
+                    document.getElementById('doctorName').textContent = donationData.doctorName;
+                    document.getElementById('bloodQuantity').textContent = donationData.bloodQuantity;
+                    document.getElementById('donorId').textContent = donorData.uid;
+                    document.getElementById('rewards').textContent = donorData.rewards;
+                    document.getElementById('firstBloodCheck').textContent = donationData.firstBloodCheck;
+                    document.getElementById('secondBloodCheck').textContent = donationData.secondBloodCheck;
+
+                    // Hide skeleton loader and show donor information
+                    skeletonLoader.classList.add('hidden');
+                    donorInfoTable.classList.remove('hidden');
+                    divBarcode.classList.remove('hidden');
+                    // Generate the barcode
+                    JsBarcode("#barcode", donorData.uid, {
+                        format: "CODE128",
+                        width: 2,
+                        height: 40,
+                        displayValue: true
+                    });
+                } else {
+                    // Hide skeleton loader and show no donation message
+                    skeletonLoader.classList.add('hidden');
+                    noDonationMessage.classList.remove('hidden');
+                    donorInfoTable.classList.add('hidden');
+                }
+            }, 2000); // Simulating a delay for fetching data
+
+            // Download card functionality
+            document.getElementById('downloadCard').addEventListener('click', function() {
+                const card = document.querySelector('.flex.justify-center.mt-6');
+                html2canvas(card).then(canvas => {
+                    const link = document.createElement('a');
+                    link.href = canvas.toDataURL('image/png');
+                    link.download = 'donation_card.png';
+                    link.click();
+                });
+            });
+
+            // Print card functionality
+            document.getElementById('printCard').addEventListener('click', function() {
+                window.print();
+            });
+        });
+    </script>
+    <!-- <script src="/js/donationCard.js"></script> Update with the correct path -->
 </body>
 </html>

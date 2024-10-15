@@ -15,7 +15,7 @@ router.get('/:uid/dashboard/manageschedules', isAuthenticated('recipient'), rend
 router.get('/:uid/donorsdashboard', isAuthenticated('donor'), renderDashboardView('donor', 'donorsdashboard/donor', 'Dashboard'));
 router.get('/:uid/donorsdashboard/overview', isAuthenticated('donor'), renderDashboardView('donor', 'donorsdashboard/overview', 'Dashboard Overview'));
 router.get('/:uid/donorsdashboard/appointments', isAuthenticated('donor'), renderDashboardView('donor', 'donorsdashboard/appointments', 'All Appointments'));
-router.get('/:uid/donorsdashboard/donor-card', isAuthenticated('donor'), renderDashboardView('donor', 'donorsdashboard/donor-card', 'Donor Card'));
+router.get('/:uid/donorsdashboard/donor-card', isAuthenticated('donor'), renderDashboardView('donor', 'donorsdashboard/donor-card', 'My Donor Card'));
 router.get('/:uid/donorsdashboard/drives', isAuthenticated('donor'), renderDashboardView('donor', 'donorsdashboard/drives', 'Blood Donation Drives'));
 router.get('/:uid/donorsdashboard/guidelines', isAuthenticated('donor'), renderDashboardView('donor', 'donorsdashboard/guidelines', 'Guidlines'));
 router.get('/:uid/donorsdashboard/health-screening', isAuthenticated('donor'), renderDashboardView('donor', 'donorsdashboard/health-screening', 'Healt Screening'));

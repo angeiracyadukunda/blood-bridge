@@ -7,8 +7,11 @@
     <title>When to Donate</title>
 </head>
 <body class="p-6 pt-5">
-    <%- include('../partials/goback.ejs')%>
-    <h2 class="text-2xl font-semibold mb-4 mt-6">When to Donate</h2>
+    
+    <header class="bg-white shadow p-4 mt-6">
+        <h2 class="text-2xl font-semibold"><%= title %></h2>
+    </header>
+    <%- include('../partials/mini-nav-donors.ejs'); %>
     <div class="bg-white p-6 rounded shadow">
         <p class="text-gray-700">You can donate again on:</p>
         <p class="mt-2 text-blue-600 text-xl font-bold">15th Dec 2024</p>

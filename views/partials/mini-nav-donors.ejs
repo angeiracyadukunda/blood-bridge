@@ -1,0 +1,43 @@
+
+<!-- Short Navigation Bar -->
+<nav class="w-full bg-black h-12 flex justify-start gap-6 items-center shadow mb-6 px-4">
+    <a href="/" target="_top" class="text-white hover:text-gray-300">Home</a>
+    <button id="my-links-btn" class="text-white hover:text-gray-400">My Links</button>
+</nav>
+
+<!-- Drawer -->
+<div id="drawer" class="hidden fixed top-44 bg-black/40 z-40 flex justify-center items-start opacity-0 transform scale-95 transition-all duration-300 w-11/12 mr-6">
+    <div class="bg-black w-10/12 md:w-10/12 lg:w-full py-4 px-6 text-white ">
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 ">
+            <!-- Donate Blood -->
+            <a href="/Appointment" target="_top" class="hover:text-gray-400">Schedule an Appointment</a>
+            <a href="/" target="_top" class="hover:text-gray-400">Manage Existing Appointment</a>
+            <a href="/" target="_top" class="hover:text-gray-400">View My Donation History</a>
+            <a href="/benefits" target="_top" class="hover:text-gray-400">Benefits of Blood Donating</a>
+        
+            <!-- How to Donate -->
+            <a href="/Eligibility" target="_top" class="hover:text-gray-400">Eligibility Requirements</a>
+            <a href="/BloodDonation" target="_top" class="hover:text-gray-400">Types of Blood Donation</a>
+            <a href="/aboutBlood" target="_top" class="hover:text-gray-400">Learn About Blood</a>
+            <a href="/helps" target="_top" class="hover:text-gray-400">How Blood Donation Helps</a>
+            <a href="/concerns" target="_top" class="hover:text-gray-400">Common Concerns</a>
+        
+            <!-- Blood Donation Process -->
+            <a href="/donationpro" target="_top" class="hover:text-gray-400">Donation Process Overview</a>
+            <a href="/beforeAfter" target="_top" class="hover:text-gray-400">Before, During, After Donation</a>
+            <a href="/whatHappens" target="_top" class="hover:text-gray-400">What Happens to Donated Blood</a>
+            <a href="/firstTimeDoner" target="_top" class="hover:text-gray-400">First Time Blood Donors</a>
+        
+            <!-- Biomedical Service -->
+            <a href="/whoweare" target="_top" class="hover:text-gray-400">Who We Are</a>
+            <a href="/whatwedo" target="_top" class="hover:text-gray-400">What We Do</a>
+            <a href="/news" target="_top" class="hover:text-gray-400">News/Announcements</a>
+        </div>
+        
+        <button id="close-drawer" class="text-red-500 mt-4">Close</button>
+    </div>
+</div>
+
+<!-- Tailwind CSS and JS -->
+<script src="/js/drawerToggle.js"></script>
+

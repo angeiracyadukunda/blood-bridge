@@ -4,8 +4,10 @@
 
 <body class="p-6 pt-5" style="margin:0 !important;">
 
-    <%- include('../partials/goback.ejs')%>
-    <h2 class="text-2xl font-semibold mb-4 mt-6 "> <%= title %></h2>
+    <header class="bg-white shadow p-4 mt-6">
+        <h2 class="text-2xl font-semibold"><%= title %></h2>
+    </header>
+    <%- include('../partials/mini-nav-donors.ejs'); %>
     <p>Thank you for choosing to save lives! Scheduling a blood donation appointment is simple and ensures that your time is well-utilized. Your donation can make a difference to those in need.</p>
             
             <form action="/schedule-appointment" method="post">
