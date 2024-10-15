@@ -40,7 +40,7 @@ const listDonations = async (req, res) => {
 // Add a new donation
 const addDonation = async (req, res) => {
     try {
-        console.log("Received request to add donation:", req.body); // Log the incoming request body
+        ("Received request to add donation:", req.body); // Log the incoming request body
 
         const { donorId, donationDate, bloodQuantity, donationCenter, rhesus, firstBloodCheck, secondBloodCheck, doctorName, signature } = req.body;
 
@@ -63,12 +63,12 @@ const addDonation = async (req, res) => {
         })
         
         // Log the donation data before adding to the database
-        console.log("Adding donation data to the database:", donationData);
+        // console.log("Adding donation data to the database:", donationData);
 
         const donationRef = await db.collection('donations').doc(donationId).set(donationData);
         
         // Log the successful addition
-        console.log("Donation added successfully with ID:", donationRef.id);
+        // console.log("Donation added successfully with ID:", donationRef.id);
         
         const donorRef = db.collection('donors').doc(donorId);
         const donorSnapshot = await donorRef.get();
@@ -88,7 +88,7 @@ const addDonation = async (req, res) => {
         });
 
         // Log the updated rewards
-        console.log(`Updated rewards for donor ${donorId}: ${updatedRewards}`);
+        // console.log(`Updated rewards for donor ${donorId}: ${updatedRewards}`);
         
         res.json({ success: true, id: donationRef.id });
     } catch (error) {
@@ -146,7 +146,7 @@ const listAppointments = async (req, res) => {
 
         // Check if there are any documents in the collection
         if (appointmentsSnapshot.empty) {
-            console.log('No appointments found in the database.');
+            // console.log('No appointments found in the database.');
             return res.status(404).json({ error: 'Appointment not found' });
         }
 

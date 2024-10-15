@@ -26,7 +26,19 @@ const sendVerificationEmail = async (email,name, verificationLink) => {
 };
 const sendEmail = async (email, message) => {
   const mailOptions = {
-    from: message.from, // sender address
+    from: 'Rwanda Blood Bridge <rwandabloodbridge@gmail.com>', // sender address
+    to: email, // recipient email
+    subject: message.subject, // Subject line
+    html: message.html, // HTML body
+  };
+
+  // Send email
+  await transporter.sendMail(mailOptions);
+  console.log(`Message sent to ${email}`);
+};
+const sendEmailStyled = async (email, message) => {
+  const mailOptions = {
+    from: 'Rwanda Blood Bridge <rwandabloodbridge@gmail.com>', // sender address
     to: email, // recipient email
     subject: message.subject, // Subject line
     html: message.html, // HTML body
@@ -37,4 +49,4 @@ const sendEmail = async (email, message) => {
   console.log(`Message sent to ${email}`);
 };
 
-module.exports = { sendVerificationEmail, sendEmail };
+module.exports = { sendVerificationEmail, sendEmail, sendEmailStyled };

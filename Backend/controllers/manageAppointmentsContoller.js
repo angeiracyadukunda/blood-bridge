@@ -27,14 +27,14 @@ const getAppointments = async () => {
 // Update appointment status
 const postUpdateAppointmentStatus = async (req, res) => {
     const { appointmentId, status } = req.body;
-    console.log(`Updating appointment ${appointmentId} to ${status}`);
+    // console.log(`Updating appointment ${appointmentId} to ${status}`);
     try {
         const appointmentRef = db.collection('appointments').doc(appointmentId);
         await appointmentRef.update({
             status: status,
             updatedAt: FieldValue.serverTimestamp(),
         });
-        console.log(`Appointment ${appointmentId} updated to ${status}`);
+        // console.log(`Appointment ${appointmentId} updated to ${status}`);
         res.status(200).send('Appointment status updated successfully');
     } catch (error) {
         console.error("Error updating appointment:", error);

@@ -1,0 +1,53 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+<body>
+    <!-- Top Nav Bar -->
+    <%- include('./partials/navbar.ejs') %>
+
+    <!-- Reset Password Section -->
+    <div id="auth-section" class="w-full max-w-md mx-auto my-6">
+        <div class="auth-container">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Reset Password</h2>
+            <form id="reset-password-form" class="space-y-6">
+                <div>
+                    <label for="new-password" class="block text-sm font-medium text-gray-700">Enter New Password</label>
+                    <input 
+                        type="password" 
+                        id="new-password" 
+                        name="new-password" 
+                        placeholder="New Password"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
+                        required>
+                </div>
+                <div>
+                    <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm New Password</label>
+                    <input 
+                        type="password" 
+                        id="confirm-password" 
+                        name="confirm-password" 
+                        placeholder="Confirm Password"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
+                        required>
+                </div>
+                <div>
+                    <button 
+                        type="submit"
+                        class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 px-4 rounded-md shadow-md transition-colors">
+                        Reset Password
+                    </button>
+                </div>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    <strong>Reset your password</strong> by entering a new password and confirming it.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/resetpass.js"></script>
+
+    <!-- Footer -->
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

@@ -5,16 +5,16 @@ const getAnnouncements = async (req, res) => {
         const announcementsSnapshot = await db.collection('announcements').get();
         
         // Log for debugging
-        console.log('Firestore snapshot size:', announcementsSnapshot.size);
+        // console.log('Firestore snapshot size:', announcementsSnapshot.size);
 
         // Ensure there are documents to process
         if (announcementsSnapshot.empty) {
-            console.log('No announcements found');
+            // console.log('No announcements found');
             return res.status(404).json({ message: 'No announcements found' });
         }
 
         const announcements = announcementsSnapshot.docs.map(doc => {
-            console.log('Fetched announcement:', doc.data());
+            // console.log('Fetched announcement:', doc.data());
             return doc.data();
         });
 

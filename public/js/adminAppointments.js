@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Function to handle status updates
     const handleStatusUpdate = async (appointmentId, newStatus) => {
-        console.log(`Updating appointment ${appointmentId} to ${newStatus}`);
+        // console.log(`Updating appointment ${appointmentId} to ${newStatus}`);
         
         try {
             await updateAppointmentStatus(appointmentId, newStatus);
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Function to update the appointment status via an API call
     const updateAppointmentStatus = async (appointmentId, newStatus) => {
         try {
-            console.log('Sending update request...');
+            // console.log('Sending update request...');
             
             const response = await fetch(`/api/admin/appointments/update-status`, {
                 method: 'POST',

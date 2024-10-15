@@ -25,7 +25,8 @@ const announcementRoutes = require('./Backend/routes/announcementRoute');
 const newsRoutes = require('./Backend/routes/newsRoutes');
 const adminAppointmentsRoutes = require('./Backend/routes/manageAppointmentsRoute');
 const adminDashboardRoutes = require('./Backend/routes/adminDashboardRouter');
-
+const forgetPassRoute = require('./Backend/routes/forgetPassRoutes');
+const contactRoutes = require('./Backend/routes/contactRoute');
 // Express app
 const app = express();
 
@@ -51,7 +52,6 @@ app.use(session({
 }));
 
 // Routes
-//app.use('/api', authRoutes);
 app.use('/api', loginRoutes);
 app.use('/api', signupRoute);
 app.use('/', dashboardRoutes);
@@ -62,6 +62,8 @@ app.use('/api/donations', donationRoute);
 app.use('/api/announcements', announcementRoutes);
 app.use('/api/admin/appointments', adminAppointmentsRoutes);
 app.use('/api', adminDashboardRoutes);
+app.use('/api', forgetPassRoute);
+app.use('/api', contactRoutes);
 
 
 app.use('/api', scheduleRoutes);
@@ -116,99 +118,9 @@ app.get('/concerns', (req, res) => {
     res.render('concerns', { title: 'Common Concerns About Blood Donation' });
 });
 app.get('/contact', (req, res) => {
-    res.render('contact', { title: 'Contact' });
+    res.render('contact', { title: '' });
 });
 
-// Admin Dashboard
-// app.get('/dashboard', (req, res) => {
-//     res.render('dashboard/maindashboard', { title: "Admin Dashboard"});
-// });
-// app.get('/dashboard/profile', (req, res) => {
-//     res.render('dashboard/profile', { title: 'Profile Settings' });
-// });
-// app.get('/dashboard/dashboard-overview', (req, res) => {
-//     res.render('dashboard/dashboard-overview', { title: 'Dashboard Overview' });
-// });
-
-// app.get('/dashboard/manage-appointments', (req, res) => {
-//     res.render('dashboard/manage-appointments', { title: 'Manage Appointments' });
-// });
-// app.get('/dashboard/manage-donors', (req, res) => {
-//     res.render('dashboard/manage-donors', { title: 'Manage Donors' });
-// });
-// app.get('/dashboard/post-announcements', (req, res) => {
-//     res.render('dashboard/post-announcements', { title: 'Post Announcements' });
-// });
-
-// // Donor Dashoard
-
-// app.get('/donorsdashboard/overview', (req, res) => {
-//     res.render('donorsdashboard/overview', { title: 'Dashboard Overview' });
-// });
-
-// app.get('/donorsdashboard', (req, res) => {
-//     res.render('donorsdashboard/donor', { title: 'Dashboard' });
-// });
-
-// app.get('/donorsdashboard/appointments', (req, res) => {
-//     res.render('donorsdashboard/appointments', { title: 'All Appointments' });
-// });
-
-// app.get('/donorsdashboard/donor-card', (req, res) => {
-
-//     const donorData = {
-//         title: 'View My Donor Card',
-//         bloodGroup: "O+",
-//         donationDate: "2024-09-27",
-//         timesOfDonation: 3,
-//         rhesus: "Positive",
-//         signature: "John Doe",
-//         location: "Kigali, Rwanda",
-//         dob: "1990-01-15",
-//         firstBloodCheck: "Normal",
-//         secondBloodCheck: "Normal",
-//         doctorName: "Dr. Sarah Smith",
-//         cardNo: "123456",
-//         bloodQuantity: "500ml"
-//     };
-
-//     // Render the donor card template and pass the donorData to it
-//     res.render('donorsdashboard/donor-card', donorData);
-// });
-
-
-// app.get('/donorsdashboard/drives', (req, res) => {
-//     res.render('donorsdashboard/drives', { title: 'Dashboard' });
-// });
-
-// app.get('/donorsdashboard/guidelines', (req, res) => {
-//     res.render('donorsdashboard/guidelines', { title: 'Dashboard' });
-// });
-
-// app.get('/donorsdashboard/health-screening', (req, res) => {
-//     res.render('donorsdashboard/health-screening', { title: 'Dashboard' });
-// });
-
-// app.get('/donorsdashboard/when-to-donate', (req, res) => {
-//     res.render('donorsdashboard/when-to-donate', { title: 'Dashboard' });
-// });
-
-
-
-// User Dashboard
-// app.get('/:uid/dashboard', (req, res) => {
-//     const username = req.params.uid; // Extract the username from the URL
-//     res.render('dashboard', { title: 'Dashboard', username });
-// });
-
-app.get('/:username/donatehistory', (req, res) => {
-    const username = req.params.username; // Extract the username from the URL
-    res.render('donatehistory', { title: 'Donation History', username });
-});
-app.get('/:username/donationpro', (req, res) => {
-    const username = req.params.username; // Extract the username from the URL
-    res.render('donationpro', { title: 'Donation Pro', username });
-});
 app.get('/donationpro', (req, res) => {
     res.render('donationpro', { title: 'Donation Process' });
 });
@@ -274,30 +186,3 @@ app.get('/provinces', (req, res) => {
     const { province, district } = req.params;
     res.json(Sectors(province, district));
   });
-
-// app.get('/districts/:province', (req, res) => {
-//     const province = req.params.province;
-//     const districts = districts.filter(district => district.province === province); // Example filtering
-//     res.json(districts);
-// });
-
-// // Endpoint to get sectors based on district
-// app.get('/sectors/:district', (req, res) => {
-//     const district = req.params.district;
-//     const sectors = Sectors.filter(sector => sector.district === district); // Example filtering
-//     res.json(sectors);
-// });
-
-// // Endpoint to get cells based on sector
-// app.get('/cells/:sector', (req, res) => {
-//     const sector = req.params.sector;
-//     const cells = Cells.filter(cell => cell.sector === sector); // Example filtering
-//     res.json(cells);
-// });
-
-// // Endpoint to get villages based on cell
-// app.get('/villages/:cell', (req, res) => {
-//     const cell = req.params.cell;
-//     const villages = Villages.filter(village => village.cell === cell); // Example filtering
-//     res.json(villages);
-// });

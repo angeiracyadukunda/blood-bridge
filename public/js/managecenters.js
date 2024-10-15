@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             contact: document.getElementById('contact').value,
         };
     
-        console.log('Form Data:', centerData); // Debugging: Check the form data
+        // console.log('Form Data:', centerData); // Debugging: Check the form data
     
         try {
             let response;

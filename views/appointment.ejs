@@ -13,48 +13,79 @@
             <h1>Schedule an Appointment</h1>
             <p>Thank you for choosing to save lives! Scheduling a blood donation appointment is simple and ensures that your time is well-utilized. Your donation can make a difference to those in need.</p>
             
-            <form action="/schedule-appointment" method="post">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+            <form id="appointment-form-submit" class="space-y-4">
+                <!-- Full Name -->
+                <div class="flex flex-col">
+                    <label for="name" class="text-gray-700 font-medium mb-1">Full Name:</label>
+                    <input type="text" id="name" name="name" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
+                </div>
+                
+                <!-- Email -->
+                <div class="flex flex-col">
+                    <label for="email" class="text-gray-700 font-medium mb-1">Email Address:</label>
+                    <input type="email" id="email" name="email" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
+                </div>
+                
+                <!-- Phone Number -->
+                <div class="flex flex-col">
+                    <label for="phone" class="text-gray-700 font-medium mb-1">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
+                </div>
 
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required class="iniputs">
+                <!-- Date of Birth -->
+                <div class="flex flex-col">
+                    <label for="dob" class="text-gray-700 font-medium mb-1">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
+                </div>  
 
-                <label for="id">Identity:</label>
-                <input type="number" id="id" name="Identity" required  class="iniputs">
+                <div class="flex flex-col">
+                    <label for="province" class="text-gray-700 font-medium mb-1">Province</label>
+                    <select id="province" name="province" onchange="fetchDistricts()" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select Province</option>
+                    </select>
+                </div>
 
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" required  class="iniputs">
+                <!-- District -->
+                <div class="flex flex-col">
+                    <label for="district" class="text-gray-700 font-medium mb-1">District</label>
+                    <select id="district" name="district" onchange="fetchSectors()" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select District</option>
+                    </select>
+                </div>
+        
+                <!-- Sector -->
+                <div class="flex flex-col">
+                    <label for="sector" class="text-gray-700 font-medium mb-1">Sector</label>
+                    <select id="sector" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" name="sector" onchange="autofillDistrictAndProvince()">
+                        <option value="">Select Sector</option>
+                    </select>
+                </div>
+                            <!-- Donation Center -->
+                <div class="flex flex-col">
+                    <label for="donationCenter" class="text-gray-700 font-medium mb-1">Donation Center</label>
+                    <select id="donationCenter" name="donationCenter" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none">
+                        <option value="">Select Donation Center</option>
+                    </select>
+                </div>
 
-                <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" required  class="iniputs">
-
-                <label for="location">Preferred Location:</label>
-                <select id="location" name="location" required>
-                    <option value="kigali">Kigali</option>
-                    <option value="butare">Butare</option>
-                    <option value="musanze">Musanze</option>
-                    <!-- Add more locations as needed -->
-                </select>
-
-                <label for="date">Preferred Date:</label>
-                <input type="date" id="date" name="date" required  class="iniputs">
+                <!-- Preferred Date -->
+                <div class="flex flex-col">
+                    <label for="scheduleDate" class="text-gray-700 font-medium mb-1">Preferred Date:</label>
+                    <select id="scheduleDate" name="scheduleDate" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none">
+                        <!-- Options will be dynamically populated by JS -->
+                    </select>
+                </div>
 
                 <label for="time">Preferred Time:</label>
                 <input type="time" id="time" name="time" required  class="iniputs">
 
-                <label for="blood-type">Blood Type:</label>
-                <select id="blood-type" name="blood-type">
-                    <option value="unknown">Unknown</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                </select>
+                <div class="flex flex-col">
+                    <label for="bloodGroup" class="text-gray-700 font-medium mb-1">Blood Type:</label>
+                    <select id="bloodGroup" name="bloodGroup" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none">
+                        <option value="">Select Blood Type</option>
+                        <!-- Options for blood type can be dynamically populated -->
+                    </select>
+                </div>
 
                 <label for="notes">Additional Information:</label>
                 <textarea id="notes" name="notes" rows="4"></textarea>
@@ -71,9 +102,7 @@
                 <p>Please bring a valid ID and your donor card if you have one. Ensure you are well-hydrated and have eaten a nutritious meal before donating.</p>
             </div>
 
-
             <!-- Nearby Location Section -->
-          
             <div class="locations-section">
                 <h2>Nearby Locations</h2>
                 <div id="map">
@@ -110,7 +139,8 @@
         </section>
     </main>
 
-    
+    <script src="/js/appointmentmain.js"></script>  <!-- JavaScript for handling appointments -->
+    <script src="/js/locationsLoader.js"></script>  <!-- JavaScript for handling dynamic locations -->    
     <!-- Footer with Social Icons -->
     <%- include('./partials/footer.ejs') %>
     </body>

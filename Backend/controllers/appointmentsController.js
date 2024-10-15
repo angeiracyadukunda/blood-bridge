@@ -10,8 +10,8 @@ const createAppointmentController = async (req, res) => {
 
         const appointmentId = uuidv4();
         const uid  = req.params.uid;
-        console.log("The Center id in the model is: "+centerId);
-        console.log("The uid in the model is: "+uid);
+        // console.log("The Center id in the model is: "+centerId);
+        // console.log("The uid in the model is: "+uid);
         const appointment = {
             donorId: uid,
             centerId,
@@ -73,7 +73,7 @@ const getAllAppointmentsController = async (req, res) => {
                 };
             });
 
-        console.log("Filtered appointments for user " + userId + ": " + JSON.stringify(appointments));
+        // console.log("Filtered appointments for user " + userId + ": " + JSON.stringify(appointments));
 
         res.status(200).json(appointments);
     } catch (error) {
@@ -137,10 +137,11 @@ const deleteAppointmentController = async (req, res) => {
             // Now, delete the appointment
             await appointmentToDelete.delete();
             
-            console.log(`Appointment with ID ${appointmentId} for donor ${userId} has been deleted.`);
-        } else {
-            console.log(`Appointment with ID ${appointmentId} does not exist.`);
-        }
+            // console.log(`Appointment with ID ${appointmentId} for donor ${userId} has been deleted.`);
+        } 
+        // else {
+        //     console.log(`Appointment with ID ${appointmentId} does not exist.`);
+        // }
         
         // Remove the appointment from the donor's list
         const donorRef = db.collection('donors').doc(userId);

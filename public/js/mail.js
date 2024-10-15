@@ -29,7 +29,7 @@ function submitMailForm(e) {
     var emailid = getElementVal("emailid");
     var msgContent = getElementVal("msgContent");
 
-    console.log("Form Submitted:", { name, emailid, msgContent });
+    // console.log("Form Submitted:", { name, emailid, msgContent });
 
     saveMessages(name, emailid, msgContent);
 

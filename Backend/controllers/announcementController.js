@@ -7,27 +7,27 @@ const { v4: uuidv4 } = require('uuid');
 const createAnnouncement = async (req, res) => {
     try {
         // Log the incoming request data
-        console.log('Request Body:', req.body);
+        // console.log('Request Body:', req.body);
 
         const { announcementTitle, announcementBody, announcementDate, announcementType, announcementLocation } = req.body;
         
         // Check if required fields are available
         if (!announcementTitle || !announcementBody || !announcementDate || !announcementType) {
-            console.log('Missing required fields');
+            // console.log('Missing required fields');
             throw new Error('Missing required fields');
         }
 
         // Log fields being used to create the announcement
-        console.log('Announcement Data:', {
-            announcementTitle,
-            announcementBody,
-            announcementDate,
-            announcementType,
-            announcementLocation,
-        });
+        // console.log('Announcement Data:', {
+        //     announcementTitle,
+        //     announcementBody,
+        //     announcementDate,
+        //     announcementType,
+        //     announcementLocation,
+        // });
 
         const announcementId = uuidv4(); // Generate a unique ID
-        console.log('Generated Announcement ID:', announcementId);
+        // console.log('Generated Announcement ID:', announcementId);
 
         // Create the new announcement object
         const newAnnouncement = createNewAnnouncement(announcementId, {
@@ -39,18 +39,18 @@ const createAnnouncement = async (req, res) => {
         });
 
         // Log the new announcement before saving it
-        console.log('New Announcement Object:', newAnnouncement);
+        // console.log('New Announcement Object:', newAnnouncement);
 
         // Save the announcement to Firestore
         const docRef = await db.collection('announcements').doc(announcementId).set(newAnnouncement);
 
         // Log the successful write operation
-        console.log('Announcement successfully saved:', docRef);
+        // console.log('Announcement successfully saved:', docRef);
 
         res.status(201).json({ announcementId, ...newAnnouncement });
     } catch (error) {
         // Log the error for debugging
-        console.log('Error in createAnnouncement:', error.message);
+        // console.log('Error in createAnnouncement:', error.message);
         res.status(500).json({ error: error.message });
     }
 };

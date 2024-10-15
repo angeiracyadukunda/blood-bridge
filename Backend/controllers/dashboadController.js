@@ -109,7 +109,7 @@ const renderDashboardView = (role, viewName, pageTitle) => {
             if (!userData.uid) {
                 userData.uid = uid;
             } // Fetch the relevant dashboard data
-            console.log('Fetched User Data:', userData); // Log userData to see its structure
+            // console.log('Fetched User Data:', userData); // Log userData to see its structure
             res.render(viewName, {
                 title: pageTitle,
                 user: userData,

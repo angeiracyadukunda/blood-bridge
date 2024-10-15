@@ -18,7 +18,7 @@ const signupUser = async (req, res) => {
          const userCredential = await createUserWithEmailAndPassword(authentication, email, password);
          
          const uid = userCredential.user.uid;
-         console.log(`User created: ${uid}`);
+        //  console.log(`User created: ${uid}`);
          // Log to check if Firebase authentication worked
          
  
@@ -32,12 +32,12 @@ const signupUser = async (req, res) => {
          await setDoc(userRef, userData);
         
          // Log to check if Firestore storage worked
-         console.log(`User data stored in Firestore for UID: ${uid}`);
+        //  console.log(`User data stored in Firestore for UID: ${uid}`);
          if (role==="recipient"){
             const userDataReceipient = createReceipient(uid);
             const userRefReceipient = doc(db, 'recipients', uid);
             await setDoc(userRefReceipient, userDataReceipient);
-            console.log(`Recipient data stored in Firestore for UID: ${uid}`);
+            // console.log(`Recipient data stored in Firestore for UID: ${uid}`);
          }
          // Send verification email
          const verificationLink = `http://localhost:3000/api/verify-email?uid=${uid}`;
@@ -84,7 +84,7 @@ const verifyEmailLink = async (req, res) => {
         // Check if the user's email is already verified
         const userRef = dbAdmin.collection('users').doc(uid);
         const userDoc = await userRef.get();
-        console.log("User doc: "+userDoc)
+        // console.log("User doc: "+userDoc)
         if (userDoc.exists && userDoc.data().emailVerified) {
             return res.status(400).json({ message: 'Email is already verified.' });
         }

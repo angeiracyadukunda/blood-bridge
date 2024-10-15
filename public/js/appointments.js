@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch("/api/appointments");
             if (response.ok) {
                 const appointments = await response.json(); // Parse the array directly
-                console.log("Appointments:", appointments); // Now appointments is the array
+                // console.log("Appointments:", appointments); 
+                // Now appointments is the array
                 displayAppointments(appointments); // Pass the array to displayAppointments
             } else {
                 console.error("Error fetching appointments");
@@ -29,22 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Display fetched appointments in the UI
     const displayAppointments = (appointments) => {
-        //appointmentsContainer.innerHTML = ""; // Clear previous appointments
-
-        // Table header
-        // appointmentsContainer.innerHTML = `
-        //     <thead>
-        //         <tr class="bg-gray-200">
-        //             <th class="border border-gray-300 px-4 py-2 text-left">Center</th>
-        //             <th class="border border-gray-300 px-4 py-2 text-left">Schedule Time</th>
-        //             <th class="border border-gray-300 px-4 py-2 text-left">Notes</th>
-        //             <th class="border border-gray-300 px-4 py-2 text-center">Actions</th>
-        //         </tr>
-        //     </thead>
-        //     <tbody>
-        //         <!-- Appointment rows will be inserted here -->
-        //     </tbody>
-        // `;
 
         const tbody = document.getElementById("appointments-list");
 

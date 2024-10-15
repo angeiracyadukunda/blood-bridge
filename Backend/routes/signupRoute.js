@@ -4,7 +4,7 @@ const { registerDonor, checkRegistrationComplete, checkAlreadyRegistered } = req
 const router = express.Router();
 
 // Route for signup
-router.post('/signup1', signupUser);
+router.post('/signup', signupUser);
 
 // Route for signup success page
 router.get('/signup-success', signupSuccess);
