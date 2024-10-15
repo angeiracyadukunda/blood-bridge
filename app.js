@@ -80,7 +80,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/index', (req, res) => {
+app.get('/', (req, res) => {
     res.render('index', { title: 'Home' });
 });
 
