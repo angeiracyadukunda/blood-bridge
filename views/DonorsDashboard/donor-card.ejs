@@ -108,7 +108,8 @@
             const donorInfoTable = document.getElementById('donorInfoTable');
             const noDonationMessage = document.getElementById('noDonationMessage');
             const divBarcode = document.getElementById('divBarcode');
-
+            const downloadbtn = document.getElementById('downloadCard');
+            const printbtn = document.getElementById('printCard');
             // Simulate fetching dashboard data
             setTimeout(async function() {
                 const response = await fetch('/api/admin/dashboard'); // Fetch dashboard data from server
@@ -140,6 +141,8 @@
                     skeletonLoader.classList.add('hidden');
                     donorInfoTable.classList.remove('hidden');
                     divBarcode.classList.remove('hidden');
+                    downloadbtn.classList.remove('hidden');
+                    printbtn.classList.remove('hidden');
                     // Generate the barcode
                     JsBarcode("#barcode", donorData.uid, {
                         format: "CODE128",

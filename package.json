@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "build": "npm run compile",
-    "compile": "nodemon app", 
-    "start": "nodemon app",
+    "compile": "node app.js", 
+    "start": "nodemon app.js",
     "deploy": "npm run build && firebase deploy"
   },
   "repository": {
