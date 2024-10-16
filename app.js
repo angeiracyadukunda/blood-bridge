@@ -42,6 +42,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json());
 
 app.use(express.static('public'));  // Serve static files from public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
     secret: process.env.SESSION_KEY, // Use a strong secret key
