@@ -151,9 +151,9 @@ app.get('/signup', (req, res) => {
     res.render('signup', { title: 'Signup Page' });
 });
 
-app.get('/signup1', (req, res) => {
-    res.render('signup1', { title: 'Signup1 Page' });
-});
+// app.get('/signup', (req, res) => {
+//     res.render('signup', { title: 'Signup1 Page' });
+// });
 
 app.get('/whathappens', (req, res) => {
     res.render('whathappens', { title: 'What Happens' });
