@@ -30,10 +30,10 @@ const contactRoutes = require('./Backend/routes/contactRoute');
 const notificationRoutes = require('./Backend/routes/notificationRoutes');
 // Express app
 const app = express();
-
-app.listen(3000,()=>{
-    console.log("listening to port 3000")
-    });
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 // Register view engine
 app.set('view engine', 'ejs');
 
@@ -47,7 +47,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { 
-        secure: false,
+        secure: true,
         maxAge: 180 * 24 * 60 * 60 * 1000
      } // Set to true if using HTTPS in production
 }));
