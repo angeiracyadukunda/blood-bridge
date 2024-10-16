@@ -36,7 +36,7 @@ app.listen(PORT, () => {
 });
 // Register view engine
 app.set('view engine', 'ejs');
-
+app.set('views', path.join(__dirname, 'views'));
 // Middleware
 app.use(bodyParser.json());
 
