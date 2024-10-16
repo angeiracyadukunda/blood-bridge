@@ -14,52 +14,54 @@ const signupUser = async (req, res) => {
     const { email, fullName, password, role } = req.body;
 
     try {
-         // Create user in Firebase
-         const userCredential = await createUserWithEmailAndPassword(authentication, email, password);
-         
-         const uid = userCredential.user.uid;
-        //  console.log(`User created: ${uid}`);
-         // Log to check if Firebase authentication worked
-         
- 
-         // Prepare user data to store in Firestore
-         const userData = createUserData(uid, { email, fullName, password, role });
-         const userRef = doc(db, 'users', uid);
-         
-         
-         
-         // Store user data in Firestore
-         await setDoc(userRef, userData);
+        // Create user in Firebase
+        const userCredential = await createUserWithEmailAndPassword(authentication, email, password);
         
-         // Log to check if Firestore storage worked
-        //  console.log(`User data stored in Firestore for UID: ${uid}`);
-         if (role==="recipient"){
+        const uid = userCredential.user.uid;
+        // console.log(`User created: ${uid}`);
+        
+        // Prepare user data to store in Firestore
+        const userData = createUserData(uid, { email, fullName, password, role });
+        const userRef = doc(db, 'users', uid);
+        
+        // Store user data in Firestore
+        await setDoc(userRef, userData);
+        
+        // console.log(`User data stored in Firestore for UID: ${uid}`);
+        if (role === "recipient") {
             const userDataReceipient = createReceipient(uid);
             const userRefReceipient = doc(db, 'recipients', uid);
             await setDoc(userRefReceipient, userDataReceipient);
             // console.log(`Recipient data stored in Firestore for UID: ${uid}`);
-         }
-         // Send verification email
-         const verificationLink = `http://localhost:3000/api/verify-email?uid=${uid}`;
-         try {
-            await sendVerificationEmail(email,fullName, verificationLink);
+        }
+        
+        // Send verification email
+        const verificationLink = `http://${req.headers.host}/api/verify-email?uid=${uid}`;
+        try {
+            await sendVerificationEmail(email, fullName, verificationLink);
             console.log('Verification email sent');
-         } catch (error) {
-            console.log(error+ "cannot send the email");
-         }
-         
-         // Set session and respond
-         req.session.userSignedUp = true;
-         res.status(201).json({ message: 'Signup successful. Please verify your email.' });
- 
+        } catch (error) {
+            console.log(error + " cannot send the email");
+        }
+        
+        // Set session and respond
+        req.session.userSignedUp = true;
+        res.status(201).json({ message: 'Signup successful. Please verify your email.' });
+
     } catch (error) {
+        // Handle specific Firebase Authentication errors
         if (error.code === 'auth/email-already-in-use') {
             res.status(400).json({ message: 'Email already exists. Please log in or sign up using another email.' });
+        } else if (error.code === 'auth/weak-password') {
+            res.status(400).json({ message: 'The password is too weak. Please choose a stronger password.' });
+        } else if (error.code === 'auth/invalid-email') {
+            res.status(400).json({ message: 'The email address is not valid. Please enter a valid email.' });
         } else {
             res.status(500).json({ message: 'Error creating user', error: error.message });
         }
     }
 };
+
 
 const signupSuccess = (req, res) => {
     // Ensure this page is only accessible after signup
