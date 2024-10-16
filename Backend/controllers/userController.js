@@ -4,7 +4,7 @@ const { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, sig
 const fbConfig = '../firebase/firebaseConfig';
 const { authentication, db } = require(fbConfig);
 const { setDoc, doc, getDoc, serverTimestamp } = require('firebase/firestore');
-const uModel = '../models/user';
+const uModel = '../models/User';
 const { createUserData, createReceipient } = require(uModel);
 const { FieldValue } = require('firebase-admin/firestore'); 
 const { auth, db:dbAdmin } = require('../firebase/firebaseAdmin');
