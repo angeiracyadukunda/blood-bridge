@@ -137,10 +137,10 @@ const deleteAppointmentController = async (req, res) => {
             // Now, delete the appointment
             await appointmentToDelete.delete();
             
-            // console.log(`Appointment with ID ${appointmentId} for donor ${userId} has been deleted.`);
+            // console.log(Appointment with ID ${appointmentId} for donor ${userId} has been deleted.);
         } 
         // else {
-        //     console.log(`Appointment with ID ${appointmentId} does not exist.`);
+        //     console.log(Appointment with ID ${appointmentId} does not exist.);
         // }
         
         // Remove the appointment from the donor's list
