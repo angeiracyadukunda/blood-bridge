@@ -27,6 +27,7 @@ const adminAppointmentsRoutes = require('./Backend/routes/manageAppointmentsRout
 const adminDashboardRoutes = require('./Backend/routes/adminDashboardRouter');
 const forgetPassRoute = require('./Backend/routes/forgetPassRoutes');
 const contactRoutes = require('./Backend/routes/contactRoute');
+const notificationRoutes = require('./Backend/routes/notificationRoutes');
 // Express app
 const app = express();
 
@@ -64,6 +65,7 @@ app.use('/api/admin/appointments', adminAppointmentsRoutes);
 app.use('/api', adminDashboardRoutes);
 app.use('/api', forgetPassRoute);
 app.use('/api', contactRoutes);
+app.use('/api', notificationRoutes);
 
 
 app.use('/api', scheduleRoutes);

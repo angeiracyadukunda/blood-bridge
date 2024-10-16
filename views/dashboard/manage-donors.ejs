@@ -51,6 +51,7 @@
         </div>
     </div>
 
+
     <!-- Donor Table -->
     <table class="min-w-full bg-white shadow rounded-lg mt-6">
         <thead>
@@ -83,7 +84,53 @@
             <!-- Dynamic Content will be injected here -->
         </tbody>
     </table>
+    <div class="mt-5 mb-4">
+        <!-- Button to Toggle Notification Form -->
+        <button id="toggleNotificationForm" type="button" class="bg-red-900 text-white py-2 px-4 rounded">
+            Send Notification
+        </button>
 
+        <!-- Notification Form (Hidden by Default) -->
+        <form id="notificationForm" class="hidden mt-5">
+            <div class="mb-4">
+                <label for="notificationType" class="block text-sm font-medium text-gray-700">Notification Type</label>
+                <select id="notificationType" name="notificationType" class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-red-900 focus:border-red-900 sm:text-sm">
+                    <option value="general">General</option>
+                    <option value="urgent">Urgent</option>
+                    <option value="reminder">Reminder</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="notificationMessage" class="block text-sm font-medium text-gray-700">Notification Message</label>
+                <textarea id="notificationMessage" name="notificationMessage" rows="4" class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-red-900 focus:border-red-900 sm:text-sm" placeholder="Type your notification here..."></textarea>
+            </div>
+
+            <!-- Button to Toggle Donor Selection Form -->
+            <button id="toggleDonorForm" type="button" class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded">
+                Select Donors
+            </button>
+
+            <!-- Donor Selection Form (Hidden by Default) -->
+            <div id="donorForm" class="hidden mt-5">
+                <!-- Buttons to select/deselect all donors -->
+                <button type="button" id="selectAllButton" class="bg-green-600 text-white py-2 px-4 rounded">Select All</button>
+                <button type="button" id="deselectAllButton" class="bg-gray-600 text-white py-2 px-4 rounded">Deselect All</button>
+                
+                <label class="block text-sm font-medium text-gray-700">Select Donors</label>
+                <div id="donors" class="space-y-2">
+                    <!-- Donor checkboxes will be injected here by JS -->
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-5">
+                <button type="submit" class="bg-green-600 hover:bg-green-800 text-white py-2 px-4 rounded">Send</button>
+            </div>
+        </form>
+
+    </div>
+    
     <!-- Donor Details Modal -->
     <div id="donor-details-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
         <div class="bg-white p-6 rounded-lg w-1/2">
@@ -286,5 +333,6 @@
     </div>
 
     <script src="/js/manage-donations.js"></script>
+    <script src="/js/manage-notifications.js"></script>
 </body>
 </html>

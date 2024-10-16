@@ -26,7 +26,12 @@ const sendResetLink = async (req, res) => {
         const message = {
             from: 'no-reply@yourapp.com', // Change as needed
             subject: 'Password Reset',
-            html: `<p>Click the link to reset your password: <a href="${resetLink}">${resetLink}</a></p>`,
+            html: `
+                <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+                    <h2 style="color: #4A90E2;">Link to Reset your password</h2>
+                    <p>Click the link to reset your password: <a href="${resetLink}">${resetLink}</a></p>
+                </div>
+            `,
         };
 
         await sendEmail(email, message);

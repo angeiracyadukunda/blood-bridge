@@ -3,7 +3,27 @@
 
 <script>
     function logout() {
-        localStorage.removeItem('token');
-        window.location.href = '/login';
-    }
+    // Send POST request to logout endpoint
+    fetch('/api/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => {
+        if (response.ok) {
+            // Remove token from local storage
+            localStorage.removeItem('token');
+            // Redirect the entire window (out of the iframe)
+            window.top.location.href = '/';
+        } else {
+            // Handle errors if needed
+            console.error('Logout failed');
+        }
+    })
+    .catch(error => {
+        console.error('Error during logout:', error);
+    });
+}
+
 </script>
