@@ -4,10 +4,10 @@
   "description": "this is my blod donation project",
   "main": "app.js",
   "scripts": {
-    "build": "npm run compile",
-    "compile": "node app.js", 
-    "start": "nodemon app.js",
-    "deploy": "npm run build && firebase deploy"
+    "start": "node app.js",          
+    "dev": "nodemon app.js",         
+    "build": "echo 'No build step necessary'", 
+    "deploy": "vercel --prod"                 
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,8 @@
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.15",
     "rwanda": "^2.1.6",
-    "uuid": "^10.0.0"
+    "uuid": "^10.0.0",
+    "vercel": "^37.9.0"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.12"
