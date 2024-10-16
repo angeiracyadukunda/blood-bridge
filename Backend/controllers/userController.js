@@ -66,7 +66,7 @@ const signupUser = async (req, res) => {
 const signupSuccess = (req, res) => {
     // Ensure this page is only accessible after signup
     if (!req.session.userSignedUp) {
-        return res.redirect('/signup1');
+        return res.redirect('/signup');
     }
     // Render the signup-success.ejs template
     res.render('signup-success');

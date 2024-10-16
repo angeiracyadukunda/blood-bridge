@@ -152,7 +152,7 @@ app.get('/signup', (req, res) => {
 });
 
 // app.get('/signup', (req, res) => {
-//     res.render('signup', { title: 'Signup1 Page' });
+//     res.render('signup', { title: 'signup Page' });
 // });
 
 app.get('/whathappens', (req, res) => {

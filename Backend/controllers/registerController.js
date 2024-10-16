@@ -63,7 +63,7 @@ const checkRegistrationComplete = (req, res, next) => {
     // If conditions are not met, reset session and redirect to signup page
     req.session.registrationComplete = false;
     req.session.registrationTime = null; // Clear the timestamp
-    return res.redirect('/signup1');
+    return res.redirect('/signup');
 };
 
 // Middleware to check if the user is already registered or logged in
