@@ -5,12 +5,22 @@ const {db} = require("../firebase/firebaseAdmin");
 // Fetch all appointments with donor and center info
 const getAppointments = async () => {
     const appointmentSnapshot = await db.collection('appointments').get();
-    const appointments = [];
+    const appointments = []; 
 
     for (const doc of appointmentSnapshot.docs) {
         const appointment = doc.data();
+        
         const donorDoc = await db.collection('users').doc(appointment.donorId).get();
+        if (!donorDoc.exists) {
+            console.error(`Donor with ID ${appointment.donorId} not found`);
+            continue;  // Skip this iteration if the donor doesn't exist
+        }
+
         const centerDoc = await db.collection('donationCenters').doc(appointment.centerId).get();
+        if (!centerDoc.exists) {
+            console.error(`Center with ID ${appointment.centerId} not found`);
+            continue;  // Skip this iteration if the center doesn't exist
+        }
 
         appointments.push({
             appointmentId: doc.id,
@@ -23,6 +33,9 @@ const getAppointments = async () => {
     }
     return appointments;
 };
+
+
+
 
 // Update appointment status
 const postUpdateAppointmentStatus = async (req, res) => {
@@ -42,6 +55,7 @@ const postUpdateAppointmentStatus = async (req, res) => {
 };
 
 // Fetch all appointments
+
 const getAllAppointments = async (req, res) => {
     try {
         const appointments = await getAppointments();

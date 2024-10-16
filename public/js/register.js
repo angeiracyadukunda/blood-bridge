@@ -1,6 +1,17 @@
-// register.js
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    const idType = document.getElementById('idType').value;
+    const idNo = document.getElementById('idNo').value;
+
+    // Validate ID number based on ID type
+    if (idType === 'nationalId') {
+        const isValidNationalId = /^\d{16}$/.test(idNo); // Check if it's exactly 16 digits
+        if (!isValidNationalId) {
+            showPopup('National ID must be 16 digits long and contain only numbers.', 'error');
+            return; // Stop form submission
+        }
+    }
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
