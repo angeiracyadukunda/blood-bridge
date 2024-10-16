@@ -11,7 +11,6 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
         showPopup('Passwords do not match', 'error');
         return;
     }
-
     fetch('/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
