@@ -54,7 +54,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
     store: new FirebaseStore({
-        database: db // This should work with your Firestore instance
+        // Specify your Firebase settings
+        database: admin.database(),
+        collection: "sessions"
     }),
     secret: process.env.SESSION_KEY, // Your session secret
     resave: false,
