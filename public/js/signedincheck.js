@@ -25,7 +25,7 @@
             `;
 
             if (role === "donor"){
-                signInLink.href = `/${uid}/donorsdashboard/profile`;
+                signInLink.href = `/${uid}/donorsdashboard`;
                 dashboardLink.href=`/${uid}/donorsdashboard/appointments`;
                 dashboardLinkDonations.href=`/${uid}/donorsdashboard`;
             }else if(role === "recipient"){
