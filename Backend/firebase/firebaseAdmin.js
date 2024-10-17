@@ -9,6 +9,7 @@ admin.initializeApp({
   databaseURL: process.env.FIREBASE_DATABASE_URL, // Make sure this is set in your environment variables
 });
 
+const realTimeDb = admin.database();
 const db = admin.firestore();
 const auth = admin.auth();
-module.exports = { db, auth };
+module.exports = { db, auth, realTimeDb };

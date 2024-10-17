@@ -14,7 +14,7 @@ require('dotenv').config();
 const cors = require('cors');
 const session = require('express-session');
 const FirebaseStore = require('connect-session-firebase')(session);
-const { db } = require('./Backend/firebase/firebaseAdmin');
+const { realTimeDb } = require('./Backend/firebase/firebaseAdmin');
 
 // const signupRoutes = require('./Backend/routes/signupRoute');
 const authRoutes = require('./Backend/routes/authRoute'); 
@@ -54,7 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
     store: new FirebaseStore({
-        database: db, // Use the correct database instance from firebaseAdmin
+        database: realTimeDb, // Use the correct database instance from firebaseAdmin
         collection: "sessions"
     }),
     secret: process.env.SESSION_KEY, // Your session secret
