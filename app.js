@@ -12,6 +12,9 @@ const rwanda = require('rwanda');
 const { Provinces, Districts, Sectors } = require('rwanda');
 require('dotenv').config(); 
 const cors = require('cors');
+const session = require('express-session');
+const FirebaseStore = require('connect-session-firebase')(session);
+const { db } = require('./Backend/firebase/firebaseAdmin');
 
 // const signupRoutes = require('./Backend/routes/signupRoute');
 const authRoutes = require('./Backend/routes/authRoute'); 
@@ -51,13 +54,16 @@ app.use(express.static('public'));  // Serve static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-    secret: process.env.SESSION_KEY, // Use a strong secret key
+    store: new FirebaseStore({
+        database: db // This should work with your Firestore instance
+    }),
+    secret: process.env.SESSION_KEY, // Your session secret
     resave: false,
     saveUninitialized: false,
     cookie: { 
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: 180 * 24 * 60 * 60 * 1000
-     } // Set to true if using HTTPS in production
+        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+        maxAge: 180 * 24 * 60 * 60 * 1000 // Session expiration time
+    }
 }));
 
 // Routes

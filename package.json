@@ -22,11 +22,12 @@
   "dependencies": {
     "@google-cloud/translate": "^8.5.0",
     "body-parser": "^1.20.3",
+    "connect-session-firebase": "^11.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
-    "express-session": "^1.18.0",
+    "express-session": "^1.18.1",
     "firebase": "^10.13.2",
     "firebase-admin": "^12.5.0",
     "flowbite": "^2.5.1",
