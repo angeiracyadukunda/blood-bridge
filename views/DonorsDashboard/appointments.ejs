@@ -58,7 +58,7 @@
 
             <div class="flex flex-col">
                 <label for="province" class="text-gray-700 font-medium mb-1">Province</label>
-                <select id="province" name="province" onchange="fetchDistricts()" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <select id="province" name="province" onchange="fetchDistricts()" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 " required>
                     <option value="">Select Province</option>
                 </select>
             </div>
@@ -66,7 +66,7 @@
             <!-- District -->
             <div class="flex flex-col">
                 <label for="district" class="text-gray-700 font-medium mb-1">District</label>
-                <select id="district" name="district" onchange="fetchSectors()" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <select id="district" name="district" onchange="fetchSectors()" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                     <option value="">Select District</option>
                 </select>
             </div>
@@ -74,7 +74,7 @@
             <!-- Sector -->
             <div class="flex flex-col">
                 <label for="sector" class="text-gray-700 font-medium mb-1">Sector</label>
-                <select id="sector" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" name="sector" onchange="autofillDistrictAndProvince()">
+                <select id="sector" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" name="sector" onchange="autofillDistrictAndProvince()" required>
                     <option value="">Select Sector</option>
                 </select>
             </div>
@@ -83,7 +83,7 @@
             <!-- Donation Center -->
             <div class="flex flex-col">
                 <label for="donationCenter" class="text-gray-700 font-medium mb-1">Donation Center</label>
-                <select id="donationCenter" name="donationCenter" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none">
+                <select id="donationCenter" name="donationCenter" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
                     <option value="">Select Donation Center</option>
                 </select>
             </div>
@@ -91,7 +91,7 @@
             <!-- Preferred Date -->
             <div class="flex flex-col">
                 <label for="scheduleDate" class="text-gray-700 font-medium mb-1">Preferred Date:</label>
-                <select id="scheduleDate" name="scheduleDate" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none">
+                <select id="scheduleDate" name="scheduleDate" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
                     <!-- Options will be dynamically populated by JS -->
                 </select>
             </div>
@@ -105,7 +105,7 @@
             <!-- Blood Type -->
             <div class="flex flex-col">
                 <label for="bloodGroup" class="text-gray-700 font-medium mb-1">Blood Type:</label>
-                <select id="bloodGroup" name="bloodGroup" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none">
+                <select id="bloodGroup" name="bloodGroup" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none" required>
                     <option value="">Select Blood Type</option>
                     <!-- Options for blood type can be dynamically populated -->
                 </select>
