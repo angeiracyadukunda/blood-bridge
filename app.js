@@ -36,7 +36,7 @@ const notificationRoutes = require('./Backend/routes/notificationRoutes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(cors({
-    origin: '*', // Allow all origins (adjust for security in production)
+    origin: 'https://blood-bridge-zeta.vercel.app', // Allow all origins (adjust for security in production)
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
