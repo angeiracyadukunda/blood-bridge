@@ -22,7 +22,6 @@ const loginRoutes = require('./Backend/routes/loginRoute');
 const signupRoute = require('./Backend/routes/signupRoute');
 const dashboardRoutes = require('./Backend/routes/dashboardRoute');
 const donationRoute = require('./Backend/routes/manageDonationsRoute');
-const session = require('express-session');
 const scheduleRoutes = require("./Backend/routes/scheduleRoutes");
 const donationCentersRoutes = require("./Backend/routes/donationCentersRoute");
 const appointmentRoutes = require('./Backend/routes/appointmentRoute');
