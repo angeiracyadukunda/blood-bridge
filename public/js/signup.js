@@ -32,7 +32,7 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
             }, 2500);
         } else{
             setTimeout(()=>{
-                window.location.href = "api/signup-success"; // Redirect here
+                window.location.href = "/api/signup-success"; // Redirect here
             }, 2000);
         }
         // Redirect to the signup success page
