@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Add event listeners to filter elements
     document.getElementById('genderFilter').addEventListener('change', updateFilters);
-    document.getElementById('provinceFilter').addEventListener('change', updateFilters);
+    document.getElementById('province').addEventListener('change', updateFilters);
     document.getElementById('bloodGroupFilter').addEventListener('change', updateFilters);
 
     // Initial fetch of dashboard data
@@ -33,7 +33,23 @@ const fetchDashboardData = async (filters) => {
             const provinceMatch = filters.province ? donor.province.toLowerCase() === filters.province.toLowerCase() : true;
             const bloodGroupMatch = filters.bloodGroup ? donor.bloodGroup.toLowerCase() === filters.bloodGroup.toLowerCase() : true;
 
-            return genderMatch && provinceMatch && bloodGroupMatch;
+            // Time filtering logic
+            const donationDate = new Date(donation.donationDate);
+            const now = new Date();
+            const timeFilter = filters.time;
+
+            let timeMatch = true;
+            if (timeFilter === 'lastMonth') {
+                timeMatch = donationDate >= new Date(now.setMonth(now.getMonth() - 1));
+            } else if (timeFilter === 'last6Months') {
+                timeMatch = donationDate >= new Date(now.setMonth(now.getMonth() - 6));
+            } else if (timeFilter === 'lastYear') {
+                timeMatch = donationDate >= new Date(now.setFullYear(now.getFullYear() - 1));
+            } else if (timeFilter === 'last3Months') {
+                timeMatch = donationDate >= new Date(now.setMonth(now.getMonth() - 3));
+            }
+
+            return genderMatch && provinceMatch && bloodGroupMatch && timeMatch;
         });
 
         const filteredAppointments = appointments.filter(appointment => {
@@ -45,24 +61,47 @@ const fetchDashboardData = async (filters) => {
             return genderMatch && provinceMatch && bloodGroupMatch;
         });
 
+        // Sort donors by number of donations
+        const sortedDonors = filteredDonors.sort((a, b) => {
+            const donationCountA = donations.filter(donation => donation.donor.uid === a.uid).length;
+            const donationCountB = donations.filter(donation => donation.donor.uid === b.uid).length;
+            return donationCountB - donationCountA; // Descending order for most donations
+        });
+
+        // Handle sorting by least donations if required
+        if (filters.sortBy === "leastDonations") {
+            sortedDonors.sort((a, b) => {
+                const donationCountA = donations.filter(donation => donation.donor.uid === a.uid).length;
+                const donationCountB = donations.filter(donation => donation.donor.uid === b.uid).length;
+                return donationCountA - donationCountB; // Ascending order for least donations
+            });
+        }
+
         // Render filtered data
-        renderDiagrams(filteredDonations, filteredDonors, filteredAppointments);
-        renderTables(filteredDonors, filteredDonations, filteredAppointments);
+        renderDiagrams(filteredDonations, sortedDonors, filteredAppointments);
+        renderTables(sortedDonors, filteredDonations, filteredAppointments);
     } catch (error) {
         console.error('Error fetching dashboard data:', error);
     }
 };
 
-
 // Function to update filters and refetch data
-const updateFilters = () => {
+function updateFilters() {
+    // Gather filter values
+    const gender = document.getElementById('genderFilter').value;
+    const province = document.getElementById('province').value;
+    const bloodGroup = document.getElementById('bloodGroupFilter').value;
+
+    // Create a filter object
     const filters = {
-        gender: document.getElementById('genderFilter').value,
-        province: document.getElementById('provinceFilter').value,
-        bloodGroup: document.getElementById('bloodGroupFilter').value
+        gender,
+        province,
+        bloodGroup
     };
-    fetchDashboardData(filters); // Fetch updated data
-};
+
+    // Fetch the dashboard data with the new filters
+    fetchDashboardData(filters);
+}
 
 // Render diagrams based on fetched data
 const renderDiagrams = (donations, donors, appointments) => {

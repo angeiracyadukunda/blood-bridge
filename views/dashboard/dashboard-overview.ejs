@@ -10,28 +10,38 @@
     <!-- Filters Section -->
     <div class="flex space-x-4 mb-6">
       <select id="genderFilter" class="border border-gray-300 rounded-lg p-2">
-        <option value="">All Genders</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="lastmonth">Last month</option>
-        <option value="mostdonations">Most Donations</option>
+          <option value="">All Genders</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
       </select>
-      <select id="provinceFilter" class="border border-gray-300 rounded-lg p-2">
-        <option value="">All Provinces</option>
-        <!-- Populate with provinces -->
+      <select id="province" class="border border-gray-300 rounded-lg p-2">
+          <option value="">All Provinces</option>
+          <!-- Populate with provinces -->
       </select>
       <select id="bloodGroupFilter" class="border border-gray-300 rounded-lg p-2">
-        <option value="">All Blood Groups</option>
-        <option value="A+">A+</option>
-        <option value="A-">A-</option>
-        <option value="B+">B+</option>
-        <option value="B-">B-</option>
-        <option value="AB+">AB+</option>
-        <option value="AB-">AB-</option>
-        <option value="O+">O+</option>
-        <option value="O-">O-</option>
+          <option value="">All Blood Groups</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+      </select>
+      <select id="timeFilter" class="border border-gray-300 rounded-lg p-2">
+          <option value="">All Time</option>
+          <option value="lastMonth">Last Month</option>
+          <option value="last6Months">Last 6 Months</option>
+          <option value="lastYear">Last Year</option>
+          <option value="last3Months">Last 3 Months</option>
+      </select>
+      <select id="sortByDonations" class="border border-gray-300 rounded-lg p-2">
+          <option value="mostDonations">Most Donations</option>
+          <option value="leastDonations">Least Donations</option>
       </select>
     </div>
+  
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
       <!-- Diagrams -->
@@ -86,5 +96,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="/js/dashboard.js"></script>
+    <script src="/js/locationsLoader.js"></script>
   </body>
 </html>
