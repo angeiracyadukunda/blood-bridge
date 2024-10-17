@@ -12,11 +12,7 @@ const rwanda = require('rwanda');
 const { Provinces, Districts, Sectors } = require('rwanda');
 require('dotenv').config(); 
 const cors = require('cors');
-app.use(cors({
-    origin: '*', // Allow all origins (adjust for security in production)
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}));
+
 // const signupRoutes = require('./Backend/routes/signupRoute');
 const authRoutes = require('./Backend/routes/authRoute'); 
 const loginRoutes = require('./Backend/routes/loginRoute');
@@ -37,6 +33,11 @@ const notificationRoutes = require('./Backend/routes/notificationRoutes');
 // Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.use(cors({
+    origin: '*', // Allow all origins (adjust for security in production)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
