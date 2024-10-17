@@ -29,7 +29,7 @@
     "express": "^4.21.0",
     "express-session": "^1.18.1",
     "firebase": "^10.13.2",
-    "firebase-admin": "^12.5.0",
+    "firebase-admin": "^12.6.0",
     "flowbite": "^2.5.1",
     "lodash": "^4.17.21",
     "mongodb": "^6.9.0",
