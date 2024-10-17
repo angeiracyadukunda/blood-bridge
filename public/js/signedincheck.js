@@ -3,6 +3,7 @@
         const response = await fetch('/api/session'); // Fetch session data from server
         const data = await response.json();
         const signInLink = document.querySelector('#sign-in-link'); // Update this selector to match your HTML structure
+        const appointmentLink = document.getElementById("appointment-link");
         const dashboardLink = document.getElementById("dashboard-link");
         const dashboardLinkDonations = document.getElementById("dashboard-link-donations");
         if (data.loggedIn) {
@@ -26,12 +27,13 @@
 
             if (role === "donor"){
                 signInLink.href = `/${uid}/donorsdashboard`;
-                dashboardLink.href=`/${uid}/donorsdashboard/appointments`;
+                dashboardLink.href=`/${uid}/donorsdashboard`;
                 dashboardLinkDonations.href=`/${uid}/donorsdashboard`;
             }else if(role === "recipient"){
                 signInLink.href = `/${uid}/dashboard`;
-                dashboardLink.href=`/${uid}/dashboard/manage-appointments`;
-                dashboardLinkDonations.href=`/${uid}/dashboard/manage-donors`;
+                appointmentLink.href=`/${uid}/dashboard`;
+                dashboardLink.href=`/${uid}/dashboard`;
+                dashboardLinkDonations.href=`/${uid}/dashboard`;
             } // Redirect to the user's profile if clicked
         } else {
             signInLink.textContent = 'Sign In'; // Keep 'Sign In' if not logged in
